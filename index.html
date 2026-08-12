@@ -81,6 +81,22 @@
     @media (max-width: 46rem) { .hero-grid { grid-template-columns: 1fr; } }
     .hero-copy { display: flex; flex-direction: column; gap: 1.3rem; }
     .hero-copy .lede { font-size: 1.25rem; line-height: 1.55; color: var(--ink-soft); }
+    .cta-row { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; margin-top: 0.5rem; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 0.65rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn:hover { background: var(--accent-hover); }
+    .btn.inverted { background: #fff; color: var(--accent); }
+    .btn.inverted:hover { background: var(--surface-soft); }
+    .cta-note { font-size: 0.88rem; color: var(--ink-faint); }
 
     /* ---------- Chat mockup ---------- */
     .chat {
@@ -309,6 +325,10 @@
       <span class="eyebrow">Digitalisierung ohne Big Bang</span>
       <h1>Ein Chat-Zugang zu allen Prozessen Ihres Unternehmens.</h1>
       <p class="lede measure">Mitarbeitende stellen ihre Anliegen wie eine Frage an einen vertrauten Assistenten. Im Hintergrund richtet jede Abteilung ihre Prozesse selbst ein &ndash; in natürlicher Sprache, ohne Formulare, ohne Systemumstellung.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://chat.demo.chatbieger.com">Demo ausprobieren</a>
+        <span class="cta-note">Ohne Anmeldung &middot; wird nächtlich zurückgesetzt</span>
+      </div>
     </div>
     <div class="chat" aria-label="Beispiel-Chat: Urlaub beantragen">
       <div class="chat-title">Beispiel &middot; Urlaub beantragen</div>
@@ -468,6 +488,10 @@
     <div class="footer-card">
       <h2>Digitalisierung ohne Big Bang.</h2>
       <p>Um zu starten, braucht eine Abteilung nur eine Beschreibung ihres bestehenden Prozesses &ndash; aus einer Vorlage oder frei formuliert. ChatBieger macht ihn sofort per Chat abrufbar; feingeschliffen wird danach, im laufenden Betrieb.</p>
+      <div class="cta-row">
+        <a class="btn inverted" href="https://chat.demo.chatbieger.com">Demo ausprobieren</a>
+        <span class="cta-note" style="color: rgba(255,255,255,0.75);">Ohne Anmeldung &middot; wird nächtlich zurückgesetzt</span>
+      </div>
     </div>
     <p class="fineprint">ChatBieger ist ein Prototyp und startet mit dem HR-Prozess &bdquo;Urlaub beantragen&ldquo; als Referenz. Die gezeigten Gespräche und Zitate sind illustrative Beispiele aus dem Produktkonzept.</p>
     <nav class="legal-nav">
