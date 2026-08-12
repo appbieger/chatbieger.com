@@ -118,24 +118,85 @@
       padding-bottom: 0.7rem;
       border-bottom: 1px solid rgba(0, 0, 0, 0.07);
     }
+    .msg { display: grid; grid-template-rows: 1fr; }
+    .msg-inner {
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      gap: 0.5rem;
+      padding-top: 0.1rem;
+    }
+    .msg.user .msg-inner { flex-direction: row-reverse; }
+    .avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      flex: none;
+      object-fit: cover;
+      box-shadow: var(--ring);
+    }
+    .avatar.initials {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #c7c7cc;
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
     .bubble {
-      max-width: 88%;
+      max-width: 82%;
       padding: 0.6rem 0.9rem;
       border-radius: 18px;
       font-size: 0.95rem;
       line-height: 1.5;
     }
     .bubble.user {
-      align-self: flex-end;
       background: var(--accent);
       color: #fff;
       border-bottom-right-radius: 6px;
     }
     .bubble.bot {
-      align-self: flex-start;
       background: var(--ground);
       color: var(--ink);
       border-bottom-left-radius: 6px;
+    }
+    .bubble.typing { display: inline-flex; align-items: center; gap: 4px; padding: 0.85rem 0.95rem; }
+    .bubble.typing .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--ink-faint);
+      animation: dot-blink 1.2s ease-in-out infinite;
+    }
+    .bubble.typing .dot:nth-child(2) { animation-delay: 0.18s; }
+    .bubble.typing .dot:nth-child(3) { animation-delay: 0.36s; }
+    @keyframes dot-blink {
+      0%, 60%, 100% { opacity: 0.25; }
+      30% { opacity: 0.9; }
+    }
+
+    /* Chat-Sequenz: läuft nur mit Animationen; ohne (reduced motion / alte
+       Browser-Basis) sind alle Nachrichten sichtbar und die Tipp-Blasen weg. */
+    .msg.typing-row { display: none; }
+    @media (prefers-reduced-motion: no-preference) {
+      .msg.typing-row { display: grid; }
+      .chat .msg {
+        animation: msg-in 0.45s cubic-bezier(0.3, 0.7, 0.3, 1) var(--t, 0s) both;
+      }
+      .chat .msg.typing-row {
+        animation:
+          msg-in 0.45s cubic-bezier(0.3, 0.7, 0.3, 1) var(--t, 0s) both,
+          msg-out 0.35s ease var(--t-out, 3s) forwards;
+      }
+    }
+    @keyframes msg-in {
+      from { grid-template-rows: 0fr; opacity: 0; transform: translateY(8px); }
+      to { grid-template-rows: 1fr; opacity: 1; transform: none; }
+    }
+    @keyframes msg-out {
+      to { grid-template-rows: 0fr; opacity: 0; }
     }
     .chat-input {
       margin-top: 0.4rem;
@@ -229,18 +290,70 @@
     }
     .step p { font-size: 0.96rem; color: var(--ink-soft); }
 
-    /* ---------- Quote ---------- */
-    .pull-quote { margin: 0; padding: 2.75rem 0 0; max-width: 46rem; }
-    .pull-quote blockquote {
-      margin: 0;
-      font-size: clamp(1.3rem, 2.6vw, 1.7rem);
-      font-weight: 600;
-      letter-spacing: -0.015em;
-      line-height: 1.4;
-      color: var(--ink);
-      text-wrap: balance;
+    /* ---------- Für wen ---------- */
+    .audiences {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
     }
-    .pull-quote figcaption { margin-top: 1rem; font-size: 0.9rem; color: var(--ink-faint); }
+    @media (max-width: 46rem) { .audiences { grid-template-columns: 1fr; } }
+    .audience {
+      padding: 1.7rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .audience .glyph {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--accent-tint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      margin-bottom: 0.3rem;
+    }
+    .audience .who {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+    .audience p { font-size: 0.96rem; color: var(--ink-soft); }
+
+    /* ---------- Wer dahintersteckt ---------- */
+    .founder {
+      max-width: 46rem;
+      padding: 2rem 2.25rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+    @media (max-width: 46rem) { .founder { flex-direction: column; } }
+    .founder-photo {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      flex: none;
+      object-fit: cover;
+      box-shadow: var(--ring);
+    }
+    .founder-photo.initials {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-tint);
+      color: var(--accent);
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    .founder-body { display: flex; flex-direction: column; gap: 0.75rem; }
+    .founder-body p { color: var(--ink-soft); font-size: 0.98rem; }
+    .founder-body .signature { color: var(--ink); font-weight: 600; font-size: 0.95rem; }
+    .founder-body a { color: var(--accent); text-decoration: none; }
+    .founder-body a:hover { text-decoration: underline; }
 
     /* ---------- Comparison table ---------- */
     .compare { overflow-x: auto; border-radius: 18px; }
@@ -334,10 +447,42 @@
     </div>
     <div class="chat" aria-label="Beispiel-Chat: Urlaub beantragen">
       <div class="chat-title">Beispiel &middot; Urlaub beantragen</div>
-      <div class="bubble user">Ich möchte Urlaub beantragen &ndash; zwei Wochen im September.</div>
-      <div class="bubble bot">Gern! Damit ich den Antrag vorbereiten kann: Wie heißen Sie, und in welcher Abteilung arbeiten Sie?</div>
-      <div class="bubble user">Anna Weber, Buchhaltung.</div>
-      <div class="bubble bot">Danke, Frau Weber. Ich habe alles zusammen und lege Ihnen einen fertigen E-Mail-Entwurf an die HR-Abteilung bereit &ndash; Sie müssen ihn nur noch absenden.</div>
+      <div class="msg user" style="--t: 0.5s;">
+        <div class="msg-inner">
+          <span class="avatar initials" aria-hidden="true">AW</span>
+          <div class="bubble user">Ich möchte Urlaub beantragen &ndash; zwei Wochen im September.</div>
+        </div>
+      </div>
+      <div class="msg typing-row" style="--t: 1.3s; --t-out: 2.5s;" aria-hidden="true">
+        <div class="msg-inner">
+          <img class="avatar" src="favicon.png" alt="">
+          <div class="bubble bot typing"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        </div>
+      </div>
+      <div class="msg bot" style="--t: 2.6s;">
+        <div class="msg-inner">
+          <img class="avatar" src="favicon.png" alt="">
+          <div class="bubble bot">Gern! Damit ich den Antrag vorbereiten kann: Wie heißen Sie, und in welcher Abteilung arbeiten Sie?</div>
+        </div>
+      </div>
+      <div class="msg user" style="--t: 3.8s;">
+        <div class="msg-inner">
+          <span class="avatar initials" aria-hidden="true">AW</span>
+          <div class="bubble user">Anna Weber, Buchhaltung.</div>
+        </div>
+      </div>
+      <div class="msg typing-row" style="--t: 4.5s; --t-out: 5.9s;" aria-hidden="true">
+        <div class="msg-inner">
+          <img class="avatar" src="favicon.png" alt="">
+          <div class="bubble bot typing"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        </div>
+      </div>
+      <div class="msg bot" style="--t: 6.0s;">
+        <div class="msg-inner">
+          <img class="avatar" src="favicon.png" alt="">
+          <div class="bubble bot">Danke, Frau Weber. Ich habe alles zusammen und lege Ihnen einen fertigen E-Mail-Entwurf an die HR-Abteilung bereit &ndash; Sie müssen ihn nur noch absenden.</div>
+        </div>
+      </div>
       <div class="chat-input" aria-hidden="true"><span>Nachricht schreiben &hellip;</span><span class="send">&uarr;</span></div>
     </div>
   </div>
@@ -394,10 +539,42 @@
         <p>Ab sofort folgt der Chatbot genau dieser Anleitung im Gespräch mit den Mitarbeitenden. Anpassungen? Einfach neu beschreiben &ndash; im laufenden Betrieb.</p>
       </div>
     </div>
-    <figure class="pull-quote">
-      <blockquote>&bdquo;Ich habe zehn Minuten im Chat beschrieben, wie unser Urlaubsantrag abläuft. Am Montag konnten meine Mitarbeitenden das schon nutzen.&ldquo;</blockquote>
-      <figcaption>HR-Leiterin im Pilotszenario (fiktives Beispiel aus unserem Produktkonzept)</figcaption>
-    </figure>
+  </div>
+</section>
+
+<section id="fuer-wen">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Für wen</span>
+      <h2>Überall dort, wo Abläufe bisher auf Zuruf laufen.</h2>
+      <p class="measure muted">Vier fiktive Organisationen aus unserer Demo-Welt zeigen, wie unterschiedlich die Orte sind, an denen derselbe Chat-Zugang funktioniert &ndash; vom Handwerksbetrieb bis zum Sportverein.</p>
+    </div>
+    <div class="audiences">
+      <div class="audience card">
+        <span class="glyph" aria-hidden="true">&#128268;</span>
+        <span class="who">Handwerksbetrieb</span>
+        <h3>Elektro Funke GmbH</h3>
+        <p>Silke Funke führt das Büro. Den Urlaubsantrag hat sie einmal in eigenen Worten beschrieben &ndash; ihre Monteure stellen ihr Anliegen jetzt im Chat, zwischen zwei Terminen, vom Handy aus.</p>
+      </div>
+      <div class="audience card">
+        <span class="glyph" aria-hidden="true">&#129528;</span>
+        <span class="who">Kita</span>
+        <h3>Kita Kunterbunt</h3>
+        <p>Katrin Nowak leitet die Kita. Statt Zetteln im Personalraum beschreibt sie Abläufe wie die Krankmeldung einmal im Chat &ndash; ihr Team fragt einfach dort nach, wo es die Antwort braucht.</p>
+      </div>
+      <div class="audience card">
+        <span class="glyph" aria-hidden="true">&#127963;&#65039;</span>
+        <span class="who">Stadtverwaltung</span>
+        <h3>Stadt Weserfurt</h3>
+        <p>Heiko Martens aus dem Sachgebiet Digitales macht Verwaltungsabläufe per Chat erreichbar &ndash; einen nach dem anderen, ohne ein Fachverfahren abzulösen oder ein Großprojekt aufzusetzen.</p>
+      </div>
+      <div class="audience card">
+        <span class="glyph" aria-hidden="true">&#9917;</span>
+        <span class="who">Sportverein</span>
+        <h3>TSV Weserfurt von 1921 e.&#8202;V.</h3>
+        <p>Bernd Albers sitzt im Vorstand &ndash; ehrenamtlich, mit wenig Zeit. Wiederkehrende Fragen zu Mitgliedschaft oder Übungszeiten beantwortet der Vereins-Chat so, wie Bernd es einmal aufgeschrieben hat.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -485,6 +662,25 @@
   </div>
 </section>
 
+<section id="wer-dahintersteckt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Wer dahintersteckt</span>
+      <h2>Ein Mensch, keine Plattform-Fabrik.</h2>
+    </div>
+    <div class="founder card">
+      <!-- Sobald ein echtes Foto da ist: dieses span durch
+           <img class="founder-photo" src="stephan.jpg" alt="Stephan Tomforde"> ersetzen. -->
+      <span class="founder-photo initials" aria-hidden="true">ST</span>
+      <div class="founder-body">
+        <p>Hinter ChatBieger stecke ich &ndash; Stephan. Ich habe zu oft erlebt, wie Digitalisierung an ihrer eigenen Größe scheitert: Das perfekte System ist geplant, geschult und migriert &ndash; und bis dahin läuft alles weiter per Zuruf und Zettel. ChatBieger ist mein Versuch, es andersherum zu machen: klein anfangen, mit einem einzigen Prozess, beschrieben in normalen Worten.</p>
+        <p>ChatBieger ist ein Prototyp, und das sage ich hier bewusst offen. Wenn Sie einen Prozess im Kopf haben, der sich noch nie nach Formular angefühlt hat: <a href="kontakt.html">Schreiben Sie mir</a> &ndash; ich antworte persönlich.</p>
+        <p class="signature">Stephan Tomforde</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <div class="footer-card">
@@ -495,7 +691,7 @@
         <span class="cta-note" style="color: rgba(255,255,255,0.75);">Ohne Anmeldung &middot; wird nächtlich zurückgesetzt</span>
       </div>
     </div>
-    <p class="fineprint">ChatBieger ist ein Prototyp und startet mit dem HR-Prozess &bdquo;Urlaub beantragen&ldquo; als Referenz. Die gezeigten Gespräche und Zitate sind illustrative Beispiele aus dem Produktkonzept.</p>
+    <p class="fineprint">ChatBieger ist ein Prototyp und startet mit dem HR-Prozess &bdquo;Urlaub beantragen&ldquo; als Referenz. Die gezeigten Gespräche und Organisationen sind illustrative Beispiele aus dem Produktkonzept.</p>
     <nav class="legal-nav">
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutz</a>
