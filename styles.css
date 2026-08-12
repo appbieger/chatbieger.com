@@ -1,0 +1,83 @@
+/* Gemeinsame Basis für die Unterseiten (Impressum, Datenschutz, Kontakt).
+   Tokens identisch mit index.html — bei Änderungen beide Stellen pflegen. */
+
+:root {
+  --ground: #f5f5f7;
+  --surface: #ffffff;
+  --surface-soft: #fbfbfd;
+  --ink: #1d1d1f;
+  --ink-soft: #6e6e73;
+  --ink-faint: #86868b;
+  --accent: #0066cc;
+  --accent-hover: #0055aa;
+  --ring: inset 0 0 0 1px rgba(0, 0, 0, 0.09);
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: 46rem; margin: 0 auto; padding: 0 1.5rem; }
+
+.topbar { padding: 1.4rem 0; }
+.topbar .wrap { display: flex; align-items: center; gap: 0.6rem; }
+.topbar a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+.topbar img { width: 28px; height: 28px; border-radius: 8px; }
+
+main { padding: 2rem 0 4rem; }
+
+h1 {
+  margin: 0 0 2rem;
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+h2 {
+  margin: 2.25rem 0 0.6rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+p { margin: 0 0 0.9rem; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); text-decoration: underline; }
+.muted { color: var(--ink-soft); }
+
+.card {
+  background: var(--surface);
+  border-radius: 18px;
+  box-shadow: var(--card-shadow), var(--ring);
+  padding: 1.7rem;
+  margin: 0 0 1.25rem;
+}
+.card p:last-child { margin-bottom: 0; }
+
+address { font-style: normal; }
+
+.legal-footer {
+  padding: 2rem 0 3rem;
+  font-size: 0.9rem;
+  color: var(--ink-faint);
+}
+.legal-footer .wrap { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+.legal-footer a { color: var(--ink-soft); }
+.legal-footer a:hover { color: var(--ink); }
