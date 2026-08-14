@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ChatBieger – Der KI-Assistent für alle Prozesse Ihres Unternehmens</title>
-  <meta name="description" content="Mitarbeitende stellen ihre Anliegen im Chat an einen vertrauten KI-Assistenten. Jede Abteilung richtet ihre Prozesse selbst ein – in natürlicher Sprache, ohne Formulare, ohne Systemumstellung.">
+  <meta name="description" content="Mitarbeitende stellen ihre Anliegen im Chat an einen vertrauten KI-Assistenten. Jedes Team richtet seine Prozesse selbst ein – in natürlicher Sprache, ohne Formulare zum Ausfüllen, ohne Systemumstellung.">
   <link rel="icon" type="image/png" href="favicon.png">
   <meta property="og:title" content="ChatBieger – Der KI-Assistent für alle Prozesse Ihres Unternehmens">
   <meta property="og:description" content="KI-Digitalisierung ohne Big Bang: Prozesse per KI-Chat nutzbar machen – beschrieben in natürlicher Sprache statt konfiguriert in Formularen.">
@@ -290,6 +290,24 @@
     }
     .step p { font-size: 0.96rem; color: var(--ink-soft); }
 
+    /* ---------- Stufen (Team + KI-Kollege) ---------- */
+    .stages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    @media (max-width: 46rem) { .stages { grid-template-columns: 1fr; } }
+    .stage { padding: 1.7rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .stage-tag {
+      align-self: flex-start;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-tint);
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+    }
+    .stage p { font-size: 0.96rem; color: var(--ink-soft); }
+    .stage-fallback { font-size: 0.92rem; color: var(--ink-faint); margin-top: 0.5rem; }
+
     /* ---------- Für wen ---------- */
     .audiences {
       display: grid;
@@ -445,7 +463,7 @@
     <div class="hero-copy">
       <span class="eyebrow">KI-Digitalisierung ohne Big Bang</span>
       <h1>Ein KI-Assistent für alle Prozesse Ihres Unternehmens.</h1>
-      <p class="lede measure">Mitarbeitende stellen ihre Anliegen im Chat &ndash; wie eine Frage an einen vertrauten KI-Assistenten. Im Hintergrund richtet jede Abteilung ihre Prozesse selbst ein &ndash; in natürlicher Sprache, ohne Formulare, ohne Systemumstellung.</p>
+      <p class="lede measure">Mitarbeitende stellen ihre Anliegen im Chat &ndash; wie eine Frage an einen vertrauten KI-Assistenten. Im Hintergrund richtet jedes Team seine Prozesse selbst ein &ndash; in natürlicher Sprache, ohne Formulare zum Ausfüllen, ohne Systemumstellung.</p>
       <div class="cta-row">
         <a class="btn" href="https://chat.demo.chatbieger.com/demo">Demo ausprobieren</a>
         <span class="cta-note">Ohne Anmeldung &middot; wird nächtlich zurückgesetzt</span>
@@ -545,6 +563,31 @@
         <p>Ab sofort folgt die KI genau dieser Anleitung im Gespräch mit den Mitarbeitenden. Anpassungen? Einfach neu beschreiben &ndash; im laufenden Betrieb.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Ihr Team bekommt Verstärkung</span>
+      <h2>Ein KI-Kollege, der mit jedem Schritt mehr übernimmt.</h2>
+      <p class="measure muted">Jedes Team in Ihrem Unternehmen leistet schon heute einen Service &ndash; Menschen, oft unterstützt durch die vorhandenen Systeme der Firma. ChatBieger fügt diesem Team einen KI-Kollegen hinzu, der lernt, mehr zu übernehmen &ndash; Stufe für Stufe, ohne dass sich für Mitarbeitende der Zugang je ändert.</p>
+    </div>
+    <div class="stages">
+      <div class="stage card">
+        <span class="stage-tag">Persönlicher Kontakt</span>
+        <p>Der Weg, der heute schon funktioniert: Telefon oder E-Mail an die zuständige Person im Team &ndash; jederzeit als Rückfall verfügbar.</p>
+      </div>
+      <div class="stage card">
+        <span class="stage-tag">Mit digitaler Unterstützung</span>
+        <p>Die KI sammelt die nötigen Angaben im Gespräch, prüft sie auf Plausibilität und bereitet einen fertigen E-Mail-Entwurf vor &ndash; ein Mensch prüft und verschickt ihn nur noch.</p>
+      </div>
+      <div class="stage card">
+        <span class="stage-tag">Direkt erledigt</span>
+        <p>Wo das Team es erlaubt, spricht die KI direkt mit den bestehenden Systemen der Firma &ndash; ganz ohne Umweg über eine Person.</p>
+      </div>
+    </div>
+    <p class="stage-fallback measure">Wie beim Kundenservice großer Online-Händler bleibt bei jeder Stufe der Rückfall auf die einfachere darunter möglich: Klappt die Automatisierung nicht, bleibt der Mensch im Team erreichbar.</p>
   </div>
 </section>
 
@@ -684,7 +727,7 @@
       </div>
       <div class="faq-item card">
         <h3>Welche Prozesse werden zuerst unterstützt?</h3>
-        <p>Der Start erfolgt mit HR-Prozessen, beispielhaft dem Urlaubsantrag. Weitere Abteilungen und Prozesse folgen nach Priorität, unterstützt durch die wachsende Vorlagen-Bibliothek.</p>
+        <p>Der Start erfolgt mit HR-Prozessen, beispielhaft dem Urlaubsantrag. Weitere Teams und Prozesse folgen nach Priorität, unterstützt durch die wachsende Vorlagen-Bibliothek.</p>
       </div>
     </div>
   </div>
@@ -711,7 +754,7 @@
   <div class="wrap">
     <div class="footer-card">
       <h2>KI-Digitalisierung ohne Big Bang.</h2>
-      <p>Um zu starten, braucht eine Abteilung nur eine Beschreibung ihres bestehenden Prozesses &ndash; aus einer Vorlage oder frei formuliert. ChatBieger macht ihn sofort im KI-Chat abrufbar; feingeschliffen wird danach, im laufenden Betrieb.</p>
+      <p>Um zu starten, braucht ein Team nur eine Beschreibung seines bestehenden Prozesses &ndash; aus einer Vorlage oder frei formuliert. ChatBieger macht ihn sofort im KI-Chat abrufbar; feingeschliffen wird danach, im laufenden Betrieb.</p>
       <div class="cta-row">
         <a class="btn inverted" href="https://chat.demo.chatbieger.com/demo">Demo ausprobieren</a>
         <span class="cta-note" style="color: rgba(255,255,255,0.75);">Ohne Anmeldung &middot; wird nächtlich zurückgesetzt</span>
