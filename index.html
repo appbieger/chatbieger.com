@@ -1,781 +1,87 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ChatBieger – Der KI-Assistent für alle Prozesse Ihres Unternehmens</title>
-  <meta name="description" content="Mitarbeitende stellen ihre Anliegen im Chat an einen vertrauten KI-Assistenten. Jedes Team richtet seine Prozesse selbst ein – in natürlicher Sprache, ohne Formulare zum Ausfüllen, ohne Systemumstellung.">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <meta property="og:title" content="ChatBieger – Der KI-Assistent für alle Prozesse Ihres Unternehmens">
-  <meta property="og:description" content="KI-Digitalisierung ohne Big Bang: Prozesse per KI-Chat nutzbar machen – beschrieben in natürlicher Sprache statt konfiguriert in Formularen.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://chatbieger.com/">
-  <style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>ChatBieger — in Bearbeitung</title>
+<link rel="icon" href="favicon.png">
+<style>
+  :root {
+    --ground: #f5f5f7;
+    --surface: #ffffff;
+    --ink: #1d1d1f;
+    --ink-soft: #6e6e73;
+    --ink-faint: #86868b;
+    --accent: #0066cc;
+    --line: rgba(0, 0, 0, 0.09);
+  }
+  @media (prefers-color-scheme: dark) {
     :root {
-      --ground: #f5f5f7;
-      --surface: #ffffff;
-      --surface-soft: #fbfbfd;
-      --ink: #1d1d1f;
-      --ink-soft: #6e6e73;
+      --ground: #000000;
+      --surface: #1c1c1e;
+      --ink: #f5f5f7;
+      --ink-soft: #a1a1a6;
       --ink-faint: #86868b;
-      --accent: #0066cc;
-      --accent-hover: #0055aa;
-      --accent-tint: rgba(0, 102, 204, 0.07);
-      --warn: #c9251c;
-      --warn-tint: #fff5f5;
-      --ring: inset 0 0 0 1px rgba(0, 0, 0, 0.09);
-      --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-      --float-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 28px 60px -34px rgba(0, 0, 0, 0.3);
+      --accent: #4d9fff;
+      --line: rgba(255, 255, 255, 0.12);
     }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      background: var(--ground);
-      color: var(--ink);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
-      font-size: 1.0625rem;
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
-
-    .eyebrow {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    h1, h2, h3 {
-      margin: 0;
-      line-height: 1.12;
-      text-wrap: balance;
-      letter-spacing: -0.02em;
-    }
-    h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 700; }
-    h2 { font-size: clamp(1.5rem, 3.2vw, 2.1rem); font-weight: 700; }
-    h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
-
-    p { margin: 0; }
-    .measure { max-width: 42rem; }
-    .muted { color: var(--ink-soft); }
-
-    /* ---------- Top bar ---------- */
-    .topbar { padding: 1.4rem 0; }
-    .topbar .wrap { display: flex; align-items: center; gap: 0.6rem; }
-    .topbar .topbar-demo { margin-left: auto; padding: 0.45rem 1.15rem; font-size: 0.95rem; }
-    .topbar img { width: 28px; height: 28px; border-radius: 8px; }
-    .topbar span { font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em; }
-
-    /* ---------- Hero ---------- */
-    header.hero { padding: 3.5rem 0 5rem; }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-      gap: 3.5rem;
-      align-items: center;
-    }
-    @media (max-width: 46rem) { .hero-grid { grid-template-columns: 1fr; } }
-    .hero-copy { display: flex; flex-direction: column; gap: 1.3rem; }
-    .hero-copy .lede { font-size: 1.25rem; line-height: 1.55; color: var(--ink-soft); }
-    .cta-row { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; margin-top: 0.5rem; }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      padding: 0.65rem 1.5rem;
-      font-size: 1rem;
-      font-weight: 500;
-      text-decoration: none;
-      background: var(--accent);
-      color: #fff;
-    }
-    .btn:hover { background: var(--accent-hover); }
-    .btn.inverted { background: #fff; color: var(--accent); }
-    .btn.inverted:hover { background: var(--surface-soft); }
-    .cta-note { font-size: 0.88rem; color: var(--ink-faint); }
-
-    /* ---------- Chat mockup ---------- */
-    .chat {
-      background: var(--surface);
-      border-radius: 20px;
-      box-shadow: var(--float-shadow), var(--ring);
-      padding: 1.25rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    .chat-title {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink-faint);
-      padding-bottom: 0.7rem;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.07);
-    }
-    .msg { display: grid; grid-template-rows: 1fr; }
-    .msg-inner {
-      overflow: hidden;
-      display: flex;
-      align-items: flex-end;
-      gap: 0.5rem;
-      padding-top: 0.1rem;
-    }
-    .msg.user .msg-inner { flex-direction: row-reverse; }
-    .avatar {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      flex: none;
-      object-fit: cover;
-      box-shadow: var(--ring);
-    }
-    .avatar.initials {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #c7c7cc;
-      color: #fff;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-    }
-    .bubble {
-      max-width: 82%;
-      padding: 0.6rem 0.9rem;
-      border-radius: 18px;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-    .bubble.user {
-      background: var(--accent);
-      color: #fff;
-      border-bottom-right-radius: 6px;
-    }
-    .bubble.bot {
-      background: var(--ground);
-      color: var(--ink);
-      border-bottom-left-radius: 6px;
-    }
-    .bubble.typing { display: inline-flex; align-items: center; gap: 4px; padding: 0.85rem 0.95rem; }
-    .bubble.typing .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--ink-faint);
-      animation: dot-blink 1.2s ease-in-out infinite;
-    }
-    .bubble.typing .dot:nth-child(2) { animation-delay: 0.18s; }
-    .bubble.typing .dot:nth-child(3) { animation-delay: 0.36s; }
-    @keyframes dot-blink {
-      0%, 60%, 100% { opacity: 0.25; }
-      30% { opacity: 0.9; }
-    }
-
-    /* Chat-Sequenz: läuft nur mit Animationen; ohne (reduced motion / alte
-       Browser-Basis) sind alle Nachrichten sichtbar und die Tipp-Blasen weg. */
-    .msg.typing-row { display: none; }
-    @media (prefers-reduced-motion: no-preference) {
-      .msg.typing-row { display: grid; }
-      .chat .msg {
-        animation: msg-in 0.45s cubic-bezier(0.3, 0.7, 0.3, 1) var(--t, 0s) both;
-      }
-      .chat .msg.typing-row {
-        animation:
-          msg-in 0.45s cubic-bezier(0.3, 0.7, 0.3, 1) var(--t, 0s) both,
-          msg-out 0.35s ease var(--t-out, 3s) forwards;
-      }
-    }
-    @keyframes msg-in {
-      from { grid-template-rows: 0fr; opacity: 0; transform: translateY(8px); }
-      to { grid-template-rows: 1fr; opacity: 1; transform: none; }
-    }
-    @keyframes msg-out {
-      to { grid-template-rows: 0fr; opacity: 0; }
-    }
-    .chat-input {
-      margin-top: 0.4rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.7rem;
-      background: var(--surface-soft);
-      border-radius: 999px;
-      box-shadow: var(--ring);
-      padding: 0.65rem 0.65rem 0.65rem 1.1rem;
-      font-size: 0.92rem;
-      color: var(--ink-faint);
-    }
-    .chat-input .send {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      background: var(--accent);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      line-height: 1;
-    }
-
-    /* ---------- Sections ---------- */
-    section { padding: 3.5rem 0; }
-    .section-head { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem; }
-
-    .card {
-      background: var(--surface);
-      border-radius: 18px;
-      box-shadow: var(--card-shadow), var(--ring);
-    }
-
-    /* ---------- Old world vs new world ---------- */
-    .contrast {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-      margin-top: 2rem;
-    }
-    @media (max-width: 46rem) { .contrast { grid-template-columns: 1fr; } }
-    .contrast-card {
-      border-radius: 18px;
-      padding: 1.7rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.9rem;
-    }
-    .contrast-card.old { background: var(--warn-tint); box-shadow: inset 0 0 0 1px rgba(201, 37, 28, 0.14); }
-    .contrast-card.new { background: var(--surface); box-shadow: var(--card-shadow), inset 0 0 0 1px rgba(0, 102, 204, 0.25); }
-    .contrast-card .tag {
-      align-self: flex-start;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.75rem;
-      border-radius: 999px;
-    }
-    .contrast-card.old .tag { color: var(--warn); background: #fff; box-shadow: inset 0 0 0 1px rgba(201, 37, 28, 0.3); }
-    .contrast-card.new .tag { background: var(--accent); color: #fff; }
-    .contrast-card ul { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.45rem; }
-    .contrast-card li::marker { color: var(--ink-faint); }
-
-    /* ---------- Steps ---------- */
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-      counter-reset: step;
-    }
-    @media (max-width: 46rem) { .steps { grid-template-columns: 1fr; } }
-    .step {
-      counter-increment: step;
-      padding: 1.7rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    .step::before {
-      content: "Schritt " counter(step);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-    .step p { font-size: 0.96rem; color: var(--ink-soft); }
-
-    /* ---------- Stufen (Team + KI-Kollege) ---------- */
-    .stages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    @media (max-width: 46rem) { .stages { grid-template-columns: 1fr; } }
-    .stage { padding: 1.7rem; display: flex; flex-direction: column; gap: 0.75rem; }
-    .stage-tag {
-      align-self: flex-start;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      background: var(--accent-tint);
-      padding: 0.3rem 0.75rem;
-      border-radius: 999px;
-    }
-    .stage p { font-size: 0.96rem; color: var(--ink-soft); }
-    .stage-fallback { font-size: 0.92rem; color: var(--ink-faint); margin-top: 0.5rem; }
-
-    /* ---------- Für wen ---------- */
-    .audiences {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-    }
-    @media (max-width: 46rem) { .audiences { grid-template-columns: 1fr; } }
-    .audience {
-      padding: 1.7rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-    .audience .glyph {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: var(--accent-tint);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.35rem;
-      margin-bottom: 0.3rem;
-    }
-    .audience .who {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink-faint);
-    }
-    .audience p { font-size: 0.96rem; color: var(--ink-soft); }
-    .audience .demo-link {
-      margin-top: auto;
-      padding-top: 0.4rem;
-      font-size: 0.93rem;
-      font-weight: 500;
-    }
-
-    /* ---------- Wer dahintersteckt ---------- */
-    .founder {
-      max-width: 46rem;
-      padding: 2rem 2.25rem;
-      display: flex;
-      gap: 1.5rem;
-      align-items: flex-start;
-    }
-    @media (max-width: 46rem) { .founder { flex-direction: column; } }
-    .founder-photo {
-      width: 76px;
-      height: 76px;
-      border-radius: 50%;
-      flex: none;
-      object-fit: cover;
-      box-shadow: var(--ring);
-    }
-    .founder-photo.initials {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--accent-tint);
-      color: var(--accent);
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-    .founder-body { display: flex; flex-direction: column; gap: 0.75rem; }
-    .founder-body p { color: var(--ink-soft); font-size: 0.98rem; }
-    .founder-body .signature { color: var(--ink); font-weight: 600; font-size: 0.95rem; }
-    .founder-body a { color: var(--accent); text-decoration: none; }
-    .founder-body a:hover { text-decoration: underline; }
-
-    /* ---------- Comparison table ---------- */
-    .compare { overflow-x: auto; border-radius: 18px; }
-    .compare table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      background: var(--surface);
-      border-radius: 18px;
-      box-shadow: var(--card-shadow), var(--ring);
-      overflow: hidden;
-    }
-    .compare th, .compare td {
-      padding: 0.9rem 1.2rem;
-      text-align: left;
-      vertical-align: top;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.07);
-      font-size: 0.96rem;
-    }
-    .compare tr:last-child td { border-bottom: none; }
-    .compare th {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      background: var(--surface-soft);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.09);
-    }
-    .compare th.col-old { color: var(--warn); }
-    .compare th.col-new { color: var(--accent); }
-    .compare td:first-child { color: var(--ink-soft); white-space: nowrap; }
-
-    /* ---------- Templates ---------- */
-    .chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
-    .chip {
-      background: var(--surface);
-      box-shadow: var(--card-shadow), var(--ring);
-      border-radius: 999px;
-      padding: 0.45rem 1.05rem;
-      font-size: 0.92rem;
-      font-weight: 500;
-    }
-    .chip strong { color: var(--accent); font-weight: 600; }
-    .chip.more { background: transparent; box-shadow: var(--ring); color: var(--ink-soft); }
-
-    /* ---------- FAQ ---------- */
-    .faq { display: flex; flex-direction: column; gap: 1rem; max-width: 46rem; }
-    .faq-item { padding: 1.5rem 1.7rem; display: flex; flex-direction: column; gap: 0.5rem; }
-    .faq-item p { color: var(--ink-soft); font-size: 0.98rem; }
-
-    /* ---------- Footer ---------- */
-    footer { padding: 1.5rem 0 4rem; }
-    .footer-card {
-      background: var(--accent);
-      color: #fff;
-      border-radius: 20px;
-      padding: 2.75rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.9rem;
-      box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.4);
-    }
-    .footer-card h2 { color: #fff; }
-    .footer-card p { max-width: 42rem; color: rgba(255, 255, 255, 0.85); }
-    .fineprint { margin-top: 2.25rem; font-size: 0.85rem; color: var(--ink-faint); }
-    .legal-nav { margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 1.25rem; font-size: 0.9rem; }
-    .legal-nav a { color: var(--ink-soft); text-decoration: none; }
-    .legal-nav a:hover { color: var(--ink); text-decoration: underline; }
-  </style>
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  main { max-width: 30rem; width: 100%; text-align: left; }
+  .wordmark {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--ink-soft);
+    margin: 0 0 2.5rem;
+  }
+  h1 {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    margin: 0 0 1rem;
+  }
+  p { margin: 0 0 1rem; color: var(--ink-soft); }
+  p.lead { color: var(--ink); }
+  footer {
+    margin-top: 2.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.9375rem;
+    color: var(--ink-faint);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  footer a + a { margin-left: 1.25rem; }
+</style>
 </head>
 <body>
-
-<div class="topbar">
-  <div class="wrap">
-    <img src="favicon.png" alt="" width="28" height="28">
-    <span>ChatBieger</span>
-    <a class="btn topbar-demo" href="https://chat.demo.chatbieger.com/demo">Demo</a>
-  </div>
-</div>
-
-<header class="hero">
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <span class="eyebrow">KI-Digitalisierung ohne Big Bang</span>
-      <h1>Ein KI-Assistent für alle Prozesse Ihres Unternehmens.</h1>
-      <p class="lede measure">Mitarbeitende stellen ihre Anliegen im Chat &ndash; wie eine Frage an einen vertrauten KI-Assistenten. Im Hintergrund richtet jedes Team seine Prozesse selbst ein &ndash; in natürlicher Sprache, ohne Formulare zum Ausfüllen, ohne Systemumstellung.</p>
-      <div class="cta-row">
-        <a class="btn" href="https://chat.demo.chatbieger.com/demo">Demo ausprobieren</a>
-        <span class="cta-note">Ohne Anmeldung &middot; wird nächtlich zurückgesetzt</span>
-      </div>
-    </div>
-    <div class="chat" aria-label="Beispiel-Chat: Urlaub beantragen">
-      <div class="chat-title">Beispiel &middot; Urlaub beantragen</div>
-      <div class="msg user" style="--t: 0.5s;">
-        <div class="msg-inner">
-          <span class="avatar initials" aria-hidden="true">AW</span>
-          <div class="bubble user">Ich möchte Urlaub beantragen &ndash; zwei Wochen im September.</div>
-        </div>
-      </div>
-      <div class="msg typing-row" style="--t: 1.3s; --t-out: 2.5s;" aria-hidden="true">
-        <div class="msg-inner">
-          <img class="avatar" src="favicon.png" alt="">
-          <div class="bubble bot typing"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-        </div>
-      </div>
-      <div class="msg bot" style="--t: 2.6s;">
-        <div class="msg-inner">
-          <img class="avatar" src="favicon.png" alt="">
-          <div class="bubble bot">Gern! Damit ich den Antrag vorbereiten kann: Wie heißen Sie, und in welcher Abteilung arbeiten Sie?</div>
-        </div>
-      </div>
-      <div class="msg user" style="--t: 3.8s;">
-        <div class="msg-inner">
-          <span class="avatar initials" aria-hidden="true">AW</span>
-          <div class="bubble user">Anna Weber, Buchhaltung.</div>
-        </div>
-      </div>
-      <div class="msg typing-row" style="--t: 4.5s; --t-out: 5.9s;" aria-hidden="true">
-        <div class="msg-inner">
-          <img class="avatar" src="favicon.png" alt="">
-          <div class="bubble bot typing"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-        </div>
-      </div>
-      <div class="msg bot" style="--t: 6.0s;">
-        <div class="msg-inner">
-          <img class="avatar" src="favicon.png" alt="">
-          <div class="bubble bot">Danke, Frau Weber. Ich habe alles zusammen und lege Ihnen einen fertigen E-Mail-Entwurf an die HR-Abteilung bereit &ndash; Sie müssen ihn nur noch absenden.</div>
-        </div>
-      </div>
-      <div class="chat-input" aria-hidden="true"><span>Nachricht schreiben &hellip;</span><span class="send">&uarr;</span></div>
-    </div>
-  </div>
-</header>
-
-<section>
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Das Problem</span>
-      <h2>Digitalisierung scheitert selten an der Technik &ndash; sondern am Big Bang.</h2>
-    </div>
-    <p class="measure">Viele Unternehmen wissen, dass sie ihre internen Prozesse digitalisieren sollten &ndash; und dass an KI dabei kein Weg mehr vorbeiführt. Aber der Weg dorthin schreckt ab: neue Software, Change-Management für hunderte Mitarbeitende, monatelange IT-Projekte, bevor der erste Nutzen sichtbar wird. Das Ergebnis ist oft, dass gar nichts passiert &ndash; während dieselben Mitarbeitenden privat längst selbstverständlich mit KI-Assistenten arbeiten.</p>
-    <div class="contrast">
-      <div class="contrast-card old">
-        <span class="tag">Heute</span>
-        <h3>Der Papier-Weg</h3>
-        <ul>
-          <li>Anträge per Aushang, Telefonanruf oder Papierformular</li>
-          <li>Jede Abteilung hat ihren eigenen Weg &ndash; und niemand kennt alle</li>
-          <li>Änderungen am Ablauf bedeuten neue Formulare und neue Verwirrung</li>
-        </ul>
-      </div>
-      <div class="contrast-card new">
-        <span class="tag">Mit ChatBieger</span>
-        <h3>Der KI-Weg</h3>
-        <ul>
-          <li>Ein einziger, vertrauter Chat-Einstieg für alle Prozesse</li>
-          <li>Die KI fragt nach, was fehlt &ndash; im Gespräch, nicht per Maske</li>
-          <li>Abläufe ändern sich im Hintergrund, der Zugang bleibt derselbe</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">So funktioniert es</span>
-      <h2>Ein Prozess ist eine Anleitung &ndash; kein Formular.</h2>
-      <p class="measure muted">Wie die KI mit Mitarbeitenden über &bdquo;Urlaub beantragen&ldquo; oder &bdquo;IT-Support-Anfrage&ldquo; spricht, wird nicht in starren Eingabefeldern konfiguriert. Eine verantwortliche Person beschreibt den Ablauf einfach in eigenen Worten &ndash; so, wie man ihn einem neuen Kollegen erklären würde.</p>
-    </div>
-    <div class="steps">
-      <div class="step card">
-        <h3>Beschreiben</h3>
-        <p>Die Prozessverantwortliche erzählt im Admin-Chat, wie der Ablauf funktioniert &ndash; frei formuliert oder ausgehend von einer passenden Vorlage.</p>
-      </div>
-      <div class="step card">
-        <h3>Verfeinern</h3>
-        <p>Ein KI-Assistent macht daraus im Dialog eine konkrete Anleitung. Nichts wird automatisch übernommen &ndash; gespeichert wird erst nach ausdrücklicher Bestätigung.</p>
-      </div>
-      <div class="step card">
-        <h3>Nutzen</h3>
-        <p>Ab sofort folgt die KI genau dieser Anleitung im Gespräch mit den Mitarbeitenden. Anpassungen? Einfach neu beschreiben &ndash; im laufenden Betrieb.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Ihr Team bekommt Verstärkung</span>
-      <h2>Ein KI-Kollege, der mit jedem Schritt mehr übernimmt.</h2>
-      <p class="measure muted">Jedes Team in Ihrem Unternehmen leistet schon heute einen Service &ndash; Menschen, oft unterstützt durch die vorhandenen Systeme der Firma. ChatBieger fügt diesem Team einen KI-Kollegen hinzu, der lernt, mehr zu übernehmen &ndash; Stufe für Stufe, ohne dass sich für Mitarbeitende der Zugang je ändert.</p>
-    </div>
-    <div class="stages">
-      <div class="stage card">
-        <span class="stage-tag">Persönlicher Kontakt</span>
-        <p>Der Weg, der heute schon funktioniert: Telefon oder E-Mail an die zuständige Person im Team &ndash; jederzeit als Rückfall verfügbar.</p>
-      </div>
-      <div class="stage card">
-        <span class="stage-tag">Mit digitaler Unterstützung</span>
-        <p>Die KI sammelt die nötigen Angaben im Gespräch, prüft sie auf Plausibilität und bereitet einen fertigen E-Mail-Entwurf vor &ndash; ein Mensch prüft und verschickt ihn nur noch.</p>
-      </div>
-      <div class="stage card">
-        <span class="stage-tag">Direkt erledigt</span>
-        <p>Wo das Team es erlaubt, spricht die KI direkt mit den bestehenden Systemen der Firma &ndash; ganz ohne Umweg über eine Person.</p>
-      </div>
-    </div>
-    <p class="stage-fallback measure">Wie beim Kundenservice großer Online-Händler bleibt bei jeder Stufe der Rückfall auf die einfachere darunter möglich: Klappt die Automatisierung nicht, bleibt der Mensch im Team erreichbar.</p>
-  </div>
-</section>
-
-<section id="fuer-wen">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Für wen</span>
-      <h2>Überall dort, wo Abläufe bisher auf Zuruf laufen.</h2>
-      <p class="measure muted">Sechs fiktive Organisationen aus unserer Demo-Welt zeigen, wie unterschiedlich die Orte sind, an denen derselbe KI-Assistent funktioniert &ndash; vom Handwerksbetrieb bis zur Hausverwaltung. Jede l&auml;sst sich direkt ausprobieren.</p>
-    </div>
-    <div class="audiences">
-      <div class="audience card">
-        <span class="glyph" aria-hidden="true">&#128268;</span>
-        <span class="who">Handwerksbetrieb</span>
-        <h3>Elektro Funke GmbH</h3>
-        <p>Silke Funke führt das Büro. Den Urlaubsantrag hat sie einmal in eigenen Worten beschrieben &ndash; ihre Monteure stellen ihr Anliegen jetzt im Chat, zwischen zwei Terminen, vom Handy aus.</p>
-        <a class="demo-link" href="https://chat.demo.chatbieger.com/?org=elektro-funke">Demo starten&thinsp;&rarr;</a>
-      </div>
-      <div class="audience card">
-        <span class="glyph" aria-hidden="true">&#129528;</span>
-        <span class="who">Kita</span>
-        <h3>Kita Kunterbunt</h3>
-        <p>Katrin Nowak leitet die Kita. Statt Zetteln im Personalraum beschreibt sie Abläufe wie die Krankmeldung einmal im Chat &ndash; ihr Team fragt einfach dort nach, wo es die Antwort braucht.</p>
-        <a class="demo-link" href="https://chat.demo.chatbieger.com/?org=kita-kunterbunt">Demo starten&thinsp;&rarr;</a>
-      </div>
-      <div class="audience card">
-        <span class="glyph" aria-hidden="true">&#127963;&#65039;</span>
-        <span class="who">Stadtverwaltung</span>
-        <h3>Stadt Weserfurt</h3>
-        <p>Heiko Martens aus dem Sachgebiet Digitales macht Verwaltungsabläufe per KI-Chat erreichbar &ndash; einen nach dem anderen, ohne ein Fachverfahren abzulösen oder ein KI-Großprojekt aufzusetzen.</p>
-        <a class="demo-link" href="https://chat.demo.chatbieger.com/?org=stadt-weserfurt">Demo starten&thinsp;&rarr;</a>
-      </div>
-      <div class="audience card">
-        <span class="glyph" aria-hidden="true">&#127981;</span>
-        <span class="who">Industriebetrieb</span>
-        <h3>Biegewerk Janssen GmbH &amp; Co. KG</h3>
-        <p>In der Halle hat kaum jemand eine Firmen-Mail. Eine St&ouml;rung an der Abkantpresse melden die Kollegen jetzt vom Handy aus &ndash; die KI kl&auml;rt zuerst, ob Gefahr besteht, und fragt dann ab, was die Instandhaltung wissen muss.</p>
-        <a class="demo-link" href="https://chat.demo.chatbieger.com/?org=biegewerk-janssen">Demo starten&thinsp;&rarr;</a>
-      </div>
-      <div class="audience card">
-        <span class="glyph" aria-hidden="true">&#9917;</span>
-        <span class="who">Sportverein</span>
-        <h3>TSV Weserfurt von 1921 e.&#8202;V.</h3>
-        <p>Bernd Albers sitzt im Vorstand &ndash; ehrenamtlich, mit wenig Zeit. Wiederkehrende Fragen zu Mitgliedschaft oder Übungszeiten beantwortet die Vereins-KI so, wie Bernd es einmal aufgeschrieben hat.</p>
-        <a class="demo-link" href="https://chat.demo.chatbieger.com/?org=tsv-weserfurt">Demo starten&thinsp;&rarr;</a>
-      </div>
-      <div class="audience card">
-        <span class="glyph" aria-hidden="true">&#127968;</span>
-        <span class="who">Hausverwaltung</span>
-        <h3>Hausverwaltung Storm GmbH</h3>
-        <p>Meike Storm verwaltet mit sechs Leuten rund 1.800 Einheiten. Den Wasserfleck an der K&uuml;chendecke melden Mieter jetzt um 21:30 im Chat &ndash; morgens liegt eine vollst&auml;ndige Schadensmeldung vor statt einer Nachricht auf dem Anrufbeantworter.</p>
-        <a class="demo-link" href="https://chat.demo.chatbieger.com/?org=hausverwaltung-storm">Demo starten&thinsp;&rarr;</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Der Unterschied</span>
-      <h2>Was ChatBieger anders macht als Formular- und Ticket-Systeme</h2>
-    </div>
-    <div class="compare">
-      <table>
-        <tr>
-          <th></th>
-          <th class="col-old">Klassisches System</th>
-          <th class="col-new">ChatBieger</th>
-        </tr>
-        <tr>
-          <td>Einführung</td>
-          <td>Großprojekt: Rollout, Schulungen, Migration</td>
-          <td>Ein Prozess nach dem anderen &ndash; jeder funktioniert ab Tag eins</td>
-        </tr>
-        <tr>
-          <td>Prozess ändern</td>
-          <td>Formular überarbeiten, oft mit IT-Ticket</td>
-          <td>Änderung im Chat beschreiben &ndash; fertig</td>
-        </tr>
-        <tr>
-          <td>Erlebnis</td>
-          <td>Eingabemaske mit Pflichtfeldern</td>
-          <td>Natürliches KI-Gespräch, das nachfragt, was fehlt</td>
-        </tr>
-        <tr>
-          <td>Neue Software?</td>
-          <td>Eigene App, eigenes Login</td>
-          <td>Läuft in gängigen, MCP-fähigen KI-Chat-Oberflächen</td>
-        </tr>
-      </table>
-    </div>
-    <p class="measure muted" style="margin-top: 1.5rem;">Ehrlich gesagt: Ein Formular garantiert strukturierte Daten &ndash; ein Gespräch nicht. Diesen Tausch machen wir bewusst, zugunsten eines Zugangs, den Mitarbeitende ohne Schulung sofort verstehen. Und wenn zu einem Prozess noch keine Anleitung hinterlegt ist, sagt die KI das offen, statt sich eine Antwort auszudenken.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Vorlagen-Bibliothek</span>
-      <h2>Niemand fängt bei null an.</h2>
-      <p class="measure muted">ChatBieger bringt vorgefertigte Anleitungen für typische Prozesse mit. Eine Vorlage lässt sich mit einem Klick in den Konfigurations-Chat übernehmen und dort an die eigenen Gegebenheiten anpassen &ndash; genauso wie ein bereits eingerichteter eigener Prozess als Ausgangspunkt für den nächsten dienen kann.</p>
-    </div>
-    <div class="chips">
-      <span class="chip"><strong>HR</strong> &middot; Urlaub beantragen</span>
-      <span class="chip"><strong>HR</strong> &middot; Krankmeldung</span>
-      <span class="chip"><strong>IT</strong> &middot; Support-Anfrage</span>
-      <span class="chip"><strong>Empfang</strong> &middot; Besucher anmelden</span>
-      <span class="chip"><strong>Facility</strong> &middot; Schaden melden</span>
-      <span class="chip more">&hellip; und Ihre eigenen Prozesse als Vorlage</span>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Häufige Fragen</span>
-      <h2>Kurz beantwortet</h2>
-    </div>
-    <div class="faq">
-      <div class="faq-item card">
-        <h3>Woher weiß die KI, wie sie über einen Prozess sprechen soll?</h3>
-        <p>Jeder Prozess hat eine hinterlegte Anleitung, die eine verantwortliche Person im Admin-Bereich per Chat formuliert hat. Die KI folgt dieser Anleitung im Gespräch &ndash; welche Fragen sie stellt und wie sie antwortet, ergibt sich daraus.</p>
-      </div>
-      <div class="faq-item card">
-        <h3>Welche KI steckt dahinter?</h3>
-        <p>ChatBieger arbeitet mit aktuellen KI-Sprachmodellen, ist aber bewusst an keinen einzelnen Anbieter gebunden: Welches Modell die Gespräche führt, lässt sich pro Installation festlegen und jederzeit wechseln &ndash; ohne dass sich für Mitarbeitende etwas ändert.</p>
-      </div>
-      <div class="faq-item card">
-        <h3>Müssen Mitarbeitende wissen, wie ein Prozess intern eingerichtet ist?</h3>
-        <p>Nein. Der Zugang ist immer derselbe: Chat öffnen, den gewünschten Prozess ansprechen, das Gespräch führen.</p>
-      </div>
-      <div class="faq-item card">
-        <h3>Braucht es eine neue App oder Software?</h3>
-        <p>Nein. ChatBieger ist über gängige, MCP-fähige KI-Chat-Oberflächen nutzbar &ndash; vertraut wie die KI-Assistenten aus dem Privatgebrauch, ohne zusätzliches Login oder System.</p>
-      </div>
-      <div class="faq-item card">
-        <h3>Wie finde ich heraus, welche Services es überhaupt gibt?</h3>
-        <p>Einfach danach fragen &ndash; die KI zeigt eine interaktive Liste aller verfügbaren Services, nach Team gruppiert, zum direkten Antippen. Kein Blättern durch ein Intranet-Wiki oder Suchen der richtigen Team-Seite.</p>
-      </div>
-      <div class="faq-item card">
-        <h3>Was, wenn es für mein Anliegen noch gar keinen Prozess gibt?</h3>
-        <p>Die KI hilft, den gewünschten Service in eigenen Worten zu formulieren, und schickt daraus automatisch einen E-Mail-Entwurf an die verantwortliche Person &ndash; mit einem direkten Link, über den der neue Prozess sofort angelegt werden kann. So wird aus einer Lücke im Angebot der Ausgangspunkt für den nächsten Prozess, statt ein verlorener Wunsch.</p>
-      </div>
-      <div class="faq-item card">
-        <h3>Welche Prozesse werden zuerst unterstützt?</h3>
-        <p>Der Start erfolgt mit HR-Prozessen, beispielhaft dem Urlaubsantrag. Weitere Teams und Prozesse folgen nach Priorität, unterstützt durch die wachsende Vorlagen-Bibliothek.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="wer-dahintersteckt">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Wer dahintersteckt</span>
-      <h2>Ein Mensch, keine Plattform-Fabrik.</h2>
-    </div>
-    <div class="founder card">
-      <img class="founder-photo" src="stephan.jpg" alt="Stephan Tomforde" width="76" height="76" loading="lazy">
-      <div class="founder-body">
-        <p>Hinter ChatBieger stecke ich &ndash; Stephan. Ich habe zu oft erlebt, wie Digitalisierung an ihrer eigenen Größe scheitert: Das perfekte System ist geplant, geschult und migriert &ndash; und bis dahin läuft alles weiter per Zuruf und Zettel. ChatBieger ist mein Versuch, es andersherum zu machen: klein anfangen, mit einem einzigen Prozess, beschrieben in normalen Worten &ndash; und von moderner KI im Gespräch umgesetzt.</p>
-        <p>ChatBieger ist ein Prototyp, und das sage ich hier bewusst offen. Wenn Sie einen Prozess im Kopf haben, der sich noch nie nach Formular angefühlt hat: <a href="kontakt.html">Schreiben Sie mir</a> &ndash; ich antworte persönlich.</p>
-        <p class="signature">Stephan Tomforde</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <div class="footer-card">
-      <h2>KI-Digitalisierung ohne Big Bang.</h2>
-      <p>Um zu starten, braucht ein Team nur eine Beschreibung seines bestehenden Prozesses &ndash; aus einer Vorlage oder frei formuliert. ChatBieger macht ihn sofort im KI-Chat abrufbar; feingeschliffen wird danach, im laufenden Betrieb.</p>
-      <div class="cta-row">
-        <a class="btn inverted" href="https://chat.demo.chatbieger.com/demo">Demo ausprobieren</a>
-        <span class="cta-note" style="color: rgba(255,255,255,0.75);">Ohne Anmeldung &middot; wird nächtlich zurückgesetzt</span>
-      </div>
-    </div>
-    <p class="fineprint">ChatBieger ist ein Prototyp und startet mit dem HR-Prozess &bdquo;Urlaub beantragen&ldquo; als Referenz. Die gezeigten Gespräche und Organisationen sind illustrative Beispiele aus dem Produktkonzept.</p>
-    <nav class="legal-nav">
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
-      <a href="kontakt.html">Kontakt</a>
-    </nav>
-  </div>
-</footer>
-
+<main>
+  <p class="wordmark">ChatBieger</p>
+  <h1>In Bearbeitung.</h1>
+  <p class="lead">Wir bauen ChatBieger gerade von Grund auf neu.</p>
+  <p>Die bisherige Seite und die öffentliche Demo sind währenddessen offline. Wir melden uns hier zurück, sobald es etwas zu zeigen gibt.</p>
+  <footer>
+    <a href="kontakt.html">Kontakt</a>
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+  </footer>
+</main>
 </body>
 </html>

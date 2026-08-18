@@ -5,6 +5,18 @@ gehostet über **GitHub Pages**. Es ist **öffentlich** und bewusst unabhängig
 vom Produkt-Monorepo (`~/chatbieger-app`) — kein gemeinsamer Build, keine
 npm-Workspace-Verknüpfung.
 
+## Stand: Baustellen-Modus
+
+Das Produkt wird seit dem 18.08.2026 von Grund auf neu aufgebaut (v2). Die
+Website zeigt deshalb nur noch eine Platzhalterseite: `index.html` sagt
+"In Bearbeitung", Impressum, Datenschutz und Kontakt bleiben erreichbar.
+Die vollständige v1-Website liegt im Branch **`v1.0`** dieses Repos.
+
+**Nicht wieder aufbauen, bevor die neue Vision steht**
+(`~/chatbieger-app/docs/vision.md`). Bis dahin sind Aussagen über Produkt,
+Zielgruppe, Funktionsumfang und Preis alle offen — jede Marketing-Aussage
+hier wäre geraten.
+
 ## Quelle der Wahrheit für Inhalte und Design
 
 Mission, Messaging und Design-Assets leben **nicht hier**, sondern im
@@ -12,11 +24,13 @@ Produkt-Repo. Vor jeder inhaltlichen oder gestalterischen Änderung dort
 nachlesen (Session am besten mit `claude --add-dir ~/chatbieger-app` starten,
 oder die Dateien per absolutem Pfad lesen):
 
-- `~/chatbieger-app/docs/PR-FAQ.md` — Mission Statement, Pressemitteilung,
-  FAQs. **Nur der Pressemitteilungs-Teil und die externen FAQs
-  (Kunden-/Anwendersicht) sind Grundlage für die Website.**
-- `~/chatbieger-app/design/export/` — exportierte Design-Assets (u. a. Favicon)
-- `~/chatbieger-app/chatbieger_logo.sketch` — Logo-Quelldatei
+- `~/chatbieger-app/docs/vision.md` — die Vision für v2. Solange die noch
+  nicht ausgefüllt ist, gibt es keine belastbare Grundlage für Website-Inhalte.
+- `~/chatbieger-app/docs/learnings-v1.md` — was v1 gelehrt hat (Hintergrund,
+  keine Vorlage für Website-Texte)
+- `~/chatbieger-app/marke/` — Logo-Quelldatei und Favicon
+- Die alte PR-FAQ, aus der die v1-Website abgeleitet war, liegt im
+  Produkt-Repo im Branch `v1.0` unter `docs/PR-FAQ.md`.
 
 Assets, die die Website braucht, werden von dort **hierher kopiert**
 (GitHub Pages muss alles selbst ausliefern) — aber die Quelle bleibt drüben.
@@ -34,9 +48,9 @@ Im Zweifel: Inhalte so schreiben, wie sie ein Interessent auf einer
 
 ## Drift-Check
 
-Wenn die PR-FAQ im Produkt-Repo überarbeitet wurde: die Seite gegen
-`~/chatbieger-app/docs/PR-FAQ.md` abgleichen und Abweichungen in Messaging,
-Wording und Feature-Beschreibung auflisten, bevor etwas geändert wird.
+Entfällt im Baustellen-Modus. Sobald `~/chatbieger-app/docs/vision.md`
+steht, wird die Website aus der neuen Vision heraus neu gebaut — nicht aus
+dem v1-Stand fortgeschrieben.
 
 ## Rahmenbedingungen
 
