@@ -1,87 +1,758 @@
 <!doctype html>
 <html lang="de">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
-<title>ChatBieger — in Bearbeitung</title>
-<link rel="icon" href="favicon.png">
-<style>
-  :root {
-    --ground: #f5f5f7;
-    --surface: #ffffff;
-    --ink: #1d1d1f;
-    --ink-soft: #6e6e73;
-    --ink-faint: #86868b;
-    --accent: #0066cc;
-    --line: rgba(0, 0, 0, 0.09);
-  }
-  @media (prefers-color-scheme: dark) {
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChatBieger – Ein KI-Zugang zu allem, was Ihre Organisation anbietet</title>
+  <meta name="description" content="Bürgerinnen, Eltern und Kundschaft fragen im Chat. Der Assistent antwortet aus Ihren eigenen, beschriebenen Prozessen, nennt seine Quelle und sagt, wenn er etwas nicht weiß. Selbst hostbar, quelloffen, ohne Gesprächsspeicher.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta property="og:title" content="ChatBieger – Ein KI-Zugang zu allem, was Ihre Organisation anbietet">
+  <meta property="og:description" content="Eine KI-Schicht neben Ihrer bestehenden Infrastruktur. Kein Umstieg, kein Stichtag – und jede Antwort mit Herkunft.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chatbieger.com/">
+  <style>
     :root {
-      --ground: #000000;
-      --surface: #1c1c1e;
-      --ink: #f5f5f7;
-      --ink-soft: #a1a1a6;
+      --ground: #f5f5f7;
+      --surface: #ffffff;
+      --surface-soft: #fbfbfd;
+      --ink: #1d1d1f;
+      --ink-soft: #6e6e73;
       --ink-faint: #86868b;
-      --accent: #4d9fff;
-      --line: rgba(255, 255, 255, 0.12);
+      --accent: #0066cc;
+      --accent-hover: #0055aa;
+      --accent-tint: rgba(0, 102, 204, 0.07);
+      --warn: #c9251c;
+      --warn-tint: #fff5f5;
+      --ring: inset 0 0 0 1px rgba(0, 0, 0, 0.09);
+      --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --float-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 28px 60px -34px rgba(0, 0, 0, 0.3);
     }
-  }
-  * { box-sizing: border-box; }
-  html, body { height: 100%; }
-  body {
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 1.5rem;
-    background: var(--ground);
-    color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
-    font-size: 1.0625rem;
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  main { max-width: 30rem; width: 100%; text-align: left; }
-  .wordmark {
-    font-size: 0.875rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    color: var(--ink-soft);
-    margin: 0 0 2.5rem;
-  }
-  h1 {
-    font-size: clamp(1.75rem, 6vw, 2.5rem);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    font-weight: 600;
-    margin: 0 0 1rem;
-  }
-  p { margin: 0 0 1rem; color: var(--ink-soft); }
-  p.lead { color: var(--ink); }
-  footer {
-    margin-top: 2.5rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--line);
-    font-size: 0.9375rem;
-    color: var(--ink-faint);
-  }
-  footer a { color: var(--accent); text-decoration: none; }
-  footer a:hover { text-decoration: underline; }
-  footer a + a { margin-left: 1.25rem; }
-</style>
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--ground);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
+
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.12;
+      text-wrap: balance;
+      letter-spacing: -0.02em;
+    }
+    h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 700; }
+    h2 { font-size: clamp(1.5rem, 3.2vw, 2.1rem); font-weight: 700; }
+    h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
+
+    p { margin: 0; }
+    .measure { max-width: 42rem; }
+    .muted { color: var(--ink-soft); }
+
+    /* ---------- Top bar ---------- */
+    .topbar { padding: 1.4rem 0; }
+    .topbar .wrap { display: flex; align-items: center; gap: 0.6rem; }
+    .topbar .topbar-demo { margin-left: auto; padding: 0.45rem 1.15rem; font-size: 0.95rem; }
+    .topbar img { width: 28px; height: 28px; border-radius: 8px; }
+    .topbar span { font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em; }
+
+    /* ---------- Hero ---------- */
+    header.hero { padding: 3.5rem 0 5rem; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 3.5rem;
+      align-items: center;
+    }
+    @media (max-width: 46rem) { .hero-grid { grid-template-columns: 1fr; } }
+    .hero-copy { display: flex; flex-direction: column; gap: 1.3rem; }
+    .hero-copy .lede { font-size: 1.25rem; line-height: 1.55; color: var(--ink-soft); }
+    .cta-row { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; margin-top: 0.5rem; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 0.65rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn:hover { background: var(--accent-hover); }
+    .btn.inverted { background: #fff; color: var(--accent); }
+    .btn.inverted:hover { background: var(--surface-soft); }
+    .cta-note { font-size: 0.88rem; color: var(--ink-faint); }
+
+    /* ---------- Chat mockup ---------- */
+    .chat {
+      background: var(--surface);
+      border-radius: 20px;
+      box-shadow: var(--float-shadow), var(--ring);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .chat-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      padding-bottom: 0.7rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    }
+    .msg { display: grid; grid-template-rows: 1fr; }
+    .msg-inner {
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      gap: 0.5rem;
+      padding-top: 0.1rem;
+    }
+    .msg.user .msg-inner { flex-direction: row-reverse; }
+    .avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      flex: none;
+      object-fit: cover;
+      box-shadow: var(--ring);
+    }
+    .avatar.initials {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #c7c7cc;
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .bubble {
+      max-width: 82%;
+      padding: 0.6rem 0.9rem;
+      border-radius: 18px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .bubble.user {
+      background: var(--accent);
+      color: #fff;
+      border-bottom-right-radius: 6px;
+    }
+    .bubble.bot {
+      background: var(--ground);
+      color: var(--ink);
+      border-bottom-left-radius: 6px;
+    }
+    .bubble.typing { display: inline-flex; align-items: center; gap: 4px; padding: 0.85rem 0.95rem; }
+    .bubble.typing .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--ink-faint);
+      animation: dot-blink 1.2s ease-in-out infinite;
+    }
+    .bubble.typing .dot:nth-child(2) { animation-delay: 0.18s; }
+    .bubble.typing .dot:nth-child(3) { animation-delay: 0.36s; }
+    @keyframes dot-blink {
+      0%, 60%, 100% { opacity: 0.25; }
+      30% { opacity: 0.9; }
+    }
+
+    /* Chat-Sequenz: läuft nur mit Animationen; ohne (reduced motion / alte
+       Browser-Basis) sind alle Nachrichten sichtbar und die Tipp-Blasen weg. */
+    .msg.typing-row { display: none; }
+    @media (prefers-reduced-motion: no-preference) {
+      .msg.typing-row { display: grid; }
+      .chat .msg {
+        animation: msg-in 0.45s cubic-bezier(0.3, 0.7, 0.3, 1) var(--t, 0s) both;
+      }
+      .chat .msg.typing-row {
+        animation:
+          msg-in 0.45s cubic-bezier(0.3, 0.7, 0.3, 1) var(--t, 0s) both,
+          msg-out 0.35s ease var(--t-out, 3s) forwards;
+      }
+    }
+    @keyframes msg-in {
+      from { grid-template-rows: 0fr; opacity: 0; transform: translateY(8px); }
+      to { grid-template-rows: 1fr; opacity: 1; transform: none; }
+    }
+    @keyframes msg-out {
+      to { grid-template-rows: 0fr; opacity: 0; }
+    }
+    .chat-input {
+      margin-top: 0.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.7rem;
+      background: var(--surface-soft);
+      border-radius: 999px;
+      box-shadow: var(--ring);
+      padding: 0.65rem 0.65rem 0.65rem 1.1rem;
+      font-size: 0.92rem;
+      color: var(--ink-faint);
+    }
+    .chat-input .send {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    /* ---------- Sections ---------- */
+    section { padding: 3.5rem 0; }
+    .section-head { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem; }
+
+    .card {
+      background: var(--surface);
+      border-radius: 18px;
+      box-shadow: var(--card-shadow), var(--ring);
+    }
+
+    /* ---------- Old world vs new world ---------- */
+    .contrast {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    @media (max-width: 46rem) { .contrast { grid-template-columns: 1fr; } }
+    .contrast-card {
+      border-radius: 18px;
+      padding: 1.7rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+    .contrast-card.old { background: var(--warn-tint); box-shadow: inset 0 0 0 1px rgba(201, 37, 28, 0.14); }
+    .contrast-card.new { background: var(--surface); box-shadow: var(--card-shadow), inset 0 0 0 1px rgba(0, 102, 204, 0.25); }
+    .contrast-card .tag {
+      align-self: flex-start;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+    }
+    .contrast-card.old .tag { color: var(--warn); background: #fff; box-shadow: inset 0 0 0 1px rgba(201, 37, 28, 0.3); }
+    .contrast-card.new .tag { background: var(--accent); color: #fff; }
+    .contrast-card ul { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.45rem; }
+    .contrast-card li::marker { color: var(--ink-faint); }
+
+    /* ---------- Steps ---------- */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      counter-reset: step;
+    }
+    @media (max-width: 46rem) { .steps { grid-template-columns: 1fr; } }
+    .step {
+      counter-increment: step;
+      padding: 1.7rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .step::before {
+      content: "Schritt " counter(step);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .step p { font-size: 0.96rem; color: var(--ink-soft); }
+
+    /* ---------- Stufen (Team + KI-Kollege) ---------- */
+    .stages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    @media (max-width: 46rem) { .stages { grid-template-columns: 1fr; } }
+    .stage { padding: 1.7rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .stage-tag {
+      align-self: flex-start;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-tint);
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+    }
+    .stage p { font-size: 0.96rem; color: var(--ink-soft); }
+    .stage-fallback { font-size: 0.92rem; color: var(--ink-faint); margin-top: 0.5rem; }
+
+    /* ---------- Für wen ---------- */
+    .audiences {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 46rem) { .audiences { grid-template-columns: 1fr; } }
+    .audience {
+      padding: 1.7rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .audience .glyph {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--accent-tint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      margin-bottom: 0.3rem;
+    }
+    .audience .who {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+    .audience p { font-size: 0.96rem; color: var(--ink-soft); }
+    .audience .demo-link {
+      margin-top: auto;
+      padding-top: 0.4rem;
+      font-size: 0.93rem;
+      font-weight: 500;
+    }
+
+    /* ---------- Wer dahintersteckt ---------- */
+    .founder {
+      max-width: 46rem;
+      padding: 2rem 2.25rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+    @media (max-width: 46rem) { .founder { flex-direction: column; } }
+    .founder-photo {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      flex: none;
+      object-fit: cover;
+      box-shadow: var(--ring);
+    }
+    .founder-photo.initials {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-tint);
+      color: var(--accent);
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    .founder-body { display: flex; flex-direction: column; gap: 0.75rem; }
+    .founder-body p { color: var(--ink-soft); font-size: 0.98rem; }
+    .founder-body .signature { color: var(--ink); font-weight: 600; font-size: 0.95rem; }
+    .founder-body a { color: var(--accent); text-decoration: none; }
+    .founder-body a:hover { text-decoration: underline; }
+
+    /* ---------- Comparison table ---------- */
+    .compare { overflow-x: auto; border-radius: 18px; }
+    .compare table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: var(--surface);
+      border-radius: 18px;
+      box-shadow: var(--card-shadow), var(--ring);
+      overflow: hidden;
+    }
+    .compare th, .compare td {
+      padding: 0.9rem 1.2rem;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+      font-size: 0.96rem;
+    }
+    .compare tr:last-child td { border-bottom: none; }
+    .compare th {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--surface-soft);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+    }
+    .compare th.col-old { color: var(--warn); }
+    .compare th.col-new { color: var(--accent); }
+    .compare td:first-child { color: var(--ink-soft); white-space: nowrap; }
+
+    /* ---------- Templates ---------- */
+    .chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+    .chip {
+      background: var(--surface);
+      box-shadow: var(--card-shadow), var(--ring);
+      border-radius: 999px;
+      padding: 0.45rem 1.05rem;
+      font-size: 0.92rem;
+      font-weight: 500;
+    }
+    .chip strong { color: var(--accent); font-weight: 600; }
+    .chip.more { background: transparent; box-shadow: var(--ring); color: var(--ink-soft); }
+
+    /* ---------- FAQ ---------- */
+    .faq { display: flex; flex-direction: column; gap: 1rem; max-width: 46rem; }
+    .faq-item { padding: 1.5rem 1.7rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .faq-item p { color: var(--ink-soft); font-size: 0.98rem; }
+
+    /* ---------- Footer ---------- */
+    footer { padding: 1.5rem 0 4rem; }
+    .footer-card {
+      background: var(--accent);
+      color: #fff;
+      border-radius: 20px;
+      padding: 2.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.4);
+    }
+    .footer-card h2 { color: #fff; }
+    .footer-card p { max-width: 42rem; color: rgba(255, 255, 255, 0.85); }
+    .fineprint { margin-top: 2.25rem; font-size: 0.85rem; color: var(--ink-faint); }
+    .legal-nav { margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 1.25rem; font-size: 0.9rem; }
+    .legal-nav a { color: var(--ink-soft); text-decoration: none; }
+    .legal-nav a:hover { color: var(--ink); text-decoration: underline; }
+
+    /* ---------- Tarife ---------- */
+    .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    @media (max-width: 52rem) { .plans { grid-template-columns: 1fr; } }
+    .plan { padding: 1.7rem; display: flex; flex-direction: column; gap: 0.7rem; }
+    .plan.highlight { box-shadow: var(--card-shadow), inset 0 0 0 2px var(--accent); }
+    .plan .who { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
+    .plan ul { margin: 0; padding-left: 1.1rem; font-size: 0.95rem; color: var(--ink-soft); }
+    .plan li { margin-bottom: 0.3rem; }
+    .plan .note { margin-top: auto; padding-top: 0.6rem; font-size: 0.88rem; color: var(--ink-faint); }
+
+    /* ---------- Ehrlichkeits-Belege ---------- */
+    .proofs { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    @media (max-width: 46rem) { .proofs { grid-template-columns: 1fr; } }
+    .proof { padding: 1.5rem 1.7rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .proof h3 { color: var(--ink); }
+    .proof p { font-size: 0.96rem; color: var(--ink-soft); }
+    .proof .sample {
+      font-size: 0.85rem; border-radius: 10px; padding: 0.6rem 0.75rem;
+      background: var(--surface-soft); box-shadow: var(--ring); color: var(--ink-soft);
+    }
+    .proof .sample b { color: var(--ink); font-weight: 600; }
+
+    /* ---------- Quellenzeile im Beispielchat ---------- */
+    .sources-line { font-size: 0.78rem; color: var(--ink-faint); padding-left: 2.1rem; }
+    .sources-line a { color: var(--accent); text-decoration: none; }
+    .caution {
+      display: block; margin-top: 0.45rem; padding: 0.5rem 0.65rem; border-radius: 8px;
+      background: var(--warn-tint); border-left: 3px solid var(--warn); font-size: 0.88rem;
+    }
+    .caution small { display: block; color: var(--ink-faint); font-size: 0.75rem; margin-bottom: 0.15rem; }
+  </style>
 </head>
 <body>
-<main>
-  <p class="wordmark">ChatBieger</p>
-  <h1>In Bearbeitung.</h1>
-  <p class="lead">Wir bauen ChatBieger gerade von Grund auf neu.</p>
-  <p>Die bisherige Seite und die öffentliche Demo sind währenddessen offline. Wir melden uns hier zurück, sobald es etwas zu zeigen gibt.</p>
-  <footer>
-    <a href="kontakt.html">Kontakt</a>
-    <a href="impressum.html">Impressum</a>
-    <a href="datenschutz.html">Datenschutz</a>
-  </footer>
-</main>
+<div class="topbar">
+  <div class="wrap">
+    <img src="favicon.png" alt="" width="28" height="28">
+    <span>ChatBieger</span>
+    <a class="btn topbar-demo" href="https://chat.demo.chatbieger.com/">Demo</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Eine Schicht neben Ihrer Infrastruktur</span>
+      <h1>Ein KI-Zugang zu allem, was Sie anbieten.</h1>
+      <p class="lede measure">Bürgerinnen, Eltern und Kundschaft fragen im Chat, statt sich durch eine Website zu klicken oder in der Warteschleife zu hängen. Der Assistent antwortet aus Ihren eigenen Prozessen &ndash; und sagt dazu, woher er es hat.</p>
+      <p class="measure muted">Nichts wird abgeschaltet, niemand muss umlernen, es gibt keinen Stichtag. Sie stellen den KI-Zugang neben das, was Sie schon haben.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://chat.demo.chatbieger.com/">Demo ausprobieren</a>
+        <span class="cta-note">Ohne Anmeldung &middot; echte Organisationen, echte Inhalte</span>
+      </div>
+    </div>
+
+    <div class="chat" aria-label="Beispiel-Chat: Kita-Anmeldung">
+      <div class="chat-title">Beispiel &middot; KiTa &bdquo;Rasselbande&ldquo; Rhade</div>
+      <div class="msg user" style="--t: 0.5s;">
+        <div class="msg-inner">
+          <span class="avatar initials" aria-hidden="true">MK</span>
+          <div class="bubble user">Wie melde ich mein Kind an?</div>
+        </div>
+      </div>
+      <div class="msg typing-row" style="--t: 1.3s; --t-out: 2.6s;" aria-hidden="true">
+        <div class="msg-inner">
+          <span class="avatar initials" aria-hidden="true">R</span>
+          <div class="bubble bot typing"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        </div>
+      </div>
+      <div class="msg bot" style="--t: 2.6s;">
+        <div class="msg-inner">
+          <span class="avatar initials" aria-hidden="true">R</span>
+          <div class="bubble bot">Sie laden den Anmeldevordruck herunter, füllen ihn aus und geben ihn bei der Samtgemeinde Selsingen ab. Fragen dazu beantwortet das Büro unter 04284&nbsp;9307-0.</div>
+        </div>
+      </div>
+      <div class="sources-line" style="--t: 2.9s;">Quelle: KiTa-Anmeldung &middot; <a href="#">Anmeldevordruck</a> <span class="muted">PDF</span></div>
+
+      <div class="msg user" style="--t: 3.6s;">
+        <div class="msg-inner">
+          <span class="avatar initials" aria-hidden="true">MK</span>
+          <div class="bubble user">Bekomme ich einen Platz?</div>
+        </div>
+      </div>
+      <div class="msg bot" style="--t: 4.4s;">
+        <div class="msg-inner">
+          <span class="avatar initials" aria-hidden="true">R</span>
+          <div class="bubble bot">Das entscheidet die Leitung, nicht ich.
+            <span class="caution"><small>Ohne Gewähr &ndash; nicht aus den Angaben dieser Organisation.</small>Üblich ist eine Rückmeldung einige Wochen nach der Anmeldung.</span>
+          </div>
+        </div>
+      </div>
+      <div class="chat-input">
+        <span class="muted">Wobei können wir helfen?</span>
+        <span class="send" aria-hidden="true">&rarr;</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Woran man merkt, dass es ehrlich ist</span>
+      <h2>Ein Assistent, der zugibt, was er nicht weiß.</h2>
+      <p class="measure muted">Das Problem mit KI-Auskünften ist nicht, dass sie falsch sein können &ndash; sondern dass man es ihnen nicht ansieht. Vier Dinge, die ChatBieger deshalb anders macht.</p>
+    </div>
+    <div class="proofs">
+      <div class="proof card">
+        <h3>Jede Antwort nennt ihre Quelle</h3>
+        <p>Unter der Antwort steht, welcher Ihrer hinterlegten Prozesse sie getragen hat &ndash; und die verlinkten Dokumente stehen darunter, Zeile für Zeile, mit erkennbarer Art.</p>
+        <div class="sample">Quelle: KiTa-Anmeldung<br>🗎 Anmeldevordruck zum Ausfüllen &nbsp;<b>PDF</b></div>
+      </div>
+      <div class="proof card">
+        <h3>Ungedecktes wird gekennzeichnet</h3>
+        <p>Alles, was nicht aus Ihren Angaben stammt, wird sichtbar abgesetzt &ndash; auch die Auskunft, dass Sie für etwas nicht zuständig sind. Der Hinweis steht als Text da, nicht als Farbe: Er wird auch vorgelesen.</p>
+        <div class="sample"><b>Ohne Gewähr</b> &ndash; nicht aus den Angaben dieser Organisation.</div>
+      </div>
+      <div class="proof card">
+        <h3>Keine erfundenen Angaben beim Erfassen</h3>
+        <p>Was die Person nicht gesagt hat, bleibt „unbekannt&ldquo; &ndash; keine ergänzte Postleitzahl, keine geratene Firmierung. Diese Regel steht im Produkt, weil sie in unseren eigenen Messungen sonst in der Hälfte der Gespräche unterlaufen wurde.</p>
+        <div class="sample">Dachausrichtung: <b>unbekannt</b><br>Stromverbrauch: <b>unbekannt</b> &ndash; beim Ortstermin klären</div>
+      </div>
+      <div class="proof card">
+        <h3>Gespräche werden nicht gespeichert</h3>
+        <p>Der Verlauf liegt für die Dauer des Gesprächs im Arbeitsspeicher und ist spätestens 30 Minuten nach der letzten Nachricht weg. Es gibt keinen Vorgangsspeicher, den jemand herausgeben oder verlieren könnte.</p>
+        <div class="sample">Gespeichert werden nur Zählwerte &ndash; ohne Inhalt, ohne Personenbezug.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Drei Stufen, eine nach der anderen</span>
+      <h2>Sie fangen klein an &ndash; mit einem Prozess.</h2>
+      <p class="measure muted">Jeder Ihrer Services steht für sich auf einer dieser Stufen. Sie können auf Stufe 1 bleiben, solange Sie wollen.</p>
+    </div>
+    <div class="stages">
+      <div class="stage card">
+        <span class="stage-badge">Stufe 1</span>
+        <h3>Auskunft geben</h3>
+        <p>Der Assistent beantwortet Fragen zu Ihren Leistungen aus dem, was Sie beschrieben haben, verlinkt Formulare und nennt den zuständigen Menschen. Mehr als das braucht die Mehrzahl aller Anliegen nicht.</p>
+      </div>
+      <div class="stage card">
+        <span class="stage-badge">Stufe 2</span>
+        <h3>Angaben aufnehmen</h3>
+        <p>Der Assistent fragt im Gespräch nach, was Sie zur Bearbeitung brauchen &ndash; ohne dass jemand Formularfelder pflegt. Am Ende steht ein fertiger E-Mail-Entwurf, den die Person aus ihrem eigenen Programm abschickt.</p>
+        <p class="stage-fallback">Kein Antragsportal, kein zweites Postfach: Die Mail landet dort, wo Ihre Anliegen heute schon ankommen.</p>
+      </div>
+      <div class="stage card">
+        <span class="stage-badge">Stufe 3</span>
+        <h3>Systeme verbinden</h3>
+        <p>Der Assistent legt Vorgänge direkt in Ihren Fachsystemen an &ndash; ausschließlich über deren eigene MCP-Schnittstellen. Jeder Service gibt dabei genau die Werkzeuge frei, die er braucht.</p>
+        <p class="stage-fallback">Ein angebundenes Ticketsystem bietet oft dutzende Funktionen an. Sichtbar wird nur, was Sie freigeben &ndash; niemand kann sich über den Chat Ihre offenen Vorgänge auflisten lassen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Für wen</span>
+      <h2>Überall dort, wo dieselben Fragen jeden Tag kommen.</h2>
+    </div>
+    <div class="audiences">
+      <div class="audience card">
+        <span class="glyph" aria-hidden="true">🏛️</span>
+        <span class="who">Kommune</span>
+        <h3>Stadt Achim</h3>
+        <p>Personalausweis, Wohnsitz, Gebühren: Auskünfte, die im Bürgerbüro jeden Tag am Telefon gegeben werden &ndash; und die online zwar stehen, aber nicht gefunden werden.</p>
+        <a class="demo-link" href="https://chat.demo.chatbieger.com/stadt-achim">Demo ansehen &rarr;</a>
+      </div>
+      <div class="audience card">
+        <span class="glyph" aria-hidden="true">🧸</span>
+        <span class="who">Kita</span>
+        <h3>KiTa &bdquo;Rasselbande&ldquo; Rhade</h3>
+        <p>Anmeldung, Ferienregelung, Beiträge. Eltern fragen abends um zehn &ndash; und die Leitung beantwortet dieselbe Frage zum vierzigsten Mal.</p>
+        <a class="demo-link" href="https://chat.demo.chatbieger.com/kita-rhade">Demo ansehen &rarr;</a>
+      </div>
+      <div class="audience card">
+        <span class="glyph" aria-hidden="true">☀️</span>
+        <span class="who">Handwerk</span>
+        <h3>Joms Energie GmbH</h3>
+        <p>Angebotsanfragen für Photovoltaik: Der Assistent sammelt Dachausrichtung, Fläche und Verbrauch im Gespräch, damit der Betrieb rechnen kann statt nachzufragen.</p>
+        <a class="demo-link" href="https://chat.demo.chatbieger.com/joms-energie">Demo ansehen &rarr;</a>
+      </div>
+      <div class="audience card">
+        <span class="glyph" aria-hidden="true">🏭</span>
+        <span class="who">Technischer Dienst</span>
+        <h3>Störungsmeldungen</h3>
+        <p>Anlage, Symptom, seit wann, wer ruft an &ndash; und bei Gefahr zuerst die Nummer, unter der sofort jemand rangeht. Auf Stufe 3 entsteht daraus direkt ein Vorgang.</p>
+        <span class="demo-link muted">Auf Anfrage</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Wie eingerichtet wird</span>
+      <h2>Beschreiben statt konfigurieren.</h2>
+      <p class="measure muted">Sie sagen in normalen Worten, wie der Assistent mit einem Anliegen umgehen soll. Daneben sehen Sie jederzeit die Datei, die daraus entsteht &ndash; lesbar, mitnehmbar, Ihre.</p>
+    </div>
+    <div class="proofs">
+      <div class="proof card">
+        <h3>Aus Ihrer Website übernehmen</h3>
+        <p>Eine Adresse genügt: Die Seite wird gelesen und zu einem Service verdichtet &ndash; nicht abgeschrieben. Die Quelle bleibt verlinkt. Genauso geht ein Text, den Sie einfügen.</p>
+      </div>
+      <div class="proof card">
+        <h3>Ändert sich die Quelle, sagt es Ihnen der Assistent</h3>
+        <p>Auf Knopfdruck werden alle hinterlegten Quellen geprüft. Was sich geändert hat, wird als Vorschlag mit Unterschieden gezeigt &ndash; nie stillschweigend überschrieben.</p>
+      </div>
+      <div class="proof card">
+        <h3>Was gefehlt hat, landet auf einer Liste</h3>
+        <p>Fragt jemand nach etwas, das es nicht gibt, notiert der Assistent den Wunsch. Sie sehen ihn in der Einrichtung &ndash; mit einem Knopf, der daraus einen Service macht.</p>
+      </div>
+      <div class="proof card">
+        <h3>Falsches korrigieren Sie im Gespräch</h3>
+        <p>Angemeldet steht unter jeder Antwort „Das stimmt nicht&ldquo;. Sie sagen, was falsch war, bekommen eine neue Fassung &ndash; und sehen, wie die Antwort damit aussähe, bevor Sie speichern.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Souveränität</span>
+      <h2>Sie behalten Ihre Inhalte &ndash; und die Wahl.</h2>
+      <p class="measure muted">Drei Varianten. Der Unterschied ist nicht der Funktionsumfang, sondern wie viel Sie selbst bestimmen.</p>
+    </div>
+    <div class="plans">
+      <div class="plan card">
+        <span class="who">Community</span>
+        <h3>Selbst betreiben</h3>
+        <ul>
+          <li>Quelloffen unter AGPL</li>
+          <li>Auf Ihrem Server, Ihrer Cloud</li>
+          <li>Sie wählen das Sprachmodell</li>
+          <li>Kein Vertrag, kein Support</li>
+        </ul>
+        <p class="note">Kostenlos.</p>
+      </div>
+      <div class="plan card highlight">
+        <span class="who">Professional</span>
+        <h3>Von uns betrieben</h3>
+        <ul>
+          <li>Einrichtung, Betrieb und Updates</li>
+          <li>Modellkosten enthalten</li>
+          <li>Ihr Logo, Ihre Farbe, Ihr Ton</li>
+          <li>Persönlicher Ansprechpartner</li>
+        </ul>
+        <p class="note">Für Betriebe, Praxen und Vereine.</p>
+      </div>
+      <div class="plan card">
+        <span class="who">Enterprise</span>
+        <h3>Mit Zusagen</h3>
+        <ul>
+          <li>Verarbeitung in der EU &ndash; oder Ihr eigener Modellschlüssel</li>
+          <li>Betrieb auf Ihrer Infrastruktur möglich</li>
+          <li>Auftragsverarbeitung, Löschkonzept, Barrierefreiheit</li>
+          <li>Anbindung Ihrer Fachsysteme (Stufe 3)</li>
+        </ul>
+        <p class="note">Für Kommunen und alles mit Nachweispflicht.</p>
+      </div>
+    </div>
+    <p class="measure muted" style="margin-top: 1.5rem;">Was verarbeitet wird, steht bei uns nicht im Kleingedruckten: Gesprächsinhalte werden nicht gespeichert, IP-Adressen nicht protokolliert, und die Konfiguration Ihrer Organisation ist eine Handvoll lesbarer Textdateien, die Sie jederzeit mitnehmen können.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Wer dahintersteckt</span>
+      <h2>Ein Mensch, kein Vertrieb.</h2>
+    </div>
+    <div class="founder card">
+      <img class="founder-photo" src="stephan.jpg" alt="Stephan Tomforde" width="76" height="76" loading="lazy">
+      <div class="founder-body">
+        <p>Hinter ChatBieger stecke ich &ndash; Stephan. Ich habe zu oft erlebt, wie Digitalisierung an ihrer eigenen Größe scheitert: Das perfekte System ist geplant, geschult und migriert &ndash; und bis dahin läuft alles weiter per Zuruf und Zettel. ChatBieger ist mein Versuch, es andersherum zu machen: klein anfangen, mit einem einzigen Prozess, beschrieben in normalen Worten.</p>
+        <p>Was Sie in den Demos sehen, ist mit echten, öffentlich zugänglichen Informationen aufgebaut &ndash; keine erfundenen Beispielfirmen. Wenn Sie einen Prozess im Kopf haben, bei dem Sie sich fragen, ob das geht: <a href="kontakt.html">Schreiben Sie mir</a>. Ich antworte persönlich.</p>
+        <p class="signature">Stephan Tomforde</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-card">
+      <h2>Fangen Sie mit einem Prozess an.</h2>
+      <p>Mehr braucht es nicht: eine Beschreibung dessen, was Sie ohnehin jeden Tag erklären. Der Rest entsteht im Betrieb &ndash; an den Stellen, an denen Sie merken, dass etwas fehlt.</p>
+      <div class="cta-row">
+        <a class="btn inverted" href="https://chat.demo.chatbieger.com/">Demo ausprobieren</a>
+        <span class="cta-note" style="color: rgba(255,255,255,0.75);">Ohne Anmeldung &middot; drei echte Organisationen</span>
+      </div>
+    </div>
+    <p class="fineprint">ChatBieger ist in aktiver Entwicklung. Die Demos zeigen den tatsächlichen Stand mit echten, öffentlich zugänglichen Informationen &ndash; Antworten können trotzdem falsch sein.</p>
+    <nav class="legal-nav">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+  </div>
+</footer>
 </body>
 </html>
