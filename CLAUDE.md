@@ -5,17 +5,17 @@ gehostet über **GitHub Pages**. Es ist **öffentlich** und bewusst unabhängig
 vom Produkt-Monorepo (`~/chatbieger-app`) — kein gemeinsamer Build, keine
 npm-Workspace-Verknüpfung.
 
-## Stand: Baustellen-Modus
+## Stand: Landing für v2 ist live
 
-Das Produkt wird seit dem 18.08.2026 von Grund auf neu aufgebaut (v2). Die
-Website zeigt deshalb nur noch eine Platzhalterseite: `index.html` sagt
-"In Bearbeitung", Impressum, Datenschutz und Kontakt bleiben erreichbar.
-Die vollständige v1-Website liegt im Branch **`v1.0`** dieses Repos.
+Die Baustellen-Phase ist vorbei: `index.html` ist die aus der v2-Vision
+abgeleitete Landingpage. Die vollständige v1-Website liegt weiterhin im
+Branch **`v1.0`** dieses Repos.
 
-**Nicht wieder aufbauen, bevor die neue Vision steht**
-(`~/chatbieger-app/docs/vision.md`). Bis dahin sind Aussagen über Produkt,
-Zielgruppe, Funktionsumfang und Preis alle offen — jede Marketing-Aussage
-hier wäre geraten.
+Preise und Tarifaussagen kommen aus den Entscheidungen des Produkt-Repos
+(`docs/entscheidungen/0004` Preis, `0006` Datenhoheit als Tarifgrenze) —
+Änderungen dort werden hier nachgezogen, nie hier erfunden. Der
+Professional-Preis steht bewusst öffentlich auf der Seite; Enterprise
+bleibt „auf Anfrage".
 
 ## Quelle der Wahrheit für Inhalte und Design
 

@@ -455,7 +455,9 @@
     .plan .who { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
     .plan ul { margin: 0; padding-left: 1.1rem; font-size: 0.95rem; color: var(--ink-soft); }
     .plan li { margin-bottom: 0.3rem; }
-    .plan .note { margin-top: auto; padding-top: 0.6rem; font-size: 0.88rem; color: var(--ink-faint); }
+    .plan .price { margin-top: auto; padding-top: 0.8rem; font-size: 1.45rem; font-weight: 650; letter-spacing: -0.01em; }
+    .plan .price span { font-size: 0.85rem; font-weight: 400; color: var(--ink-soft); letter-spacing: 0; }
+    .plan .note { padding-top: 0.15rem; font-size: 0.88rem; color: var(--ink-faint); }
 
     /* ---------- Ehrlichkeits-Belege ---------- */
     .proofs { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
@@ -673,10 +675,10 @@
   </div>
 </section>
 
-<section>
+<section id="preise">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Souveränität</span>
+      <span class="eyebrow">Preise &amp; Souveränität</span>
       <h2>Sie behalten Ihre Inhalte &ndash; und die Wahl.</h2>
       <p class="measure muted">Drei Varianten. Der Unterschied ist nicht der Funktionsumfang, sondern wie viel Sie selbst bestimmen.</p>
     </div>
@@ -685,23 +687,25 @@
         <span class="who">Community</span>
         <h3>Selbst betreiben</h3>
         <ul>
-          <li>Quelloffen unter AGPL</li>
+          <li>AGPL-lizenziert, Quelltext derzeit auf Anfrage</li>
           <li>Auf Ihrem Server, Ihrer Cloud</li>
           <li>Sie wählen das Sprachmodell</li>
           <li>Kein Vertrag, kein Support</li>
         </ul>
-        <p class="note">Kostenlos.</p>
+        <p class="price">0&nbsp;€</p>
+        <p class="note">Ihre Infrastruktur, Ihre Regeln.</p>
       </div>
       <div class="plan card highlight">
         <span class="who">Professional</span>
         <h3>Von uns betrieben</h3>
         <ul>
           <li>Einrichtung, Betrieb und Updates</li>
-          <li>Modellkosten enthalten</li>
+          <li>Modellkosten enthalten &ndash; bei fairer Nutzung</li>
           <li>Ihr Logo, Ihre Farbe, Ihr Ton</li>
-          <li>Persönlicher Ansprechpartner</li>
+          <li>Das Sprachmodell w&auml;hlen wir nach Qualit&auml;t und Preis &ndash; Verarbeitung kann Anbieter au&szlig;erhalb der EU einschlie&szlig;en, Auftragsverarbeitungsvertrag inklusive</li>
         </ul>
-        <p class="note">Für Betriebe, Praxen und Vereine.</p>
+        <p class="price">249&nbsp;€ <span>im Monat zzgl. USt.</span></p>
+        <p class="note">Einmalige Einrichtung 1.500&nbsp;€. Für Betriebe, Praxen und Vereine.</p>
       </div>
       <div class="plan card">
         <span class="who">Enterprise</span>
@@ -712,10 +716,12 @@
           <li>Auftragsverarbeitung, Löschkonzept, Barrierefreiheit</li>
           <li>Anbindung Ihrer Fachsysteme (Stufe 3)</li>
         </ul>
-        <p class="note">Für Kommunen und alles mit Nachweispflicht.</p>
+        <p class="price">Auf Anfrage</p>
+        <p class="note">Für Kommunen und alles mit Nachweispflicht &ndash; hier verkaufen wir Zusagen, nicht Funktionen.</p>
       </div>
     </div>
-    <p class="measure muted" style="margin-top: 1.5rem;">Was verarbeitet wird, steht bei uns nicht im Kleingedruckten: Gesprächsinhalte werden nicht gespeichert, IP-Adressen nicht protokolliert, und die Konfiguration Ihrer Organisation ist eine Handvoll lesbarer Textdateien, die Sie jederzeit mitnehmen können.</p>
+    <p class="measure muted" style="margin-top: 1.5rem;">Zur Einordnung: Ein Anruf im Bürgerbüro oder im Betrieb kostet realistisch 3&ndash;8&nbsp;€ Personalzeit. Ab etwa 40 ersparten Anrufen im Monat trägt sich der Assistent &ndash; und wie viele Gespräche er übernimmt, sehen Sie jederzeit selbst in Ihrer Übersicht.</p>
+    <p class="measure muted" style="margin-top: 0.75rem;">Was verarbeitet wird, steht bei uns nicht im Kleingedruckten: Gesprächsinhalte werden nicht gespeichert, IP-Adressen nicht protokolliert, und die Konfiguration Ihrer Organisation ist eine Handvoll lesbarer Textdateien, die Sie jederzeit mitnehmen können. Der Zugang selbst spricht einen offenen Standard (MCP) &ndash; Ihr Assistent funktioniert damit auch in Claude, ChatGPT und anderen KI-Programmen, nicht nur in unserem Chat. Es gibt keinen Einschluss: Wer geht, nimmt alles mit.</p>
   </div>
 </section>
 
