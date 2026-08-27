@@ -64,12 +64,20 @@
     .measure { max-width: 42rem; }
     .muted { color: var(--ink-soft); }
 
-    /* ---------- Top bar ---------- */
-    .topbar { padding: 1.4rem 0; }
-    .topbar .wrap { display: flex; align-items: center; gap: 0.6rem; }
-    .topbar .topbar-demo { margin-left: auto; padding: 0.45rem 1.15rem; font-size: 0.95rem; }
-    .topbar img { width: 28px; height: 28px; border-radius: 8px; }
-    .topbar span { font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em; }
+    /* ---------- Top bar ----------
+       Die Produktleiste: dieselbe erste Zeile wie auf den Demo-Seiten und in
+       der Einrichtung — Landing und Produkt sollen sich wie eins anfühlen. */
+    .topbar { padding: 0.9rem 0; border-bottom: 1px solid rgba(0, 0, 0, 0.07); }
+    .topbar .wrap { display: flex; align-items: center; gap: 1.3rem; }
+    .topbar .marke { display: flex; align-items: center; gap: 0.6rem; color: var(--ink); text-decoration: none; }
+    .topbar img { width: 26px; height: 26px; display: block; }
+    .topbar .marke span { font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em; }
+    .topbar nav { margin-left: auto; display: flex; align-items: center; gap: 1.3rem; }
+    .topbar nav a { color: var(--ink-soft); text-decoration: none; font-size: 0.95rem; }
+    .topbar nav a:hover { color: var(--ink); }
+    .topbar .topbar-demo { padding: 0.45rem 1.15rem; color: #fff; }
+    .topbar .topbar-demo:hover { color: #fff; }
+    @media (max-width: 30rem) { .topbar nav a:not(.topbar-demo):not(:first-child) { display: none; } }
 
     /* ---------- Hero ---------- */
     header.hero { padding: 3.5rem 0 5rem; }
@@ -498,9 +506,12 @@
 <body>
 <div class="topbar">
   <div class="wrap">
-    <img src="favicon.png" alt="" width="28" height="28">
-    <span>ChatBieger</span>
-    <a class="btn topbar-demo" href="https://chat.demo.chatbieger.com/">Demo</a>
+    <a class="marke" href="./"><img src="chatbieger-logo.png" alt="" width="26" height="26"><span>ChatBieger</span></a>
+    <nav aria-label="ChatBieger">
+      <a href="https://chat.demo.chatbieger.com/">Demos</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a class="btn topbar-demo" href="https://admin.demo.chatbieger.com/">Anmelden</a>
+    </nav>
   </div>
 </div>
 

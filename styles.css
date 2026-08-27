@@ -28,9 +28,11 @@ body {
 
 .wrap { max-width: 46rem; margin: 0 auto; padding: 0 1.5rem; }
 
-.topbar { padding: 1.4rem 0; }
-.topbar .wrap { display: flex; align-items: center; gap: 0.6rem; }
-.topbar a {
+/* Die Produktleiste: dieselbe erste Zeile wie auf index.html, den Demo-Seiten
+   und in der Einrichtung — bei Änderungen alle Stellen pflegen. */
+.topbar { padding: 0.9rem 0; border-bottom: 1px solid rgba(0, 0, 0, 0.07); }
+.topbar .wrap { display: flex; align-items: center; gap: 1.3rem; }
+.topbar .marke {
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -40,7 +42,21 @@ body {
   font-size: 1.05rem;
   letter-spacing: -0.01em;
 }
-.topbar img { width: 28px; height: 28px; border-radius: 8px; }
+.topbar img { width: 26px; height: 26px; display: block; }
+.topbar nav { margin-left: auto; display: flex; align-items: center; gap: 1.3rem; }
+.topbar nav a { color: var(--ink-soft); text-decoration: none; font-size: 0.95rem; }
+.topbar nav a:hover { color: var(--ink); }
+.topbar nav a[aria-current="page"] { color: var(--ink); font-weight: 600; }
+.topbar .topbar-demo {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.45rem 1.15rem;
+  background: var(--accent);
+  color: #fff;
+}
+.topbar .topbar-demo:hover { background: var(--accent-hover); color: #fff; }
+@media (max-width: 30rem) { .topbar nav a:not(.topbar-demo):not(:first-child) { display: none; } }
 
 main { padding: 2rem 0 4rem; }
 
