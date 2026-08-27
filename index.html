@@ -442,6 +442,20 @@
     }
     .footer-card h2 { color: #fff; }
     .footer-card p { max-width: 42rem; color: rgba(255, 255, 255, 0.85); }
+    .signup-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.25rem 0 0.75rem; }
+    .signup-row input {
+      flex: 1 1 16rem; min-width: 0; padding: 0.7rem 1rem; font: inherit;
+      border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 10px;
+      background: rgba(255, 255, 255, 0.12); color: #fff;
+    }
+    .signup-row input::placeholder { color: rgba(255, 255, 255, 0.65); }
+    .signup-row input:focus { outline: 2px solid #fff; outline-offset: 1px; }
+    .btn.ghost { background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, 0.45); }
+    .btn.ghost:hover { background: rgba(255, 255, 255, 0.12); }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
     .fineprint { margin-top: 2.25rem; font-size: 0.85rem; color: var(--ink-faint); }
     .legal-nav { margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 1.25rem; font-size: 0.9rem; }
     .legal-nav a { color: var(--ink-soft); text-decoration: none; }
@@ -747,9 +761,15 @@
     <div class="footer-card">
       <h2>Fangen Sie mit einem Prozess an.</h2>
       <p>Mehr braucht es nicht: eine Beschreibung dessen, was Sie ohnehin jeden Tag erklären. Der Rest entsteht im Betrieb &ndash; an den Stellen, an denen Sie merken, dass etwas fehlt.</p>
+      <form class="signup-row" action="https://chat.demo.chatbieger.com/admin/" method="get">
+        <input type="hidden" name="signup" value="1">
+        <label class="sr-only" for="signup-org">Name Ihrer Organisation</label>
+        <input id="signup-org" name="organization" placeholder="Name Ihrer Organisation" autocomplete="organization" required>
+        <button class="btn inverted" type="submit">Eigenen Assistenten anlegen</button>
+      </form>
       <div class="cta-row">
-        <a class="btn inverted" href="https://chat.demo.chatbieger.com/">Demo ausprobieren</a>
-        <span class="cta-note" style="color: rgba(255,255,255,0.75);">Ohne Anmeldung &middot; drei echte Organisationen</span>
+        <a class="btn ghost" href="https://chat.demo.chatbieger.com/">Oder erst die Demo ansehen</a>
+        <span class="cta-note" style="color: rgba(255,255,255,0.75);">Zum Ausprobieren kostenlos, mit kleinem Kontingent &middot; Ihre Organisation taucht nirgends öffentlich auf</span>
       </div>
     </div>
     <p class="fineprint">ChatBieger ist in aktiver Entwicklung. Die Demos zeigen den tatsächlichen Stand mit echten, öffentlich zugänglichen Informationen &ndash; Antworten können trotzdem falsch sein.</p>
