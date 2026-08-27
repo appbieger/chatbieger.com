@@ -19,13 +19,44 @@
       --ink-soft: #6e6e73;
       --ink-faint: #86868b;
       --accent: #0066cc;
+      /* Fläche unter weißer Schrift — im Dunkeln dunkler als der Textakzent,
+         dieselbe Lektion wie im Widget (WCAG: Weiß auf #4d9fff wären 2,7:1). */
+      --accent-solid: #0066cc;
       --accent-hover: #0055aa;
       --accent-tint: rgba(0, 102, 204, 0.07);
       --warn: #c9251c;
       --warn-tint: #fff5f5;
+      --line: rgba(0, 0, 0, 0.07);
+      --bubble: #f2f2f7;
       --ring: inset 0 0 0 1px rgba(0, 0, 0, 0.09);
       --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
       --float-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 28px 60px -34px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Derselbe dunkle Modus wie in Chat, Übersicht und Einrichtung — die
+       Landing war die einzige Fläche ohne ihn, und genau dort fiel der
+       Bruch zuerst auf. */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ground: #000;
+        --surface: #1c1c1e;
+        --surface-soft: #232326;
+        --ink: #f5f5f7;
+        --ink-soft: #a1a1a6;
+        --ink-faint: #8e8e93;
+        --accent: #4d9fff;
+        --accent-solid: #0a63c9;
+        --accent-hover: #0d6fd9;
+        --accent-tint: rgba(77, 159, 255, 0.12);
+        --warn: #ff6b6b;
+        --warn-tint: #3a1416;
+        --line: rgba(255, 255, 255, 0.14);
+        --bubble: #2c2c2e;
+        --ring: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+        --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        --float-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 28px 60px -34px rgba(0, 0, 0, 0.9);
+      }
+      .topbar img { filter: invert(1); }
     }
 
     * { box-sizing: border-box; }
@@ -67,13 +98,13 @@
     /* ---------- Top bar ----------
        Die Produktleiste: dieselbe erste Zeile wie auf den Demo-Seiten und in
        der Einrichtung — Landing und Produkt sollen sich wie eins anfühlen. */
-    .topbar { padding: 0.9rem 0; border-bottom: 1px solid rgba(0, 0, 0, 0.07); }
+    .topbar { padding: 0.8rem 0; border-bottom: 1px solid var(--line); }
     .topbar .wrap { display: flex; align-items: center; gap: 1.3rem; }
-    .topbar .marke { display: flex; align-items: center; gap: 0.6rem; color: var(--ink); text-decoration: none; }
-    .topbar img { width: 26px; height: 26px; display: block; }
-    .topbar .marke span { font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em; }
-    .topbar nav { margin-left: auto; display: flex; align-items: center; gap: 1.3rem; }
-    .topbar nav a { color: var(--ink-soft); text-decoration: none; font-size: 0.95rem; }
+    .topbar .marke { display: flex; align-items: center; gap: 0.5rem; color: var(--ink); text-decoration: none; }
+    .topbar img { width: 22px; height: 22px; border-radius: 6px; display: block; }
+    .topbar .marke span { font-weight: 600; font-size: 0.9375rem; }
+    .topbar nav { margin-left: auto; display: flex; align-items: center; gap: 1.1rem; }
+    .topbar nav a { color: var(--ink-soft); text-decoration: none; font-size: 0.9375rem; }
     .topbar nav a:hover { color: var(--ink); }
     .topbar .topbar-demo { padding: 0.45rem 1.15rem; color: #fff; }
     .topbar .topbar-demo:hover { color: #fff; }
@@ -99,7 +130,7 @@
       font-size: 1rem;
       font-weight: 500;
       text-decoration: none;
-      background: var(--accent);
+      background: var(--accent-solid);
       color: #fff;
     }
     .btn:hover { background: var(--accent-hover); }
@@ -124,7 +155,7 @@
       text-transform: uppercase;
       color: var(--ink-faint);
       padding-bottom: 0.7rem;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+      border-bottom: 1px solid var(--line);
     }
     .msg { display: grid; grid-template-rows: 1fr; }
     .msg-inner {
@@ -147,7 +178,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #c7c7cc;
+      background: var(--ink-faint);
       color: #fff;
       font-size: 0.68rem;
       font-weight: 600;
@@ -161,12 +192,12 @@
       line-height: 1.5;
     }
     .bubble.user {
-      background: var(--accent);
+      background: var(--accent-solid);
       color: #fff;
       border-bottom-right-radius: 6px;
     }
     .bubble.bot {
-      background: var(--ground);
+      background: var(--bubble);
       color: var(--ink);
       border-bottom-left-radius: 6px;
     }
@@ -223,7 +254,7 @@
       width: 32px;
       height: 32px;
       border-radius: 999px;
-      background: var(--accent);
+      background: var(--accent-solid);
       color: #fff;
       display: flex;
       align-items: center;
@@ -268,8 +299,8 @@
       padding: 0.3rem 0.75rem;
       border-radius: 999px;
     }
-    .contrast-card.old .tag { color: var(--warn); background: #fff; box-shadow: inset 0 0 0 1px rgba(201, 37, 28, 0.3); }
-    .contrast-card.new .tag { background: var(--accent); color: #fff; }
+    .contrast-card.old .tag { color: var(--warn); background: var(--surface); box-shadow: inset 0 0 0 1px rgba(201, 37, 28, 0.3); }
+    .contrast-card.new .tag { background: var(--accent-solid); color: #fff; }
     .contrast-card ul { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.45rem; }
     .contrast-card li::marker { color: var(--ink-faint); }
 
@@ -402,7 +433,7 @@
       padding: 0.9rem 1.2rem;
       text-align: left;
       vertical-align: top;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+      border-bottom: 1px solid var(--line);
       font-size: 0.96rem;
     }
     .compare tr:last-child td { border-bottom: none; }
@@ -439,7 +470,7 @@
     /* ---------- Footer ---------- */
     footer { padding: 1.5rem 0 4rem; }
     .footer-card {
-      background: var(--accent);
+      background: var(--accent-solid);
       color: #fff;
       border-radius: 20px;
       padding: 2.75rem;
