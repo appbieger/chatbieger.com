@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unterlagen für Ihre Vorlage – ChatBieger</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    main h2 { margin-top: 2.5rem; }
+    main h3 { margin-top: 1.5rem; }
+    table { width: 100%; border-collapse: collapse; font-size: .95rem; margin: 1rem 0; }
+    th, td { text-align: left; vertical-align: top; padding: .5rem .6rem; border-bottom: 1px solid var(--line); }
+    th { font-weight: 600; }
+    .toc { display: grid; gap: .35rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+    .toc a { text-decoration: none; }
+    .draft { border-left: 3px solid var(--accent); padding-left: 1rem; }
+    .wrap { max-width: 46rem; }
+    dl { display: grid; grid-template-columns: max-content 1fr; gap: .4rem 1.2rem; }
+    dt { font-weight: 600; }
+    dd { margin: 0; }
+    @media (max-width: 40rem) { dl { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="marke" href="./"><img src="chatbieger-logo.png" alt="" width="26" height="26"><span>ChatBieger</span></a>
+    <nav aria-label="ChatBieger">
+      <a href="https://chat.demo.chatbieger.com/">Demos</a>
+      <a href="unterlagen.html">Unterlagen</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a class="topbar-demo" href="https://admin.demo.chatbieger.com/">Anmelden</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <h1>Unterlagen für Ihre Vorlage</h1>
+    <p class="muted">
+      Alles, was eine Verwaltung oder ein Unternehmen mit Nachweispflicht braucht, bevor
+      ein Gespräch überhaupt Sinn hat – auf einer Seite, ohne Anfrage. Stand 02.09.2026.
+      Jeder Abschnitt lässt sich einzeln verlinken und ausdrucken.
+    </p>
+    <ul class="toc">
+      <li><a href="#produkt">1. Was ChatBieger ist</a></li>
+      <li><a href="#preise">2. Preisblatt</a></li>
+      <li><a href="#datenschutzerklaerung">3. Datenschutzerklärung für den Assistenten</a></li>
+      <li><a href="#verarbeitung">4. Was tatsächlich verarbeitet wird</a></li>
+      <li><a href="#unterauftrag">5. Unterauftragsverarbeiter und Ort der Verarbeitung</a></li>
+      <li><a href="#tom">6. Technische und organisatorische Maßnahmen</a></li>
+      <li><a href="#loeschung">7. Löschkonzept</a></li>
+      <li><a href="#avv">8. Auftragsverarbeitungsvertrag (Muster)</a></li>
+      <li><a href="#barrierefreiheit">9. Erklärung zur Barrierefreiheit</a></li>
+      <li><a href="#betrieb">10. Betrieb, Verfügbarkeit und Ausfall</a></li>
+      <li><a href="#referenzen">11. Referenzen</a></li>
+      <li><a href="#demos">12. Die Demos und die gezeigten Organisationen</a></li>
+      <li><a href="#falsch">13. Wenn eine Auskunft falsch war</a></li>
+      <li><a href="#einbindung">14. So kommt der Assistent auf Ihre Website</a></li>
+      <li><a href="#pflege">15. Was die Pflege kostet, in Minuten</a></li>
+      <li><a href="#verzeichnis">16. Verzeichnis der Verarbeitungstätigkeit und Schwellwertanalyse</a></li>
+    </ul>
+
+    <h2 id="produkt">1. Was ChatBieger ist</h2>
+    <p>Ein KI-Assistent, der auf der Website einer Organisation Fragen zu deren Leistungen beantwortet und Anliegen im Gespräch aufnimmt. Er antwortet ausschließlich aus dem, was die Organisation selbst hinterlegt hat – je Leistung eine kurze Beschreibung in normalen Worten, meist aus der bestehenden Website übernommen und verdichtet. Jede Antwort nennt ihre Quelle; was nicht aus den eigenen Angaben stammt, wird als „ohne Gewähr" gekennzeichnet. Gespräche werden nicht gespeichert.</p>
+    <p>Drei Stufen je Leistung, unabhängig voneinander wählbar: <strong>Auskunft</strong> (Fragen beantworten, Formulare verlinken, Zuständige nennen), <strong>Erfassen</strong> (Angaben im Gespräch aufnehmen, Ergebnis ist ein E-Mail-Entwurf, den die Person selbst abschickt), <strong>Verbinden</strong> (Vorgang direkt im Fachsystem anlegen, über dessen eigene Schnittstelle, mit einer Freigabeliste je Leistung).</p>
+    <p>Technisch ist es ein einziger Dienst, der Chat, Einrichtung und Dateien ausliefert. Die Konfiguration einer Organisation ist ein Ordner lesbarer Textdateien, der jederzeit heruntergeladen werden kann. Der Assistent spricht den offenen Standard MCP (Model Context Protocol) – die Schnittstelle, über die KI-Programme Werkzeuge benutzen. Das heißt: Er ist nicht an unseren Chat gebunden und funktioniert auch in Claude, ChatGPT und anderen Assistenten.</p>
+    <p>Anbieter: AppBieger – Stephan Tomforde, Einzelunternehmen, Reith 27, 21698 Brest. Kontaktdaten auf der <a href="kontakt.html">Kontaktseite</a>.</p>
+
+    <h2 id="preise">2. Preisblatt</h2>
+    <p>Alle Preise netto, zuzüglich Umsatzsteuer.</p>
+    <table>
+      <tr><th>Variante</th><th>Für wen</th><th>Monatlich</th><th>Einrichtung</th><th>Enthalten</th></tr>
+      <tr><td>Community</td><td>Selbsthoster</td><td>0 €</td><td>–</td><td>Quelltext unter AGPL-3.0, eigener Betrieb, eigenes Sprachmodell. Kein Vertrag, kein Support.</td></tr>
+      <tr><td>Professional</td><td>Betriebe, Praxen, Vereine</td><td>249 €</td><td>1.500 €</td><td>Betrieb, Updates, Modellkosten bei fairer Nutzung, Logo und Farbe. Sprachmodell wählen wir; Verarbeitung kann außerhalb der EU liegen. AVV inklusive.</td></tr>
+      <tr><td>Enterprise</td><td>Kommunen, alles mit Nachweispflicht</td><td>ab 890 €</td><td>ab 4.500 €</td><td>Verarbeitung in der EU oder eigener Modellschlüssel, Betrieb auf eigener Infrastruktur möglich, AVV, Löschkonzept, Verfügbarkeitszusage, Anbindung von Fachsystemen. Staffel siehe unten.</td></tr>
+    </table>
+    <p><strong>Die Enterprise-Staffel.</strong> Sie hängt nur an der Zahl der hinterlegten Leistungen; Standorte, Nutzerzahl und Gesprächsmenge spielen keine Rolle.</p>
+    <table>
+      <tr><th>Leistungen</th><th>Monatlich</th><th>Einrichtung (einmalig)</th><th>Darin enthalten</th></tr>
+      <tr><td>bis 15</td><td>890 €</td><td>4.500 €</td><td>Import aus Ihrer Website, Abnahme jeder Leistung mit Ihrem Fachbereich, Einbindung, Datenschutz-Unterlagen ausgefüllt auf Ihre Organisation</td></tr>
+      <tr><td>bis 40</td><td>1.290 €</td><td>6.500 €</td><td>dasselbe</td></tr>
+      <tr><td>darüber</td><td>1.690 €</td><td>8.500 €</td><td>dasselbe; ab hier meist mehrere Fachbereiche</td></tr>
+    </table>
+    <p><strong>Beispiel: eine Stadt mit rund 32.000 Einwohnern und 32 Leistungen des Bürgerbüros.</strong> Stufe „bis 40": 1.290 € im Monat, Einrichtung 6.500 €. Im ersten Jahr 21.980 € netto, in jedem weiteren 15.480 €. Weitere Leistungen entstehen im Cockpit ohne Aufpreis, bis die nächste Stufe erreicht ist; die Stufe wechselt zum Monatsersten, nie rückwirkend. Kündbar monatlich nach dem ersten Jahr.</p>
+    <p><strong>Was das im Vergleich heißt.</strong> Ja, es gibt Kommunal-Assistenten für 49 bis 69 € im Monat. Sie beantworten Fragen aus einem Katalog, den jemand bei Ihnen pflegt. Drei Unterschiede, die den Preis tragen: Erstens nimmt dieser Assistent Anliegen auf und übergibt sie als fertigen Vorgang, statt nur zu antworten. Zweitens sagt er zu, wo Ihre Daten verarbeitet werden, und liefert den Vertrag dazu. Drittens ist er nicht an unseren Chat gebunden: Dieselben Leistungen sind für ChatGPT, Claude und die Assistenten erreichbar, die Bürgerinnen und Bürger demnächst mitbringen. Und er ist der einzige, dessen Preis, Vertrag und Unterlagen Sie lesen konnten, bevor Sie angefragt haben.</p>
+    <p><strong>Für den Personalrat.</strong> Durch den Assistenten entfällt keine Stelle und keine Aufgabe. Er nimmt die Anrufe und E-Mails ab, die heute in der Warteschleife hängen oder abends um zehn unbeantwortet bleiben, und er verweist bei allem, was er nicht sicher weiß, auf die Menschen im Bürgerbüro. Die Erfolgszahl des Piloten ist „ersparte Anrufe", nicht „ersparte Stunden".</p>
+    <p><strong>Pilot für Enterprise.</strong> Der Einstieg ist ein befristeter Pilot ohne Rechnung: gemeinsam festgelegtes Enddatum, vorher erhobene Ausgangszahl (Anrufe und Anfragen je Woche im betroffenen Bereich), vorher vereinbartes Kriterium, an dem sich am Ende entscheidet, ob es weitergeht. Am Enddatum endet der Pilot ohne Kündigung. Was während des Pilots entsteht – Beschreibungen, Einstellungen – gehört der Organisation und wird herausgegeben. <strong>Die Ausgangszahl erhebt nicht Ihr Tresen:</strong> Wo eine Telefonanlage Anrufe zählt, lesen wir die Auswertung einer Woche; wo nicht, stellen wir eine Strichliste auf einer Seite bereit und werten sie aus. Aufwand bei Ihnen: eine Woche lang ein Strich je Anruf. Die externe Prüfung der Barrierefreiheit (Abschnitt 9) wird während des Piloten beauftragt und vom Anbieter bezahlt.</p>
+    <p><strong>Was „faire Nutzung" heißt.</strong> Ein vollständiges Gespräch mit Erfassung kostet uns beim Modell zwischen drei und sieben Cent. Die Monatsgebühr deckt eine Nutzung, wie sie für eine Organisation dieser Größe üblich ist; wird sie über Monate hinweg deutlich überschritten, sprechen wir vorher darüber, nie nachträglich per Rechnung. Was der Assistent im Monat übernommen hat, sehen Sie jederzeit selbst im Cockpit.</p>
+    <p><strong>Vergabe.</strong> In Niedersachsen ist ein Direktauftrag bis 100.000 € netto möglich (Stand 2026; Ihre Vergabestelle prüft den aktuellen Wert). Das Beispiel oben liegt über vier Jahre bei 68.420 € netto. Für die Angemessenheitsprüfung liefern wir auf Wunsch zwei Vergleichsangebote benannter Anbieter mit deren Leistungsumfang.</p>
+
+    <h2 id="datenschutzerklaerung">3. Datenschutzerklärung für den Assistenten</h2>
+    <p class="muted">Das ist der Text, den Sie in Ihre eigene Datenschutzerklärung übernehmen – und zugleich das, was für den Assistenten selbst gilt, auch in unseren Demos. Verantwortlich für den Chat auf Ihrer Website sind Sie; wir sind Auftragsverarbeiter.</p>
+    <div class="card">
+      <h3 style="margin-top:0">KI-Assistent</h3>
+      <p>Auf unserer Website bieten wir einen KI-Assistenten an, der Fragen zu unseren Leistungen beantwortet und Anliegen aufnimmt. Betrieben wird er von AppBieger – Stephan Tomforde, Reith 27, 21698 Brest, in unserem Auftrag.</p>
+      <p><strong>Was verarbeitet wird.</strong> Ihre Nachrichten werden zur Beantwortung an einen Anbieter von Sprachmodellen übertragen. <strong>Der Gesprächsverlauf wird nicht dauerhaft gespeichert</strong> – er liegt für die Dauer des Gesprächs im Arbeitsspeicher und wird spätestens 30 Minuten nach der letzten Nachricht verworfen. Ihre IP-Adresse wird ausschließlich für eine Minute im Arbeitsspeicher gehalten, um Missbrauch zu begrenzen, und nicht gespeichert.</p>
+      <p><strong>Was gespeichert wird.</strong> Anonyme Zählwerte über Nutzung und Kosten ohne Bezug zu Ihrer Person. Melden Sie über den Assistenten, dass Ihnen eine Leistung gefehlt hat, speichern wir Ihren Wunsch als einen Satz, um unser Angebot zu verbessern; er wird nach 90 Tagen gelöscht. Bitte nennen Sie darin keine Namen, Adressen oder Aktenzeichen.</p>
+      <p><strong>E-Mails.</strong> Erstellt der Assistent einen E-Mail-Entwurf, öffnet dieser sich in Ihrem eigenen E-Mail-Programm. Abgeschickt wird er von Ihnen, nicht von uns.</p>
+      <p><strong>Rechtsgrundlage</strong> ist unser berechtigtes Interesse an einer erreichbaren Auskunft (Art. 6 Abs. 1 lit. f DSGVO), bei Anliegen im Rahmen der Anbahnung oder Durchführung eines Vertrags Art. 6 Abs. 1 lit. b DSGVO; für Behörden die Aufgabenerfüllung nach Art. 6 Abs. 1 lit. e DSGVO.</p>
+      <p><strong>Übermittlung in Drittländer.</strong> <em>Professional:</em> Der Anbieter des Sprachmodells sitzt in den USA; die Übermittlung erfolgt auf Grundlage von Standardvertragsklauseln. <em>Enterprise:</em> Die Verarbeitung erfolgt vollständig innerhalb der EU; dieser Absatz entfällt.</p>
+      <p><strong>Hinweis vor dem Gespräch.</strong> Der Chat sagt vor der ersten Eingabe, dass ein Sprachmodell antwortet, dass der Verlauf nicht gespeichert wird, und bittet darum, keine Ausweisnummern, Gesundheitsdaten oder Aktenzeichen einzugeben.</p>
+      <p>Sie erreichen den Assistenten nicht? Alle Wege stehen unverändert offen – Telefon, E-Mail und persönlich.</p>
+    </div>
+
+    <h2 id="verarbeitung">4. Was tatsächlich verarbeitet wird</h2>
+    <p class="muted">Aus dem Quelltext abgeleitet, Stand 19.08.2026 – damit sich jede Angabe nachprüfen lässt.</p>
+    <h3>Besucher des Chats</h3>
+    <table>
+      <tr><th>Was</th><th>Wo</th><th>Wie lange</th></tr>
+      <tr><td>Nachrichten des Gesprächs</td><td>Arbeitsspeicher; zur Beantwortung an den Modellanbieter übertragen</td><td>30 Minuten ohne Aktivität, danach verworfen. Nie auf Platte.</td></tr>
+      <tr><td>IP-Adresse</td><td>Arbeitsspeicher, für die Mengenbegrenzung</td><td>60 Sekunden, nie geschrieben</td></tr>
+      <tr><td>Verbrauchszahlen: Zeitpunkt, Mandant, zufällige Gesprächs-ID, Modell, Tokenzahlen</td><td>Datenbank der Instanz</td><td>solange der Mandant besteht. Kein Inhalt, kein Personenbezug.</td></tr>
+      <tr><td>Gemeldete Wünsche („was gefehlt hat"), ein Satz</td><td>Datenbank der Instanz</td><td>90 Tage; höchstens 500 je Mandant; einzeln löschbar</td></tr>
+      <tr><td>E-Mail-Entwurf</td><td>entsteht als Link im Browser des Besuchers</td><td>wird von uns weder gesendet noch gespeichert</td></tr>
+    </table>
+    <p><strong>Kein Zugriffsprotokoll.</strong> Der Reverse Proxy schreibt keine Zugriffe mit IP-Adressen; der Prozess protokolliert keine Anfragen. <strong>Eine ehrliche Ausnahme:</strong> Der Fehlerpfad schreibt Ausnahmen ins Containerprotokoll; eine Ausnahme kann im Einzelfall Bruchstücke einer Eingabe enthalten. Das Protokoll ist auf 3 × 10 MB begrenzt und rollt über.</p>
+    <h3>Konten der Kundenseite</h3>
+    <table>
+      <tr><th>Was</th><th>Wie lange</th></tr>
+      <tr><td>E-Mail oder Benutzername, Name, Passwort als scrypt-Hash, Anlagedatum</td><td>bis das Konto gelöscht wird</td></tr>
+      <tr><td>Sitzungen: nur der SHA-256-Wert des Tokens, Ablauf</td><td>30 Tage; Passwortwechsel beendet alle</td></tr>
+      <tr><td>Freigaben Konto → Mandant</td><td>bis zum Entzug</td></tr>
+    </table>
+    <p><strong>Inhalte des Kunden:</strong> die Textdateien je Mandant. Was dort steht, bestimmt der Kunde – auch, ob Namen und Durchwahlen von Mitarbeitenden darin vorkommen.</p>
+
+    <h2 id="unterauftrag">5. Unterauftragsverarbeiter und Ort der Verarbeitung</h2>
+    <table>
+      <tr><th>Wer</th><th>Wofür</th><th>Ort</th><th>Drittland</th></tr>
+      <tr><td>Amazon Web Services (Lightsail)</td><td>Hosting der Instanz</td><td>eu-central-1, Frankfurt am Main</td><td>nein</td></tr>
+      <tr><td>OpenRouter, Inc.</td><td>Vermittlung der Modellanfragen (nur Professional)</td><td>USA</td><td>ja, Standardvertragsklauseln</td></tr>
+      <tr><td>Anthropic PBC</td><td>Beantwortung der Anfragen (Professional: über OpenRouter, USA; Enterprise: über Amazon Bedrock in Frankfurt)</td><td>USA bzw. Frankfurt</td><td>Professional ja, Enterprise nein</td></tr>
+      <tr><td>GitHub, Inc. (nur Professional)</td><td>verschlüsselte Sicherung</td><td>USA</td><td>ja – verschlüsselt mit einem Schlüssel, den GitHub nicht hat</td></tr>
+      <tr><td>Amazon Web Services (nur Enterprise)</td><td>verschlüsselte Sicherung</td><td>eu-central-1, Frankfurt am Main</td><td>nein</td></tr>
+    </table>
+    <p><strong>Enterprise</strong> schließt Drittland vollständig aus: Die Modellanfragen laufen über Amazon Bedrock in eu-central-1, dieselben Modelle, innerhalb der EU; die nächtliche Sicherung liegt verschlüsselt in derselben Region, nicht bei GitHub. Es bleibt kein Unterauftragsverarbeiter außerhalb der EU. Alternativ betreiben Sie die Instanz auf eigener Infrastruktur mit eigenem Modellschlüssel. <strong>Professional</strong> sagt den Ort bewusst nicht zu – das macht den Tarif günstig – und ist für Behörden nicht vorgesehen. <strong>Die Demos</strong> auf chat.demo.chatbieger.com laufen auf dem Professional-Weg: Hosting in Frankfurt, Modellanfragen über OpenRouter in die USA.</p>
+
+    <h2 id="tom">6. Technische und organisatorische Maßnahmen</h2>
+    <ul>
+      <li>Übertragung ausschließlich über TLS.</li>
+      <li>Zugang zur Einrichtung nur mit Konto; Freigabe je Mandant, kein impliziter Zugriff.</li>
+      <li>Passwörter als scrypt-Hash mit eigenem Salt; von Sitzungstoken wird nur der SHA-256-Wert gespeichert.</li>
+      <li>Trennung der Mandanten: getrennte Ordner, jede Anfrage gegen die Freigabe geprüft.</li>
+      <li>Mengenbegrenzung je IP und Konto, Verzögerung nach Fehlanmeldungen.</li>
+      <li>Nächtliche Sicherung, verschlüsselt (AES-256), außerhalb der Instanz; Sicherungen laufen nach 30 Tagen aus.</li>
+      <li>Keine Zugriffsprotokolle mit IP-Adressen.</li>
+      <li>Stufe 3: je Leistung eine Freigabeliste der erlaubten Werkzeuge im Fachsystem; alles andere ist gesperrt.</li>
+    </ul>
+
+    <h2 id="loeschung">7. Löschkonzept</h2>
+    <dl>
+      <dt>Gespräche</dt><dd>nie gespeichert; Arbeitsspeicher, 30 Minuten nach der letzten Nachricht verworfen; ein Neustart beendet alle.</dd>
+      <dt>IP-Adressen</dt><dd>60 Sekunden im Arbeitsspeicher, nie geschrieben.</dd>
+      <dt>Gemeldete Wünsche</dt><dd>90 Tage, dann automatisch gelöscht; jederzeit einzeln im Cockpit löschbar.</dd>
+      <dt>Verbrauchszahlen</dt><dd>ohne Personenbezug; gelöscht mit dem Mandanten.</dd>
+      <dt>Konten</dt><dd>gelöscht auf Anweisung des Kunden; Sitzungen nach 30 Tagen.</dd>
+      <dt>Containerprotokoll</dt><dd>Fehlermeldungen des Prozesses, im Einzelfall mit Bruchstücken einer Eingabe. Höchstens 30 MB, in der Regel wenige Tage; spätestens 30 Tage, weil der Container bei jeder Aktualisierung neu erstellt wird und das Protokoll damit verfällt. Zugriff hat nur der Betreiber über den Serverzugang; niemand sonst.</dd>
+      <dt>Vertragsende</dt><dd>Herausgabe der Textdateien, Löschung samt Laufzeitdaten binnen 30 Tagen, Sicherungen laufen spätestens 30 Tage nach Erstellung aus. Löschbestätigung auf Wunsch schriftlich.</dd>
+    </dl>
+
+    <h2 id="avv">8. Auftragsverarbeitungsvertrag (Muster)</h2>
+    <p class="muted">Muster nach Art. 28 DSGVO zwischen dem Kunden (Verantwortlicher) und AppBieger – Stephan Tomforde (Auftragsverarbeiter). Die Fassung hier ist der Entwurf, damit Sie ihn lesen können, bevor Sie anfragen. Die anwaltlich geprüfte Fassung mit Datum liegt vor dem ersten Enterprise-Vertrag vor und geht Ihnen mit dem Angebot zu; bis dahin gilt: Was hier steht, ist zugesagt, die Prüfung ändert Form, nicht Inhalt. Anlage 1 sind die Maßnahmen aus Abschnitt 6, Anlage 2 die Unterauftragsverarbeiter aus Abschnitt 5.</p>
+    <div class="draft">
+      <h3>§ 1 Gegenstand und Dauer</h3>
+      <p>Der Anbieter betreibt für den Verantwortlichen einen KI-Assistenten, der Auskünfte zu dessen Leistungen erteilt und Anliegen im Gespräch aufnimmt. Der Vertrag läuft, solange der Hauptvertrag läuft.</p>
+      <h3>§ 2 Art, Zweck, Datenarten, Betroffene</h3>
+      <p>Verarbeitet werden die in Abschnitt 4 aufgeführten Daten, ausschließlich zum Betrieb des Assistenten. Betroffene sind die Besucher des Chats sowie die Mitarbeitenden des Verantwortlichen mit Zugang zur Einrichtung. Ausdrücklich nicht Gegenstand ist ein Vorgangsspeicher: Gesprächsinhalte werden nicht dauerhaft gespeichert.</p>
+      <h3>§ 3 Weisungsbindung</h3>
+      <p>Der Anbieter verarbeitet ausschließlich auf dokumentierte Weisung. Hält er eine Weisung für rechtswidrig, teilt er dies mit und darf sie aussetzen.</p>
+      <h3>§ 4 Vertraulichkeit</h3>
+      <p>Alle mit der Verarbeitung befassten Personen sind zur Vertraulichkeit verpflichtet.</p>
+      <h3>§ 5 Technische und organisatorische Maßnahmen</h3>
+      <p>Die Maßnahmen der Anlage 1 (Abschnitt 6). Änderungen dürfen das Schutzniveau nicht unterschreiten.</p>
+      <h3>§ 6 Unterauftragsverarbeiter</h3>
+      <p>Der Verantwortliche stimmt den in Anlage 2 (Abschnitt 5) genannten Unterauftragsverarbeitern zu. Ein Wechsel wird mit einer Frist von vier Wochen angekündigt; der Verantwortliche kann widersprechen.</p>
+      <h3>§ 7 Betroffenenrechte</h3>
+      <p>Der Anbieter unterstützt den Verantwortlichen. Auskunft und Löschung zu gemeldeten Wünschen sind in der Einrichtung einzeln möglich, ohne Zutun des Anbieters. Gesprächsinhalte können nicht herausgegeben werden, weil sie nicht gespeichert werden. Konten legt der Verantwortliche über den Anbieter an und löschen.</p>
+      <h3>§ 8 Meldepflichten</h3>
+      <p>Der Anbieter meldet eine Verletzung des Schutzes personenbezogener Daten unverzüglich nach Kenntnis, spätestens innerhalb von 24 Stunden.</p>
+      <h3>§ 9 Löschung und Rückgabe</h3>
+      <p>Nach Vertragsende gibt der Anbieter die Textdateien des Verantwortlichen heraus und löscht sie samt Laufzeitdaten binnen 30 Tagen. Sicherungen laufen spätestens 30 Tage nach ihrer Erstellung aus. Die Löschung wird auf Wunsch schriftlich bestätigt.</p>
+      <h3>§ 10 Nachweise und Kontrolle</h3>
+      <p>Der Anbieter weist die Einhaltung auf Anfrage nach. Der Quelltext kann durch den Verantwortlichen oder einen von ihm beauftragten Dritten geprüft werden.</p>
+    </div>
+    <p><strong>Datenschutz-Folgenabschätzung.</strong> Ob ein Bürgerchat mit Sprachmodell eine Folgenabschätzung braucht, entscheidet der Verantwortliche. Wir liefern dafür die Beschreibung der Verarbeitung (Abschnitt 4), die Risikobetrachtung – Kernpunkt: keine Speicherung, keine Profilbildung, keine Entscheidung mit Rechtswirkung – und beantworten die Fragen Ihres Datenschutzbeauftragten schriftlich.</p>
+
+    <h2 id="barrierefreiheit">9. Erklärung zur Barrierefreiheit</h2>
+    <p>Diese Erklärung gilt für das Chatfenster von ChatBieger, wie es auf der Website eines Kunden eingebettet oder unter eigener Adresse aufgerufen wird. Maßstab ist WCAG 2.1, Konformitätsstufe AA, wie sie die BITV 2.0 verlangt.</p>
+    <dl>
+      <dt>Stand der Vereinbarkeit</dt><dd>Das Chatfenster ist nach unserer Prüfung mit WCAG 2.1 AA vereinbar.</dd>
+      <dt>Geprüft</dt><dd>19.08.2026 durch den Anbieter (Selbstprüfung, kein externes Prüfsiegel), Nachprüfung 31.08.2026: Kontraste in hell und dunkel gerechnet, Umbruch bei 320 px und 200 % Schriftgröße, Textabstände nach 1.4.12, Tastaturreihenfolge und Fokusanzeige, Namen der Bedienelemente, Gliederung, Ansage von Zustandsmeldungen für Bildschirmleser, erhöhter Kontrast und reduzierte Bewegung nach Systemeinstellung. Gefundene Verstöße (Randkontrast anklickbarer Elemente, Kennzeichnung nur über Farbe) wurden behoben.</dd>
+      <dt>Bedienung ohne Maus</dt><dd>Vollständig: Eingabe, Senden mit der Eingabetaste (Umschalt+Eingabe für eine neue Zeile), Vorschläge, Quellen und Entwürfe sind per Tastatur erreichbar.</dd>
+      <dt>Nicht barrierefrei</dt><dd>Inhalte, die der Kunde als Dokument verlinkt (etwa PDF-Formulare), liegen außerhalb unserer Verantwortung. Der Chat kennzeichnet die Art des Dokuments als Text, nicht nur als Symbol.</dd>
+      <dt>Meldung</dt><dd>Barrieren melden Sie an die Adresse auf der <a href="kontakt.html">Kontaktseite</a>; wir antworten innerhalb von fünf Arbeitstagen.</dd>
+      <dt>Externe Prüfung</dt><dd>Für Enterprise beauftragen wir während des Piloten eine externe Prüfung nach dem BITV-Prüfverfahren; die Kosten trägt der Anbieter. Der Prüfbericht geht Ihnen als Anhang für Ihre eigene Erklärung zu.</dd>
+      <dt>Durchsetzungsverfahren</dt><dd>Bleibt eine Meldung ohne befriedigende Antwort, steht für Angebote niedersächsischer Behörden die Schlichtungsstelle bei der Landesbeauftragten für Menschen mit Behinderungen offen; für Bundesbehörden die Schlichtungsstelle nach § 16 BGG.</dd>
+    </dl>
+    <p><strong>Textbaustein für Ihre eigene Erklärung</strong> (zum Übernehmen, Klammern ersetzen):</p>
+    <div class="card"><p>Der KI-Assistent auf dieser Website wird von [Anbieter] in unserem Auftrag betrieben. Er ist nach WCAG 2.1 AA gestaltet; die Prüfung erfolgte am [Datum] durch [Prüfstelle]. Bekannte Einschränkungen: [keine / Liste]. Barrieren melden Sie an [Adresse der Organisation]; wir antworten innerhalb von [Frist]. Bleibt Ihre Meldung ohne befriedigende Antwort, können Sie sich an die Schlichtungsstelle bei der Landesbeauftragten für Menschen mit Behinderungen wenden.</p></div>
+
+    <h2 id="betrieb">10. Betrieb, Verfügbarkeit und Ausfall</h2>
+    <p>ChatBieger wird von einer Person betrieben. Das ist der Grund für den Preis und für die kurzen Wege – und es ist die erste Frage, die eine Vorlage stellen muss. Darum steht hier, was gilt:</p>
+    <ul>
+      <li><strong>Ihre Daten sind jederzeit ohne uns zugänglich.</strong> Die Konfiguration Ihrer Organisation ist ein Ordner lesbarer Textdateien, den Sie im Cockpit jederzeit herunterladen können – ohne Anfrage, ohne Frist.</li>
+      <li><strong>Betrieb ohne uns ist möglich.</strong> Der Quelltext steht unter AGPL-3.0. Enterprise-Kunden erhalten ihn mit dem Vertrag zur Hinterlegung; ein Betrieb durch Ihren IT-Dienstleister ist damit jederzeit möglich. Die Anleitung dafür ist Teil der Lieferung.</li>
+      <li><strong>Erreichbarkeit.</strong> Werktags; Antwort auf Störungsmeldungen innerhalb eines Arbeitstags. Eine Verfügbarkeitszusage mit Reaktionszeiten ist Teil des Enterprise-Vertrags.</li>
+      <li><strong>Ausfall des Betreibers.</strong> Fällt der Betreiber länger als zehn Arbeitstage aus, läuft die Instanz unverändert weiter – sie braucht für den Betrieb keine tägliche Hand. Für diesen Fall ist eine benannte Vertretung mit Zugang zur Infrastruktur hinterlegt. Name, Rechtsform und Zugangsregel nennen wir Ihnen mit dem Angebot, vor der Vorlage, nicht danach.</li>
+      <li><strong>Erreichbarkeit in Zahlen.</strong> Werktags 9 bis 17 Uhr. Störungsmeldung: Reaktion innerhalb von vier Stunden, Behebung eines Ausfalls innerhalb eines Arbeitstags. Verfügbarkeit des Dienstes: 99,5 % im Monatsmittel, gemessen am Chat-Endpunkt. Diese Werte stehen so im Enterprise-Vertrag.</li>
+      <li><strong>Ende des Betriebs.</strong> Mindestens 90 Tage Vorlauf, Herausgabe aller Dateien, Löschung nach Abschnitt 7. Der Vertrag endet dann ohne Kosten.</li>
+    </ul>
+
+    <h2 id="referenzen">11. Referenzen</h2>
+    <p>Ehrlich: Es gibt noch keine zahlende Kommune. ChatBieger ist seit August 2026 öffentlich im Betrieb, mit den Demos aus Abschnitt 12 und den ersten Organisationen, die sich selbst angelegt haben. Deshalb ist der Einstieg für Kommunen ein Pilot ohne Rechnung (Abschnitt 2): Sie tragen kein Geldrisiko, wir bekommen die erste Referenz – und die Zahl, die beweist, ob es wirkt. Wer als Erste geht, steht in der Ratsvorlage nicht als Risiko, sondern als Vorreiterin mit Rückfahrkarte.</p>
+
+    <h2 id="demos">12. Die Demos und die gezeigten Organisationen</h2>
+    <p>Die Demos zeigen echte Organisationen mit den Angaben, die diese selbst veröffentlicht haben – Leistungen, Gebühren, Öffnungszeiten von ihren eigenen Websites. Sie sind Vorführungen des Anbieters: nicht von der jeweiligen Organisation betrieben und nicht mit ihr abgestimmt, sofern nicht anders angegeben. Das steht in jedem Chatfenster einer Demo, nicht nur auf der Übersicht, zusammen mit dem Verweis auf die verbindliche Website. Keine Demo verwendet ein Wappen oder eine Wortmarke. Die Demos sind über die Übersicht auf chat.demo.chatbieger.com und von dieser Seite aus erreichbar, für Suchmaschinen gesperrt (noindex) und tauchen in keiner Suche auf. Sie laufen auf dem Professional-Weg (Abschnitt 5): Hosting in Frankfurt, Modellanfragen über OpenRouter in die USA; die Datenschutzerklärung aus Abschnitt 3 ist aus jedem Demo-Chat verlinkt. Vor der ersten Eingabe steht, dass ein Sprachmodell antwortet und nichts gespeichert wird.</p>
+    <p>Eine gezeigte Organisation kann jederzeit verlangen, dass ihre Demo entfernt wird. Das geschieht am selben Arbeitstag, ohne Begründung. Eine Organisation, die wir als Beispiel zeigen, unterrichten wir vorher schriftlich; wo das bisher nicht geschehen ist, holen wir es nach.</p>
+
+    <h2 id="falsch">13. Wenn eine Auskunft falsch war</h2>
+    <p>Die Frage, die jede Vorlage stellen muss: Der Assistent nennt einem Bürger eine falsche Gebühr, und der steht damit am Schalter. Was dann gilt:</p>
+    <ul>
+      <li><strong>Der Assistent gibt Auskünfte, keine Bescheide.</strong> Rechtlich steht er einer telefonischen Vorabauskunft gleich. Unter dem Eingabefeld steht dauerhaft der Satz der Organisation dazu – etwa: „Verbindlich sind der Bescheid und die Auskunft des Bürgerbüros." Diesen Satz legen Sie fest.</li>
+      <li><strong>Jede Antwort trägt ihre Quelle und deren Stand.</strong> Unter der Antwort steht, welche Leistung sie getragen hat, der Link auf die Seite Ihrer Website, aus der sie stammt, und das Datum, an dem diese Seite zuletzt geprüft wurde. Was nicht aus Ihren Angaben stammt, ist als „ohne Gewähr" gekennzeichnet.</li>
+      <li><strong>Der Einzelfall lässt sich nachvollziehen, obwohl nichts gespeichert wird.</strong> Der Assistent kann nur sagen, was in Ihren Leistungsbeschreibungen steht; die stehen als Textdateien mit Datum im Cockpit. Bürgerinnen und Bürger können jede Antwort mit einem Knopf kopieren und mitbringen. Und wer eine Antwort für falsch hält, meldet das mit „Hat nicht geholfen" direkt unter ihr – diese Meldungen sehen Sie im Cockpit.</li>
+      <li><strong>Vor dem Start liest Ihr Fachbereich alles gegen.</strong> Zur Einrichtung gehört die Abnahme: eine Übersicht aller Leistungen mit Quelle, wörtlichem Beleg und Prüfdatum, die das Bürgerbüro einmal durchgeht und freigibt. Nichts geht online, was nicht freigegeben ist.</li>
+      <li><strong>Ändert sich eine Gebühr, meldet es die Quellen-Wache.</strong> Täglich werden alle hinterlegten Quellen gegen Ihre Website geprüft. Eine Änderung erscheint als Vorschlag mit Unterschieden im Cockpit; ein Klick übernimmt sie. Bis dahin steht das alte Datum an der Antwort.</li>
+      <li><strong>Haftung.</strong> Für den Betrieb, die Kennzeichnung ungedeckter Angaben und die Einhaltung dieser Unterlagen haftet der Anbieter nach dem Vertrag. Für den Inhalt der freigegebenen Leistungsbeschreibungen haftet die Organisation wie für ihre Website – es sind ihre Angaben, in ihren Worten, von ihr freigegeben.</li>
+    </ul>
+
+    <h2 id="einbindung">14. So kommt der Assistent auf Ihre Website</h2>
+    <p>Die Stadt installiert nichts und betreibt nichts. Der Assistent läuft auf unserer Instanz (Enterprise: in Frankfurt) und wird in Ihre bestehende Website eingehängt:</p>
+    <ul>
+      <li><strong>Eine Zeile im Seitengerüst.</strong> Ihr IT-Dienstleister fügt in die Vorlage Ihrer Website eine einzige Skript-Zeile ein, die wir liefern. Damit erscheint der Chat als Knopf unten rechts auf jeder Seite, in Ihrem Logo und Ihrer Farbe. Das funktioniert mit jedem Content-Management-System, das eigene Skripte zulässt – in der Praxis mit allen, die Kommunen einsetzen.</li>
+      <li><strong>Aufwand: unter einer Stunde</strong> beim Dienstleister, einmalig. Kein Plugin, keine Datenbank, keine Wartung auf Ihrer Seite.</li>
+      <li><strong>Alternativ eine eigene Adresse</strong>, etwa chat.achim.de oder ein Link von Ihrer Startseite – dann ändert sich an Ihrer Website gar nichts.</li>
+      <li><strong>Was der Dienstleister sonst noch tut:</strong> nichts. Inhalte pflegt das Bürgerbüro im Cockpit, in normalen Worten.</li>
+    </ul>
+
+    <h2 id="pflege">15. Was die Pflege kostet, in Minuten</h2>
+    <p>Ehrliche Erfahrungswerte aus dem Betrieb der Vorführungen; im Piloten messen wir sie bei Ihnen nach.</p>
+    <dl>
+      <dt>Wöchentlich</dt><dd>Etwa 20 Minuten für eine Person: die Wunschliste durchsehen (was Bürger gefragt haben, wofür es noch keine Leistung gibt) und die Vorschläge der Quellen-Wache abnicken oder verwerfen.</dd>
+      <dt>Wenn sich eine Gebühr ändert</dt><dd>Sie ändern sie wie heute auf Ihrer Website. Am nächsten Morgen zeigt das Cockpit den Unterschied; ein Klick übernimmt ihn. Vergessen Sie den Klick, bleibt die alte Angabe mit ihrem alten Datum stehen und das Cockpit erinnert weiter – der Assistent erzählt nichts monatelang Altes, ohne dass Sie es sehen.</dd>
+      <dt>Bei 30 Leistungen im Quartal</dt><dd>In den Vorführungen fielen je Quartal drei bis acht Änderungsvorschläge an, meist Öffnungszeiten und Gebühren; Durchsicht je Vorschlag unter zwei Minuten.</dd>
+      <dt>Eine neue Leistung</dt><dd>Eine Adresse Ihrer Website einfügen oder in drei Sätzen beschreiben, Vorschau lesen, freigeben: fünf bis zehn Minuten.</dd>
+      <dt>Was Sie nie tun</dt><dd>Formularfelder anlegen, Schulungen besuchen, ein zweites System pflegen.</dd>
+    </dl>
+
+    <h2 id="verzeichnis">16. Verzeichnis der Verarbeitungstätigkeit und Schwellwertanalyse</h2>
+    <p class="muted">Als Baustein für Ihr Verzeichnis nach Art. 30 DSGVO, zum Kopieren.</p>
+    <table>
+      <tr><th>Feld</th><th>Eintrag</th></tr>
+      <tr><td>Bezeichnung</td><td>KI-Assistent zur Auskunft und Aufnahme von Anliegen auf der Website</td></tr>
+      <tr><td>Verantwortlicher</td><td>[Organisation]; Auftragsverarbeiter: AppBieger – Stephan Tomforde</td></tr>
+      <tr><td>Zweck</td><td>Beantwortung von Fragen zu Leistungen der Organisation; Aufnahme von Anliegen und Übergabe als E-Mail-Entwurf an die Person selbst</td></tr>
+      <tr><td>Rechtsgrundlage</td><td>Art. 6 Abs. 1 lit. e DSGVO (Aufgabenerfüllung) bzw. lit. f (berechtigtes Interesse an erreichbarer Auskunft); lit. b bei Anbahnung</td></tr>
+      <tr><td>Kategorien betroffener Personen</td><td>Besucherinnen und Besucher der Website; Mitarbeitende mit Zugang zur Einrichtung</td></tr>
+      <tr><td>Datenkategorien</td><td>Freitext-Eingaben im Gespräch (Inhalt bestimmt die Person); IP-Adresse für eine Minute; anonyme Zählwerte; gemeldete Wünsche als ein Satz; bei Mitarbeitenden Name, E-Mail, Passwort-Hash</td></tr>
+      <tr><td>Empfänger</td><td>Unterauftragsverarbeiter nach Abschnitt 5 (Enterprise: ausschließlich in der EU)</td></tr>
+      <tr><td>Drittlandübermittlung</td><td>Enterprise: keine. Professional: USA, Standardvertragsklauseln</td></tr>
+      <tr><td>Löschfristen</td><td>Gespräch 30 Minuten (Arbeitsspeicher); IP 60 Sekunden; Wünsche 90 Tage; Containerprotokoll höchstens 30 Tage; Konten bis Löschung; nach Abschnitt 7</td></tr>
+      <tr><td>Technische und organisatorische Maßnahmen</td><td>nach Abschnitt 6</td></tr>
+    </table>
+    <p><strong>Schwellwertanalyse zur Datenschutz-Folgenabschätzung (Entwurf).</strong> Geprüft gegen die Kriterien der Datenschutzkonferenz: keine Bewertung oder Einstufung von Personen; keine automatisierte Entscheidung mit Rechtswirkung; keine systematische Überwachung; keine Verarbeitung besonderer Kategorien beabsichtigt – Bürger werden vor der Eingabe gebeten, keine Gesundheitsdaten oder Ausweisnummern zu nennen, und der Verlauf wird nicht gespeichert; keine Zusammenführung von Datenbeständen; keine Verarbeitung von Daten Schutzbedürftiger über das hinaus, was jede Website tut; neue Technologie: ja, ein Sprachmodell. Ein Kriterium von neun ist erfüllt. Nach unserer Einschätzung ist eine Folgenabschätzung damit nicht zwingend, aber wegen des Sprachmodells vertretbar; die Beschreibung dafür liefern die Abschnitte 4 bis 7. Die Entscheidung trifft Ihr Datenschutzbeauftragter.</p>
+  </div>
+</main>
+
+<footer class="legal-footer">
+  <div class="wrap">
+    <a href="./">Startseite</a>
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="unterlagen.html">Unterlagen</a>
+    <a href="kontakt.html">Kontakt</a>
+  </div>
+</footer>
+
+</body>
+</html>
