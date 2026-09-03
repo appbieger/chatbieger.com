@@ -493,6 +493,13 @@
     }
     .signup-row input::placeholder { color: rgba(255, 255, 255, 0.65); }
     .signup-row input:focus { outline: 2px solid #fff; outline-offset: 1px; }
+    /* Der Haken zu Nutzungsbedingungen und AVV: ein Satz unter dem Feld,
+       kein Kleingedrucktes — und wie man wieder herauskommt, steht daneben. */
+    .signup-terms { display: flex; align-items: flex-start; gap: 0.6rem; max-width: 42rem; margin: 0 0 0.75rem; color: rgba(255, 255, 255, 0.85); font-size: 0.92rem; line-height: 1.45; cursor: pointer; }
+    .signup-terms input { margin: 0.2rem 0 0; flex: none; width: 1.1rem; height: 1.1rem; accent-color: #fff; }
+    .signup-terms a, .signup-terms b { color: #fff; }
+    .signup-alt { margin: 0 0 0.5rem; font-size: 0.92rem; }
+    .signup-alt a { color: rgba(255, 255, 255, 0.85); }
     .btn.ghost { background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, 0.45); }
     .btn.ghost:hover { background: rgba(255, 255, 255, 0.12); }
     .sr-only {
@@ -906,14 +913,19 @@
 <footer>
   <div class="wrap">
     <div class="footer-card">
-      <h2>Fangen Sie mit einem Prozess an.</h2>
-      <p>Mehr braucht es nicht: eine Beschreibung dessen, was Sie ohnehin jeden Tag erklären. Der Rest entsteht im Betrieb &ndash; an den Stellen, an denen Sie merken, dass etwas fehlt.</p>
-      <form class="signup-row" action="https://chat.demo.chatbieger.com/admin/" method="get">
-        <input type="hidden" name="signup" value="1">
-        <label class="sr-only" for="signup-org">Name Ihrer Organisation</label>
-        <input id="signup-org" name="organization" placeholder="Name Ihrer Organisation" autocomplete="organization" required>
-        <p>Und weil das die erste Frage ist, die eine Kommune stellt: <a href="unterlagen.html#betrieb">Was passiert, wenn ich ausfalle</a> &ndash; steht bei den Unterlagen, nicht im Kleingedruckten.</p>
-        <button class="btn inverted" type="submit">Eigenen Assistenten anlegen</button>
+      <h2>Fangen Sie mit Ihrer Website an.</h2>
+      <p>Eine Adresse genügt: Name, Logo und Hausfarbe holen wir von Ihrer Startseite, Sie bestätigen &ndash; und beschreiben dann im Gespräch, was Sie ohnehin jeden Tag erklären. Kein Konto vorab, kein Passwort.</p>
+      <form action="https://chat.demo.chatbieger.com/admin/" method="get">
+        <div class="signup-row">
+          <label class="sr-only" for="start-url">Adresse Ihrer Website</label>
+          <input id="start-url" name="start" type="text" inputmode="url" autocomplete="url" autocapitalize="off" spellcheck="false" placeholder="www.ihre-website.de" required>
+          <button class="btn inverted" type="submit">Assistenten anlegen</button>
+        </div>
+        <label class="signup-terms">
+          <input type="checkbox" name="terms" value="1" required>
+          <span>Ich habe die <a href="unterlagen.html#avv">Nutzungsbedingungen und den Auftragsverarbeitungsvertrag</a> gelesen und stimme ihnen zu. <b>Monatlich kündbar, keine Mindestlaufzeit.</b></span>
+        </label>
+        <p class="signup-alt">Keine Website? <a href="https://chat.demo.chatbieger.com/admin/?signup=1">Dann mit dem Namen Ihrer Organisation anfangen.</a></p>
       </form>
       <div class="cta-row">
         <a class="btn ghost" href="https://chat.demo.chatbieger.com/">Oder erst die Demo ansehen</a>
