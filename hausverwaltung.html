@@ -36,6 +36,16 @@
     .mail .head { color: var(--ink-soft); font-size: 0.88rem; margin-bottom: 0.6rem; }
     .mail .head b { color: var(--ink); font-weight: 600; }
     .mail pre { margin: 0; white-space: pre-wrap; font-family: inherit; line-height: 1.5; }
+    /* Der Einstieg über die Website-Adresse (0033): Feld, Haken, Knopf — wie auf der Startseite. */
+    .start-cost { margin: 1.5rem 0 0; font-weight: 600; }
+    .start-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+    .start-row input { flex: 1 1 16rem; min-width: 0; padding: 0.7rem 1.1rem; border: 0; border-radius: 999px; box-shadow: var(--ring); background: #fff; color: var(--ink); font: inherit; font-size: 1rem; }
+    .start-row input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .start-row .cta { border: 0; font: inherit; font-size: 1rem; cursor: pointer; }
+    .start-terms { display: flex; align-items: flex-start; gap: 0.6rem; margin: 0.9rem 0 0; font-size: 0.92rem; line-height: 1.45; cursor: pointer; }
+    .start-terms input { margin: 0.2rem 0 0; flex: none; width: 1.1rem; height: 1.1rem; }
+    .start-alt { font-size: 0.92rem; margin-top: 0.75rem; }
+    .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
   </style>
 </head>
 <body>
@@ -121,10 +131,19 @@ Aufgenommen über den Assistenten am 03.09.2026, 21:14 Uhr.</pre>
     <h2>Was mit den Angaben der Mieter passiert</h2>
     <p>Ein Gespräch wird nicht gespeichert. Was der Assistent aufnimmt, verlässt ihn als E-Mail an Ihr Büro &ndash; und erst, wenn die Person auf „Absenden“ geklickt hat. Bei Ihnen liegen danach dieselben Daten wie heute nach einem Anruf, nur vollständig. Das Sprachmodell wählen wir nach Qualität und Preis; die Verarbeitung kann Anbieter außerhalb der EU einschließen, der Auftragsverarbeitungsvertrag ist Teil der Bedingungen, denen Sie beim Anlegen zustimmen. <a href="unterlagen.html#datenschutzerklaerung">Alle Einzelheiten stehen bei den Unterlagen.</a></p>
 
-    <div class="cta-row">
-      <a class="cta" href="https://chat.demo.chatbieger.com/admin/?start=">Eigenen Assistenten anlegen</a>
-      <a class="cta ghost" href="https://chat.demo.chatbieger.com/hausverwaltung-weserfurt">Demo ausprobieren</a>
-    </div>
+    <form class="start" action="https://chat.demo.chatbieger.com/admin/" method="get">
+      <p class="start-cost">Ausprobieren kostet nichts. Wenn Sie ihn behalten: 249&nbsp;€ im Monat, monatlich kündbar. Die Einrichtung machen Sie im Gespräch selbst &ndash; oder wir für einmalig 1.500&nbsp;€.</p>
+      <div class="start-row">
+        <label class="sr-only" for="start-url">Adresse Ihrer Website</label>
+        <input id="start-url" name="start" type="text" inputmode="url" autocomplete="url" autocapitalize="off" spellcheck="false" placeholder="www.ihre-website.de" required>
+        <button class="cta" type="submit">Assistenten anlegen</button>
+      </div>
+      <label class="start-terms">
+        <input type="checkbox" name="terms" value="1" required>
+        <span>Ich habe die <a href="unterlagen.html#avv">Nutzungsbedingungen und den Auftragsverarbeitungsvertrag</a> gelesen und stimme ihnen zu. <b>Monatlich kündbar, keine Mindestlaufzeit.</b></span>
+      </label>
+      <p class="start-alt">Keine Website? <a href="https://chat.demo.chatbieger.com/admin/?signup=1">Dann mit dem Namen Ihrer Organisation anfangen.</a> &middot; <a href="https://chat.demo.chatbieger.com/hausverwaltung-weserfurt">Erst die Demo ausprobieren</a></p>
+    </form>
     <p class="fine">Die Demo ist eine erfundene Hausverwaltung mit erfundenen Nummern &ndash; damit Sie den Ablauf sehen, nicht eine echte Organisation.</p>
   </div>
 </main>
