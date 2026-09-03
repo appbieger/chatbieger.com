@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChatBieger für Hausverwaltungen – Mängel, Bescheinigungen, Abrechnungsfragen im Chat</title>
+  <meta name="description" content="Ein Assistent auf Ihrer Website, der Mängelmeldungen mit Adresse und Rückrufnummer aufnimmt, Bescheinigungen anfragt und Fragen zur Abrechnung ans Büro gibt – aus Ihren eigenen Texten, ohne Zusagen, die Sie nicht halten können.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .lead { font-size: 1.15rem; color: var(--ink-soft); margin-bottom: 2rem; max-width: 40rem; }
+    .cases { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 0 0 1.5rem; }
+    @media (max-width: 40rem) { .cases { grid-template-columns: 1fr; } }
+    .cases .card { margin: 0; padding: 1.3rem 1.4rem; }
+    .cases h3 { margin: 0 0 0.4rem; font-size: 1.02rem; font-weight: 600; }
+    .cases p { font-size: 0.95rem; color: var(--ink-soft); margin: 0; }
+    .dialog { display: flex; flex-direction: column; gap: 0.6rem; }
+    .dialog p { max-width: 34rem; padding: 0.65rem 0.95rem; border-radius: 14px; margin: 0; font-size: 0.97rem; }
+    .dialog .you { align-self: flex-end; background: var(--accent); color: #fff; border-bottom-right-radius: 4px; }
+    .dialog .bot { align-self: flex-start; background: var(--ground); box-shadow: var(--ring); border-bottom-left-radius: 4px; }
+    .dialog .source { align-self: flex-start; font-size: 0.8rem; color: var(--ink-faint); padding: 0 0.4rem; }
+    .steps { list-style: none; padding: 0; margin: 0; counter-reset: s; display: grid; gap: 0.9rem; }
+    .steps li { counter-increment: s; padding-left: 2.4rem; position: relative; }
+    .steps li::before { content: counter(s); position: absolute; left: 0; top: 0.1rem; width: 1.7rem; height: 1.7rem; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 600; }
+    .steps b { display: block; }
+    .price { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 0.2rem; }
+    .price span { font-size: 0.95rem; font-weight: 400; color: var(--ink-soft); }
+    .cta { display: inline-flex; align-items: center; border-radius: 999px; padding: 0.7rem 1.4rem; background: var(--accent); color: #fff; font-weight: 600; text-decoration: none; }
+    .cta:hover { background: var(--accent-hover); color: #fff; text-decoration: none; }
+    .cta.ghost { background: transparent; color: var(--accent); box-shadow: var(--ring); }
+    .cta.ghost:hover { background: var(--ground); }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-top: 1.2rem; }
+    .fine { font-size: 0.88rem; color: var(--ink-faint); margin-top: 0.75rem; }
+    .mail { font-size: 0.95rem; }
+    .mail .head { color: var(--ink-soft); font-size: 0.88rem; margin-bottom: 0.6rem; }
+    .mail .head b { color: var(--ink); font-weight: 600; }
+    .mail pre { margin: 0; white-space: pre-wrap; font-family: inherit; line-height: 1.5; }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="marke" href="./"><img src="chatbieger-logo.png" alt="" width="26" height="26"><span>ChatBieger</span></a>
+    <nav aria-label="ChatBieger">
+      <a href="https://chat.demo.chatbieger.com/">Demos</a>
+      <a href="unterlagen.html">Unterlagen</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a class="topbar-demo" href="https://admin.demo.chatbieger.com/">Anmelden</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <p class="muted" style="margin-bottom: 0.5rem; font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;">Für Hausverwaltungen</p>
+    <h1>Die dreißig Anrufe pro Woche, die immer dasselbe wollen.</h1>
+    <p class="lead">Etwas ist kaputt. Jemand braucht eine Bescheinigung. Jemand versteht die Abrechnung nicht. Der Assistent auf Ihrer Website nimmt das auf &ndash; mit Adresse, Wohnung und Rückrufnummer &ndash; und legt es Ihnen als fertige Mail ins Postfach. Abends um zehn genauso wie am Montagmorgen.</p>
+
+    <div class="cases">
+      <div class="card">
+        <h3>Mängelmeldung</h3>
+        <p>Adresse, Wohnung, was defekt ist, seit wann, wann jemand da ist &ndash; und bei Wasser oder Gas zuerst die Notdienstnummer.</p>
+      </div>
+      <div class="card">
+        <h3>Bescheinigung</h3>
+        <p>Mietbescheinigung, Mietschuldenfreiheit, Wohnungsgeberbestätigung: welche, wofür, bis wann, per Post oder PDF.</p>
+      </div>
+      <div class="card">
+        <h3>Frage zur Abrechnung</h3>
+        <p>Kommt als Nachricht mit Adresse und Anliegen ans Büro &ndash; ohne dass der Assistent Rechtsfragen beantwortet oder Zahlen erfindet.</p>
+      </div>
+    </div>
+
+    <h2>So klingt das</h2>
+    <div class="card">
+      <div class="dialog">
+        <p class="you">Bei mir tropft seit gestern der Wasserhahn in der Küche.</p>
+        <p class="bot">Das nehme ich auf. In welchem Haus und welcher Wohnung wohnen Sie &ndash; Adresse und Etage genügen?</p>
+        <p class="you">Deichstraße 12, 2. OG links. Müller.</p>
+        <p class="bot">Danke, Frau oder Herr Müller. Unter welcher Nummer erreicht Sie der Handwerker, und wann ist tagsüber jemand da?</p>
+        <p class="you">0171 000000, ab 15 Uhr.</p>
+        <p class="bot">Ich habe alles zusammen: Deichstraße 12, 2. OG links, tropfender Wasserhahn in der Küche seit gestern, erreichbar unter 0171 000000 ab 15 Uhr. Soll ich das so an die Technik geben? Wann jemand kommt, sagt Ihnen die Verwaltung &ndash; das kann ich nicht zusagen.</p>
+        <span class="source">Aus dem Service „Mangel in der Wohnung melden“ &middot; die Mail geht erst nach Ihrem Klick</span>
+      </div>
+    </div>
+    <p class="muted">Was der Assistent nicht weiß, sagt er: Fristen, Kosten und wer einen Schaden zu verantworten hat, gibt er nie von sich aus an. Das steht in Ihren Regeln, nicht in einem Kleingedruckten.</p>
+
+    <h2>Die Mail, die bei Ihnen ankommt</h2>
+    <div class="card mail">
+      <p class="head"><b>An:</b> technik@hv-weserfurt.example &nbsp;&middot;&nbsp; <b>Betreff:</b> Mangel: Deichstraße 12, 2. OG links &ndash; Wasserhahn Küche</p>
+      <pre>Adresse: Deichstraße 12, 2. OG links
+Name: Müller
+Rückruf: 0171 000000, erreichbar ab 15 Uhr
+Mangel: Wasserhahn in der Küche tropft, seit gestern
+Gefahr/unbewohnbar: nein
+Zugang: ab 15 Uhr jemand da
+Schon einmal gemeldet: unbekannt
+
+Aufgenommen über den Assistenten am 03.09.2026, 21:14 Uhr.</pre>
+    </div>
+    <p class="muted">Abgeschickt wird sie aus dem Postfach der Person, nach einem Klick auf „Absenden“ &ndash; sie steht dann bei Ihnen wie jede andere Mail, und was fehlt, steht als „unbekannt“ drin, statt erfunden zu sein.</p>
+
+    <h2>In einer halben Stunde auf Ihrer Website</h2>
+    <ol class="steps">
+      <li><b>Organisation anlegen.</b> Name eintragen, Zugang wählen, den Bedingungen zustimmen &ndash; fertig. Kein Termin, kein Anruf.</li>
+      <li><b>Website einlesen lassen.</b> Der Assistent liest Ihre Seiten (bis zu 60), macht daraus Vorschläge und fragt im Gespräch nach, was fehlt: Notdienstnummer, Bürozeiten, wohin die Mails gehen.</li>
+      <li><b>Einmal gegenlesen.</b> Jeden Text lesen Sie einmal gegen das, wie Sie es wirklich machen, und sagen „so machen wir das“. Erst dann gilt er.</li>
+      <li><b>Einbetten.</b> Eine Zeile für Ihre Website &ndash; oder das WordPress-Plugin zum Hochladen, mit allem schon eingetragen. Bei Jimdo, Wix oder IONOS heißt das Feld dafür „Eigener Code“ oder „HTML einfügen“ in den Seiteneinstellungen. Die Agentur brauchen Sie dafür nicht.</li>
+    </ol>
+
+    <h2>Was es kostet</h2>
+    <div class="card">
+      <p class="price">249&nbsp;€ <span>im Monat zzgl. USt.</span></p>
+      <p>Betrieb, Updates und die Modellkosten bei fairer Nutzung sind enthalten. Die Einrichtung machen Sie im Gespräch mit dem Assistenten selbst; wer sie lieber abgibt, bekommt sie von uns für einmalig 1.500&nbsp;€. Zum Ausprobieren ist alles kostenlos, mit kleinem Kontingent &ndash; Ihre Organisation taucht nirgends öffentlich auf.</p>
+      <p class="muted" style="font-size: 0.95rem;">Zur Einordnung: Ein Anruf kostet 5 bis 10 Minuten Bürozeit. Ab etwa 40 ersparten Anrufen im Monat trägt sich der Assistent &ndash; wie viele er übernimmt, sehen Sie im Cockpit.</p>
+    </div>
+
+    <h2>Was mit den Angaben der Mieter passiert</h2>
+    <p>Ein Gespräch wird nicht gespeichert. Was der Assistent aufnimmt, verlässt ihn als E-Mail an Ihr Büro &ndash; und erst, wenn die Person auf „Absenden“ geklickt hat. Bei Ihnen liegen danach dieselben Daten wie heute nach einem Anruf, nur vollständig. Das Sprachmodell wählen wir nach Qualität und Preis; die Verarbeitung kann Anbieter außerhalb der EU einschließen, der Auftragsverarbeitungsvertrag ist Teil der Bedingungen, denen Sie beim Anlegen zustimmen. <a href="unterlagen.html#datenschutzerklaerung">Alle Einzelheiten stehen bei den Unterlagen.</a></p>
+
+    <div class="cta-row">
+      <a class="cta" href="https://admin.demo.chatbieger.com/?signup=1">Eigenen Assistenten anlegen</a>
+      <a class="cta ghost" href="https://chat.demo.chatbieger.com/hausverwaltung-weserfurt">Demo ausprobieren</a>
+    </div>
+    <p class="fine">Die Demo ist eine erfundene Hausverwaltung mit erfundenen Nummern &ndash; damit Sie den Ablauf sehen, nicht eine echte Organisation.</p>
+  </div>
+</main>
+
+<footer class="legal-footer">
+  <div class="wrap">
+    <a href="./">Startseite</a>
+    <a href="handwerk.html">Für Handwerksbetriebe</a>
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="unterlagen.html">Unterlagen</a>
+    <a href="kontakt.html">Kontakt</a>
+  </div>
+</footer>
+
+</body>
+</html>
