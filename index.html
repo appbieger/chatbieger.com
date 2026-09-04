@@ -56,7 +56,7 @@
         --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
         --float-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 28px 60px -34px rgba(0, 0, 0, 0.9);
       }
-      .topbar img { filter: invert(1); }
+      .topbar img, .einstieg-zeichen { filter: invert(1); }
     }
 
     * { box-sizing: border-box; }
@@ -108,10 +108,132 @@
     .topbar nav a:hover { color: var(--ink); }
     .topbar .topbar-demo { padding: 0.45rem 1.15rem; color: #fff; }
     .topbar .topbar-demo:hover { color: #fff; }
-    @media (max-width: 30rem) { .topbar nav a:not(.topbar-demo):not(:first-child) { display: none; } }
+    /* Am Telefon bleiben die beiden Wege stehen, die etwas verkaufen —
+       Demos und Preis; die Unterlagen stehen in der Fußzeile. */
+    @media (max-width: 30rem) { .topbar nav a:not(.topbar-demo):nth-child(n+3) { display: none; } }
 
-    /* ---------- Hero ---------- */
-    header.hero { padding: 3.5rem 0 5rem; }
+    /* ---------- Erster Bildschirm: ein Zeichen, ein Satz, ein Feld ----------
+       Google-Logik: Was hier steht, ist das eine Ziel der Seite; alles
+       andere beginnt unter dem Falz. `min-height` statt `height`, damit auf
+       kurzen Schirmen nichts abgeschnitten wird — und `svh`, weil die
+       Adressleiste am Telefon sonst die letzte Zeile frisst. */
+    .einstieg {
+      min-height: calc(100svh - 3.6rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1.25rem 1.5rem;
+      text-align: center;
+    }
+    .einstieg-mitte { margin: auto 0; width: 100%; display: flex; flex-direction: column; align-items: center; }
+    .einstieg-zeichen { width: 56px; height: 56px; display: block; margin-bottom: 1.4rem; }
+    .einstieg h1 { max-width: 22ch; }
+    .einstieg h1 .zusammen { white-space: nowrap; }
+    .einstieg .lede { margin-top: 0.9rem; max-width: 42ch; font-size: 1.2rem; line-height: 1.5; color: var(--ink-soft); }
+
+    /* Das Feld ist eine Zeile mit Knopf. Der Fokusring liegt auf der ganzen
+       Pille statt nur auf dem Eingabefeld — wer mit der Tastatur kommt, soll
+       das Ziel als Ganzes sehen. */
+    .einstieg-form { margin-top: 2.1rem; width: min(38rem, 100%); }
+    .feld {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-align: left;
+      background: var(--surface);
+      border-radius: 999px;
+      padding: 0.4rem 0.4rem 0.4rem 1.35rem;
+      box-shadow: var(--float-shadow), var(--ring);
+    }
+    /* `:focus` statt `:focus-visible`: „Zum Feld ganz oben" setzt den Fokus
+       selbst — mit `:focus-visible` bliebe der Ring nach einem Mausklick aus,
+       und man sähe nicht, wohin das Tippen geht. */
+    .feld:has(input:focus) { box-shadow: var(--float-shadow), inset 0 0 0 2px var(--accent); }
+    @supports not selector(:has(*)) {
+      .feld:focus-within { box-shadow: var(--float-shadow), inset 0 0 0 2px var(--accent); }
+    }
+    .feld input {
+      flex: 1; min-width: 0; border: 0; background: none; outline: none;
+      font: inherit; color: var(--ink); padding: 0.65rem 0;
+    }
+    .feld input::placeholder { color: var(--ink-soft); }
+    .feld button {
+      flex: none; border: 0; border-radius: 999px; cursor: pointer;
+      font: inherit; font-weight: 500; white-space: nowrap;
+      background: var(--accent-solid); color: #fff; padding: 0.65rem 1.4rem;
+    }
+    .feld button:hover { background: var(--accent-hover); }
+    .feld button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    /* Ohne Haken kein Mandant (0031) — deshalb steht er am Feld und nicht
+       im Kleingedruckten; und was das Drücken kostet, direkt darunter
+       (Council, Lauf 7). */
+    .einstieg-terms {
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      margin: 1rem auto 0; max-width: 34rem; text-align: left;
+      font-size: 0.9rem; line-height: 1.45; color: var(--ink); cursor: pointer;
+    }
+    .einstieg-terms input { flex: none; margin: 0.22rem 0 0; width: 1.05rem; height: 1.05rem; accent-color: var(--accent-solid); }
+    .einstieg-terms a { color: var(--accent); }
+    .einstieg-kosten { margin-top: 1.05rem; font-size: 0.9rem; color: var(--ink-soft); }
+    .einstieg-zweit { margin-top: 1.6rem; display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+    .btn.ruhig { background: var(--surface); color: var(--ink); box-shadow: var(--card-shadow), var(--ring); }
+    .btn.ruhig:hover { background: var(--surface-soft); }
+    .einstieg-ohne { margin-top: 1.4rem; font-size: 0.9rem; color: var(--ink-soft); }
+    .einstieg-ohne a { color: var(--accent); }
+
+    /* Der Hinweis am Fuß des ersten Bildschirms ist das Versprechen, dass
+       unter dem Falz noch etwas kommt. */
+    .weiter {
+      margin: 2rem 0 0; max-width: 30rem; text-align: center;
+      font-size: 0.85rem; color: var(--ink-soft); text-decoration: none;
+    }
+    .weiter:hover { color: var(--ink); }
+    .weiter .pfeil { display: inline-block; margin-left: 0.4rem; }
+    @media (prefers-reduced-motion: no-preference) {
+      .weiter .pfeil { animation: weiter-wink 2.6s ease-in-out infinite; }
+    }
+    @keyframes weiter-wink {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(3px); }
+    }
+
+    /* Kurze Schirme — der Laptop mit 720 Zeilen, das Telefon im Querformat:
+       dieselbe Ordnung, nur enger. Der Hinweis nach unten soll nicht der
+       Erste sein, der über die Kante fällt. */
+    @media (min-width: 28.01rem) and (max-height: 780px) {
+      .einstieg { padding-top: 1.75rem; }
+      .einstieg-zeichen { width: 46px; height: 46px; margin-bottom: 1rem; }
+      .einstieg h1 { font-size: clamp(1.9rem, 3.4vw, 2.5rem); }
+      .einstieg .lede { margin-top: 0.7rem; font-size: 1.1rem; }
+      .einstieg-form { margin-top: 1.6rem; }
+      .einstieg-kosten { margin-top: 0.9rem; }
+      .einstieg-zweit { margin-top: 1.2rem; }
+      .einstieg-ohne { margin-top: 1.1rem; }
+      .weiter { margin-top: 1.4rem; }
+    }
+
+    /* Am Telefon ist der erste Bildschirm knapp: kleineres Zeichen, kleinere
+       Schrift — und das Feld wird zum Block, weil „Mitarbeiter einstellen"
+       neben dem Eingabefeld sonst keine 12 Zeichen übrig lässt. */
+    @media (max-width: 28rem) {
+      .einstieg { padding-top: 1.25rem; }
+      .einstieg-zeichen { width: 40px; height: 40px; margin-bottom: 0.85rem; }
+      .einstieg h1 { font-size: 1.8rem; }
+      .einstieg .lede { margin-top: 0.7rem; font-size: 1.02rem; }
+      .einstieg-form { margin-top: 1.3rem; }
+      .einstieg-kosten { margin-top: 0.85rem; }
+      .einstieg-zweit { margin-top: 1.2rem; }
+      .einstieg-ohne { margin-top: 1.1rem; }
+      .weiter { margin-top: 1.3rem; }
+      .feld { flex-direction: column; align-items: stretch; border-radius: 22px; padding: 0.45rem 0.45rem 0.5rem; }
+      .feld input { padding: 0.65rem 0.95rem; border-radius: 999px; box-shadow: var(--ring); }
+      .feld:has(input:focus) { box-shadow: var(--float-shadow), var(--ring); }
+      .feld input:focus { box-shadow: inset 0 0 0 2px var(--accent); }
+      .feld button { width: 100%; padding: 0.7rem 1rem; }
+    }
+
+    /* ---------- Vorschau: derselbe Chat, nur eine Etage tiefer ---------- */
     .hero-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
@@ -223,11 +345,11 @@
        Browser-Basis) sind alle Nachrichten sichtbar und die Tipp-Blasen weg. */
     .msg.typing-row { display: none; }
     @media (prefers-reduced-motion: no-preference) {
-      .msg.typing-row { display: grid; }
-      .chat .msg {
+      .chat.laeuft .msg.typing-row { display: grid; }
+      .chat.laeuft .msg {
         animation: msg-in 0.45s cubic-bezier(0.3, 0.7, 0.3, 1) var(--t, 0s) both;
       }
-      .chat .msg.typing-row {
+      .chat.laeuft .msg.typing-row {
         animation:
           msg-in 0.45s cubic-bezier(0.3, 0.7, 0.3, 1) var(--t, 0s) both,
           msg-out 0.35s ease var(--t-out, 3s) forwards;
@@ -484,33 +606,15 @@
       box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.4);
     }
     .footer-card h2 { color: #fff; }
-    .footer-card p { max-width: 42rem; color: rgba(255, 255, 255, 0.85); }
-    .signup-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.25rem 0 0.75rem; }
-    .signup-row input {
-      flex: 1 1 16rem; min-width: 0; padding: 0.7rem 1rem; font: inherit;
-      border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 10px;
-      background: rgba(255, 255, 255, 0.12); color: #fff;
-    }
-    .signup-row input::placeholder { color: rgba(255, 255, 255, 0.65); }
-    .signup-row input:focus { outline: 2px solid #fff; outline-offset: 1px; }
-    /* Der Haken zu Nutzungsbedingungen und AVV: ein Satz unter dem Feld,
-       kein Kleingedrucktes — und wie man wieder herauskommt, steht daneben. */
-    .signup-terms { display: flex; align-items: flex-start; gap: 0.6rem; max-width: 42rem; margin: 0 0 0.75rem; color: rgba(255, 255, 255, 0.85); font-size: 0.92rem; line-height: 1.45; cursor: pointer; }
-    .signup-terms input { margin: 0.2rem 0 0; flex: none; width: 1.1rem; height: 1.1rem; accent-color: #fff; }
-    .signup-terms a, .signup-terms b { color: #fff; }
-    .signup-alt { margin: 0 0 0.5rem; font-size: 0.92rem; }
-    /* Was das Drücken kostet, steht am Knopf — der Malermeister (Council, Lauf 7)
-       hatte sonst nur „1.500 €" oben und den Haken unten. */
-    .signup-cost { margin: 1.25rem 0 0; color: #fff; font-weight: 600; max-width: 42rem; }
-    .signup-cost + .signup-row { margin-top: 0.75rem; }
-    .signup-alt a { color: rgba(255, 255, 255, 0.85); }
+    .footer-card p { max-width: 42rem; color: rgba(255, 255, 255, 0.92); }
+    .footer-card .cta-note { color: rgba(255, 255, 255, 0.92); }
     .btn.ghost { background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, 0.45); }
     .btn.ghost:hover { background: rgba(255, 255, 255, 0.12); }
     .sr-only {
       position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
       overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
     }
-    .fineprint { margin-top: 2.25rem; font-size: 0.85rem; color: var(--ink-faint); }
+    .fineprint { margin-top: 2.25rem; font-size: 0.85rem; color: var(--ink-soft); }
     .legal-nav { margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 1.25rem; font-size: 0.9rem; }
     .legal-nav a { color: var(--ink-soft); text-decoration: none; }
     .legal-nav a:hover { color: var(--ink); text-decoration: underline; }
@@ -589,20 +693,50 @@
     <a class="marke" href="./"><img src="chatbieger-logo.png" alt="" width="26" height="26"><span>ChatBieger</span></a>
     <nav aria-label="ChatBieger">
       <a href="https://chat.demo.chatbieger.com/">Demos</a>
+      <a href="#preise">Preis</a>
       <a href="kontakt.html">Kontakt</a>
       <a class="btn topbar-demo" href="https://admin.demo.chatbieger.com/">Anmelden</a>
     </nav>
   </div>
 </div>
 
-<header class="hero">
+<header class="einstieg" id="einstieg">
+  <div class="einstieg-mitte">
+    <img class="einstieg-zeichen" src="chatbieger-logo.png" alt="" width="56" height="56">
+    <h1>Stellen Sie Ihren <span class="zusammen">KI-Mitarbeiter</span> ein.</h1>
+    <p class="lede">Einen, der nur sagt, was bei Ihnen steht &ndash; und dazu, woher er es hat.</p>
+
+    <form class="einstieg-form" action="https://chat.demo.chatbieger.com/admin/" method="get">
+      <div class="feld">
+        <label class="sr-only" for="start-url">Adresse Ihrer Website</label>
+        <input id="start-url" name="start" type="text" inputmode="url" autocomplete="url" autocapitalize="off" spellcheck="false" placeholder="www.ihre-website.de" required
+               data-fehler="Tragen Sie die Adresse Ihrer Website ein &ndash; zum Beispiel www.ihre-website.de.">
+        <button type="submit">Mitarbeiter einstellen</button>
+      </div>
+      <label class="einstieg-terms">
+        <input type="checkbox" name="terms" value="1" required
+               data-fehler="Setzen Sie den Haken. Ohne Ihre Zustimmung zum Auftragsverarbeitungsvertrag legen wir nichts an.">
+        <span>Ich habe die <a href="unterlagen.html#avv">Nutzungsbedingungen und den Auftragsverarbeitungsvertrag</a> gelesen und stimme ihnen zu. Monatlich k&uuml;ndbar, keine Mindestlaufzeit.</span>
+      </label>
+      <p class="einstieg-kosten">Wir lesen Ihre Startseite und schlagen vor, was er k&ouml;nnen soll &ndash; Sie entscheiden.<br>Ausprobieren kostet nichts &middot; kein Konto vorab, kein Passwort</p>
+    </form>
+
+    <div class="einstieg-zweit">
+      <a class="btn ruhig" href="https://chat.demo.chatbieger.com/">Erst eine Demo ansehen</a>
+    </div>
+    <p class="einstieg-ohne">Keine Website? <a href="https://chat.demo.chatbieger.com/admin/?signup=1">Dann mit dem Namen Ihrer Organisation anfangen.</a></p>
+  </div>
+
+  <a class="weiter" href="#weiter">Weiter unten: f&uuml;r wen, wie es funktioniert, Preis, wer dahintersteckt <span class="pfeil" aria-hidden="true">&darr;</span></a>
+</header>
+
+<section id="weiter">
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <span class="eyebrow">Auffindbar &rarr; ansprechbar</span>
-      <h1>Mit ChatBieger stellen Sie Ihren KI-Mitarbeiter ein.</h1>
-      <a href="unterlagen.html">Unterlagen</a>
-      <p class="lede measure">Einen, der nur sagt, was bei Ihnen steht &ndash; und dazu, woher er es hat. Bürgerinnen, Eltern und Kundschaft fragen ihn im Chat, statt sich durch eine Website zu klicken oder in der Warteschleife zu hängen.</p>
-      <p class="measure muted">Er ist rund um die Uhr erreichbar: im Chat auf Ihrer Website, für andere KIs, für Ihre eigenen Leute. Nichts wird abgeschaltet, niemand muss umlernen, es gibt keinen Stichtag.</p>
+      <h2>So sieht das bei Ihren Leuten aus.</h2>
+      <p class="lede measure">B&uuml;rgerinnen, Eltern und Kundschaft fragen ihn im Chat, statt sich durch eine Website zu klicken oder in der Warteschleife zu h&auml;ngen.</p>
+      <p class="measure muted">Er ist rund um die Uhr erreichbar: im Chat auf Ihrer Website, f&uuml;r andere KIs, f&uuml;r Ihre eigenen Leute. Nichts wird abgeschaltet, niemand muss umlernen, es gibt keinen Stichtag.</p>
       <div class="cta-row">
         <a class="btn" href="https://chat.demo.chatbieger.com/">Demo ausprobieren</a>
         <span class="cta-note">Ohne Anmeldung &middot; echte Organisationen, echte Inhalte</span>
@@ -651,7 +785,7 @@
       </div>
     </div>
   </div>
-</header>
+</section>
 
 <section>
   <div class="wrap">
@@ -920,23 +1054,11 @@
       <h2>Fangen Sie mit Ihrer Website an.</h2>
       <p>Sie stellen einen Mitarbeiter ein, der rund um die Uhr erreichbar ist. ChatBieger ist der Vorarbeiter: Er liest Ihre Website, schlägt vor, was der Neue können soll, und bringt es ihm bei &ndash; entschieden wird von Ihnen.</p>
       <p>Eine Adresse genügt: Name, Logo und Hausfarbe holen wir von Ihrer Startseite, Sie bestätigen &ndash; und beschreiben dann im Gespräch, was Sie ohnehin jeden Tag erklären. Kein Konto vorab, kein Passwort.</p>
-      <form action="https://chat.demo.chatbieger.com/admin/" method="get">
-        <p class="signup-cost">Ausprobieren kostet nichts. Die Einrichtung machen Sie im Gespräch selbst &ndash; wer sie lieber abgibt, bekommt sie von uns.</p>
-        <div class="signup-row">
-          <label class="sr-only" for="start-url">Adresse Ihrer Website</label>
-          <input id="start-url" name="start" type="text" inputmode="url" autocomplete="url" autocapitalize="off" spellcheck="false" placeholder="www.ihre-website.de" required>
-          <button class="btn inverted" type="submit">Mitarbeiter einstellen</button>
-        </div>
-        <label class="signup-terms">
-          <input type="checkbox" name="terms" value="1" required>
-          <span>Ich habe die <a href="unterlagen.html#avv">Nutzungsbedingungen und den Auftragsverarbeitungsvertrag</a> gelesen und stimme ihnen zu. <b>Monatlich kündbar, keine Mindestlaufzeit.</b></span>
-        </label>
-        <p class="signup-alt">Keine Website? <a href="https://chat.demo.chatbieger.com/admin/?signup=1">Dann mit dem Namen Ihrer Organisation anfangen.</a></p>
-      </form>
       <div class="cta-row">
+        <a class="btn inverted" href="#einstieg">Adresse eintragen</a>
         <a class="btn ghost" href="https://chat.demo.chatbieger.com/">Oder erst die Demo ansehen</a>
-        <span class="cta-note" style="color: rgba(255,255,255,0.75);">Ihre Organisation taucht nirgends öffentlich auf &middot; Für dienstliche Daten einer Behörde braucht es einen Vertrag</span>
       </div>
+      <p class="cta-note">Ihre Organisation taucht nirgends öffentlich auf &middot; Für dienstliche Daten einer Behörde braucht es einen Vertrag</p>
     </div>
     <p class="fineprint">ChatBieger ist seit August 2026 in Betrieb und wird laufend weiterentwickelt. Die Demos zeigen den tatsächlichen Stand mit echten, öffentlich zugänglichen Informationen &ndash; Antworten können trotzdem falsch sein.</p>
     <nav class="legal-nav">
@@ -947,5 +1069,43 @@
     </nav>
   </div>
 </footer>
+
+<script>
+  // Wer unten „Zum Feld ganz oben" drückt, will tippen — nicht noch einmal
+  // zielen. Der Sprung erledigt das Scrollen, wir setzen nur den Cursor.
+  // Der Browser meldet Pflichtfelder in seiner eigenen Sprache — und die
+  // duzt. Die Seite siezt, also sagen wir selbst, was fehlt und was hilft.
+  document.querySelectorAll('.einstieg-form [data-fehler]').forEach(function (feld) {
+    var sag = function () {
+      feld.setCustomValidity('');
+      if (!feld.validity.valid) feld.setCustomValidity(feld.dataset.fehler);
+    };
+    feld.addEventListener('input', sag);
+    feld.addEventListener('change', sag);
+    sag();
+  });
+
+  // Die Chat-Sequenz steht unter dem Falz. Sie startet, wenn jemand sie
+  // sieht — sonst ist sie abgelaufen, bevor der Blick ankommt.
+  var chat = document.querySelector('.chat');
+  if (chat && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (eintraege, beobachter) {
+      eintraege.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        chat.classList.add('laeuft');
+        beobachter.disconnect();
+      });
+    }, { threshold: 0.35 }).observe(chat);
+  } else if (chat) {
+    chat.classList.add('laeuft');
+  }
+
+  document.querySelectorAll('a[href="#einstieg"]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      var feld = document.getElementById('start-url');
+      if (feld) setTimeout(function () { feld.focus({ preventScroll: true }); }, 0);
+    });
+  });
+</script>
 </body>
 </html>
