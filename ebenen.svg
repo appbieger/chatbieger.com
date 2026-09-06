@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="960" height="540" role="img" aria-labelledby="ebenen-title ebenen-desc" lang="de">
+  <title id="ebenen-title">Die drei Ebenen von ChatBieger: Zugänge, ein Dienst, drei Stufen</title>
+  <desc id="ebenen-desc">Oben die Zugänge: der Chat auf der Website der Organisation, Claude und ChatGPT. Alle drei führen zu einem Zugang. In der Mitte ChatBieger: ein Dienst, in dem die Services der Organisation als Werkzeuge stehen, mit ihren Regeln. Unten die drei Ausbaustufen, je Service eine: Stufe 1 Auskunft mit Kontaktweg, Stufe 2 Erfassen mit einer E-Mail ans Büro als Ergebnis, Stufe 3 Verbinden, direkt ins Fachsystem über dessen MCP-Server. Ein Zugang, jeder Assistent. Jeder Service auf seiner eigenen Ausbaustufe.</desc>
+  <style>
+    /* Dieselben Werte wie web/base.css im Produkt und index.html der Landing.
+       Die Fallbacks stehen dabei, weil ein SVG im img-Tag keine Variablen
+       von der Seite erbt. */
+    :root {
+      --ground: #f5f5f7;
+      --surface: #ffffff;
+      --surface-soft: #fbfbfd;
+      --ink: #1d1d1f;
+      --ink-soft: #6e6e73;
+      --accent: #0066cc;
+      --accent-solid: #0066cc;
+      --accent-tint: rgba(0, 102, 204, 0.07);
+      --line: rgba(0, 0, 0, 0.12);
+      --arrow: #6e6e73;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ground: #000000;
+        --surface: #1c1c1e;
+        --surface-soft: #232326;
+        --ink: #f5f5f7;
+        --ink-soft: #a1a1a6;
+        --accent: #4d9fff;
+        --accent-solid: #0a63c9;
+        --accent-tint: rgba(77, 159, 255, 0.12);
+        --line: rgba(255, 255, 255, 0.16);
+        --arrow: #a1a1a6;
+      }
+    }
+    text {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      font-size: 13px;
+      fill: var(--ink, #1d1d1f);
+    }
+    .ground { fill: var(--ground, #f5f5f7); }
+    .box { fill: var(--surface, #fff); stroke: var(--line, rgba(0,0,0,.12)); stroke-width: 1; }
+    .box-accent { fill: var(--surface, #fff); stroke: var(--accent, #0066cc); stroke-width: 1.5; }
+    .chip { fill: var(--surface-soft, #fbfbfd); stroke: var(--line, rgba(0,0,0,.12)); stroke-width: 1; }
+    .pill { fill: var(--accent-solid, #0066cc); } /* Fläche unter weißer Schrift: im Dunkeln dunkler als der Textakzent, Weiß auf #4d9fff wären 2,7:1 */
+    .pill-text { fill: #fff; font-weight: 600; }
+    .bullet { fill: var(--accent, #0066cc); }
+    .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.1em; fill: var(--ink-soft, #6e6e73); }
+    .kernsatz { font-size: 14px; font-weight: 600; fill: var(--ink, #1d1d1f); }
+    .title { font-size: 15px; font-weight: 600; }
+    .brand { font-size: 17px; font-weight: 700; }
+    .soft { fill: var(--ink-soft, #6e6e73); }
+    .tag { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; fill: var(--accent, #0066cc); }
+    .tag-bg { fill: var(--accent-tint, rgba(0,102,204,.07)); }
+    .arrow { fill: none; stroke: var(--arrow, #6e6e73); stroke-width: 1.5; marker-end: url(#pfeil); }
+    .arrow-head { fill: var(--arrow, #6e6e73); }
+  </style>
+  <defs>
+    <marker id="pfeil" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="arrow-head" d="M 0 0 L 10 5 L 0 10 z"/>
+    </marker>
+  </defs>
+
+  <rect class="ground" x="0" y="0" width="960" height="540" rx="18"/>
+
+  <!-- Oben: die Zugänge -->
+  <text class="eyebrow" x="40" y="36">ZUGÄNGE</text>
+  <text class="kernsatz" x="920" y="36" text-anchor="end">Ein Zugang, jeder Assistent.</text>
+
+  <rect class="box" x="40" y="52" width="280" height="64" rx="12"/>
+  <text class="title" x="64" y="80">Chat auf Ihrer Website</text>
+  <text class="soft" x="64" y="101">eingebettet auf Ihrer Seite</text>
+
+  <rect class="box" x="340" y="52" width="280" height="64" rx="12"/>
+  <text class="title" x="364" y="80">Claude</text>
+  <text class="soft" x="364" y="101">mitgebrachter Assistent</text>
+
+  <rect class="box" x="640" y="52" width="280" height="64" rx="12"/>
+  <text class="title" x="664" y="80">ChatGPT</text>
+  <text class="soft" x="664" y="101">mitgebrachter Assistent</text>
+
+  <!-- Drei Wege, ein Punkt -->
+  <path class="arrow" d="M 180 116 L 466 160"/>
+  <path class="arrow" d="M 480 116 L 480 160"/>
+  <path class="arrow" d="M 780 116 L 494 160"/>
+
+  <!-- Mitte: ChatBieger -->
+  <rect class="box-accent" x="40" y="180" width="880" height="154" rx="14"/>
+  <rect class="pill" x="428" y="168" width="104" height="24" rx="12"/>
+  <text class="pill-text" x="480" y="184.5" text-anchor="middle">Ein Zugang</text>
+
+  <text class="brand" x="64" y="220">ChatBieger</text>
+  <text class="soft" x="162" y="220">ein Dienst, ein Zugang</text>
+  <text class="soft" x="896" y="220" text-anchor="end">mit den Regeln Ihrer Organisation</text>
+  <text class="soft" x="64" y="243">Jeder Ihrer Services steht darin als Werkzeug, das ein Assistent aufrufen kann – über MCP, den offenen Standard:</text>
+
+  <rect class="chip" x="64" y="262" width="232" height="42" rx="10"/>
+  <rect class="bullet" x="82" y="280" width="6" height="6" rx="2"/>
+  <text x="98" y="288">Förderung prüfen</text>
+
+  <rect class="chip" x="364" y="262" width="232" height="42" rx="10"/>
+  <rect class="bullet" x="382" y="280" width="6" height="6" rx="2"/>
+  <text x="398" y="288">Angebot anfragen</text>
+
+  <rect class="chip" x="664" y="262" width="232" height="42" rx="10"/>
+  <rect class="bullet" x="682" y="280" width="6" height="6" rx="2"/>
+  <text x="698" y="288">Störung melden</text>
+
+  <!-- Je Service eine Stufe -->
+  <path class="arrow" d="M 180 304 L 180 366"/>
+  <path class="arrow" d="M 480 304 L 480 366"/>
+  <path class="arrow" d="M 780 304 L 780 366"/>
+
+  <!-- Unten: die drei Stufen -->
+  <rect class="box" x="40" y="372" width="280" height="120" rx="12"/>
+  <rect class="tag-bg" x="64" y="388" width="70" height="22" rx="11"/>
+  <text class="tag" x="99" y="403" text-anchor="middle">STUFE 1</text>
+  <text class="title" x="64" y="433">Auskunft</text>
+  <text class="soft" x="64" y="454">Antwort aus Ihrer Beschreibung</text>
+  <text class="soft" x="64" y="472">und der Kontaktweg zum Menschen</text>
+
+  <rect class="box" x="340" y="372" width="280" height="120" rx="12"/>
+  <rect class="tag-bg" x="364" y="388" width="70" height="22" rx="11"/>
+  <text class="tag" x="399" y="403" text-anchor="middle">STUFE 2</text>
+  <text class="title" x="364" y="433">Erfassen</text>
+  <text class="soft" x="364" y="454">Angaben im Gespräch aufnehmen,</text>
+  <text class="soft" x="364" y="472">Ergebnis ist eine E-Mail ans Büro</text>
+
+  <rect class="box" x="640" y="372" width="280" height="120" rx="12"/>
+  <rect class="tag-bg" x="664" y="388" width="70" height="22" rx="11"/>
+  <text class="tag" x="699" y="403" text-anchor="middle">STUFE 3</text>
+  <text class="title" x="664" y="433">Verbinden</text>
+  <text class="soft" x="664" y="454">direkt ins Fachsystem,</text>
+  <text class="soft" x="664" y="472">über dessen eigenen MCP-Server</text>
+
+  <text class="eyebrow" x="40" y="522">AUSBAUSTUFE JE SERVICE</text>
+  <text class="kernsatz" x="920" y="522" text-anchor="end">Jeder Service auf seiner eigenen Ausbaustufe.</text>
+</svg>

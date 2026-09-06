@@ -663,6 +663,21 @@
     .caution small { display: block; color: var(--ink-faint); font-size: 0.75rem; margin-bottom: 0.15rem; }
 
     /* ---------- Für mitgebrachte Assistenten erreichbar ---------- */
+    /* Das Erklärbild: ein SVG, das seinen Grund selbst mitbringt (derselbe
+       Ton wie --ground, hell wie dunkel) — deshalb ohne Karte darum. */
+    .ebenen { margin: 0 0 2.5rem; }
+    .ebenen img { display: block; width: 100%; max-width: 100%; height: auto; }
+    .ebenen figcaption { margin-top: 0.8rem; font-size: 0.88rem; color: var(--ink-faint); }
+    .ebenen-wisch { display: none; }
+    /* Auf schmalen Schirmen nicht auf Briefmarkengröße schrumpfen, sondern
+       im eigenen Rahmen seitlich scrollen — der Text bleibt lesbar. Der
+       Hinweis darüber sagt es, bevor jemand die rechte Hälfte vermisst
+       (Council, Lauf 13). */
+    @media (max-width: 46rem) {
+      .ebenen-bild { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .ebenen img { min-width: 56rem; }
+      .ebenen-wisch { display: block; margin: 0 0 0.6rem; font-size: 0.88rem; color: var(--ink-soft); }
+    }
     .native { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 1.75rem; align-items: start; }
     @media (max-width: 52rem) { .native { grid-template-columns: 1fr; } }
     .native-copy { display: flex; flex-direction: column; gap: 1rem; }
@@ -959,6 +974,13 @@
       <h2>Ihre Services laufen auch in ChatGPT und Claude.</h2>
       <p class="measure muted">Ihre Website macht Sie lesbar. Über den offenen Standard MCP werden Ihre Services <em>aufrufbar</em> &ndash; nicht als Seite, die ein Assistent überfliegt, sondern als Werkzeug, das er benutzt.</p>
     </div>
+    <figure class="ebenen">
+      <p class="ebenen-wisch">Das Bild ist breiter als der Bildschirm &ndash; seitlich wischen.</p>
+      <div class="ebenen-bild">
+        <img src="ebenen.svg" alt="Oben die Zugänge: der Chat auf Ihrer Website, Claude und ChatGPT – alle drei führen zu einem Zugang. In der Mitte ChatBieger: ein Dienst, in dem Ihre Services als Werkzeuge stehen, mit Ihren Regeln, über MCP, den offenen Standard. Unten je Service eine der drei Stufen: Auskunft mit Kontaktweg, Erfassen mit einer E-Mail ans Büro, Verbinden direkt ins Fachsystem über dessen MCP-Server." width="960" height="540" loading="lazy">
+      </div>
+      <figcaption>Ein Zugang, jeder Assistent &ndash; und jeder Service auf seiner eigenen Ausbaustufe.</figcaption>
+    </figure>
     <div class="native">
       <div class="native-copy">
         <p><b>Ohne zusätzliche Arbeit.</b> Es ist derselbe Zugang, der den Chat auf Ihrer Seite bedient: dieselben Services, dieselben Regeln, dieselben Freigaben. Was Sie einmal beschreiben, gilt in beiden Welten &ndash; nichts doppelt pflegen, nichts zusätzlich bestellen.</p>
