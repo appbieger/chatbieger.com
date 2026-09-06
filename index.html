@@ -667,14 +667,15 @@
        Ton wie --ground, hell wie dunkel) — deshalb ohne Karte darum. */
     .ebenen { margin: 0 0 2.5rem; }
     .ebenen img { display: block; width: 100%; max-width: 100%; height: auto; }
-    .ebenen figcaption { margin-top: 0.8rem; font-size: 0.88rem; color: var(--ink-faint); }
+    .ebenen figcaption { margin-top: 0.8rem; font-size: 0.88rem; color: var(--ink-soft); }
     .ebenen-wisch { display: none; }
     /* Auf schmalen Schirmen nicht auf Briefmarkengröße schrumpfen, sondern
        im eigenen Rahmen seitlich scrollen — der Text bleibt lesbar. Der
        Hinweis darüber sagt es, bevor jemand die rechte Hälfte vermisst
        (Council, Lauf 13). */
-    @media (max-width: 46rem) {
+    @media (max-width: 58.5rem) { /* 56rem Bild + 2 × 1.25rem Rand von .wrap */
       .ebenen-bild { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .ebenen-bild:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
       .ebenen img { min-width: 56rem; }
       .ebenen-wisch { display: block; margin: 0 0 0.6rem; font-size: 0.88rem; color: var(--ink-soft); }
     }
@@ -977,9 +978,9 @@
       <p class="measure muted">Ihre Website macht Sie lesbar. Über den offenen Standard MCP werden Ihre Services <em>aufrufbar</em> &ndash; nicht als Seite, die ein Assistent überfliegt, sondern als Werkzeug, das er benutzt.</p>
     </div>
     <figure class="ebenen">
-      <p class="ebenen-wisch">Das Bild ist breiter als der Bildschirm &ndash; seitlich wischen.</p>
-      <div class="ebenen-bild">
-        <img src="ebenen.svg" alt="Oben die Zugänge: der Chat auf Ihrer Website, Claude und ChatGPT – alle drei führen zu einem Zugang. In der Mitte ChatBieger: ein Dienst, in dem Ihre Services als Werkzeuge stehen, mit Ihren Regeln, über MCP, den offenen Standard. Unten je Service eine der drei Stufen: Auskunft mit Kontaktweg, Erfassen mit einer E-Mail ans Büro, Verbinden direkt ins Fachsystem über dessen MCP-Server." width="960" height="540" loading="lazy">
+      <p class="ebenen-wisch">Rechts geht das Bild weiter: seitlich wischen.</p>
+      <div class="ebenen-bild" tabindex="0" role="group" aria-label="Erklärbild, seitlich verschiebbar">
+        <img src="ebenen.svg" alt="Oben, wo gefragt wird: der Chat auf Ihrer Website, Claude und ChatGPT – alle drei führen zu einem Zugang. In der Mitte ChatBieger: ein Dienst, in dem Ihre Services als Werkzeuge stehen, mit Ihren Regeln, über MCP, den offenen Standard. Unten je Service eine der drei Stufen: Auskunft mit Kontaktweg, Erfassen mit einer E-Mail ans Büro, Verbinden direkt ins Fachsystem über dessen MCP-Server." width="960" height="540" loading="lazy">
       </div>
       <figcaption>Ein Zugang, jeder Assistent &ndash; und jeder Service auf seiner eigenen Ausbaustufe.</figcaption>
     </figure>

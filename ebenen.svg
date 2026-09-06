@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="960" height="540" role="img" aria-labelledby="ebenen-title ebenen-desc" lang="de">
-  <title id="ebenen-title">Die drei Ebenen von ChatBieger: Zugänge, ein Dienst, drei Stufen</title>
-  <desc id="ebenen-desc">Oben die Zugänge: der Chat auf der Website der Organisation, Claude und ChatGPT. Alle drei führen zu einem Zugang. In der Mitte ChatBieger: ein Dienst, in dem die Services der Organisation als Werkzeuge stehen, mit ihren Regeln. Unten die drei Ausbaustufen, je Service eine: Stufe 1 Auskunft mit Kontaktweg, Stufe 2 Erfassen mit einer E-Mail ans Büro als Ergebnis, Stufe 3 Verbinden, direkt ins Fachsystem über dessen MCP-Server. Ein Zugang, jeder Assistent. Jeder Service auf seiner eigenen Ausbaustufe.</desc>
+  <title id="ebenen-title">Die drei Ebenen von ChatBieger: wo gefragt wird, ein Dienst, drei Stufen</title>
+  <desc id="ebenen-desc">Oben, wo gefragt wird: der Chat auf der Website der Organisation, Claude und ChatGPT. Alle drei führen zu einem Zugang. In der Mitte ChatBieger: ein Dienst, in dem die Services der Organisation als Werkzeuge stehen, mit ihren Regeln. Unten die drei Ausbaustufen, je Service eine: Stufe 1 Auskunft mit Kontaktweg, Stufe 2 Erfassen mit einer E-Mail ans Büro als Ergebnis, Stufe 3 Verbinden, direkt ins Fachsystem über dessen MCP-Server. Ein Zugang, jeder Assistent. Jeder Service auf seiner eigenen Ausbaustufe.</desc>
   <style>
     /* Dieselben Werte wie web/base.css im Produkt und index.html der Landing.
        Die Fallbacks stehen dabei, weil ein SVG im img-Tag keine Variablen
@@ -62,7 +62,7 @@
   <rect class="ground" x="0" y="0" width="960" height="540" rx="18"/>
 
   <!-- Oben: die Zugänge -->
-  <text class="eyebrow" x="40" y="36">ZUGÄNGE</text>
+  <text class="eyebrow" x="40" y="36">WO GEFRAGT WIRD</text>
   <text class="kernsatz" x="920" y="36" text-anchor="end">Ein Zugang, jeder Assistent.</text>
 
   <rect class="box" x="40" y="52" width="280" height="64" rx="12"/>
@@ -88,7 +88,7 @@
   <text class="pill-text" x="480" y="184.5" text-anchor="middle">Ein Zugang</text>
 
   <text class="brand" x="64" y="220">ChatBieger</text>
-  <text class="soft" x="162" y="220">ein Dienst, ein Zugang</text>
+  <text class="soft" x="162" y="220">ein Dienst</text>
   <text class="soft" x="896" y="220" text-anchor="end">mit den Regeln Ihrer Organisation</text>
   <text class="soft" x="64" y="243">Jeder Ihrer Services steht darin als Werkzeug, das ein Assistent aufrufen kann – über MCP, den offenen Standard:</text>
 
