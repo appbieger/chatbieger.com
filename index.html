@@ -108,9 +108,16 @@
     .topbar nav a:hover { color: var(--ink); }
     .topbar .topbar-demo { padding: 0.45rem 1.15rem; color: #fff; }
     .topbar .topbar-demo:hover { color: #fff; }
-    /* Am Telefon bleiben die beiden Wege stehen, die etwas verkaufen —
-       Demos und Preis; die Unterlagen stehen in der Fußzeile. */
-    @media (max-width: 30rem) { .topbar nav a:not(.topbar-demo):nth-child(n+3) { display: none; } }
+    /* Am Telefon bleiben zwei Wege stehen: Preis (Lauf 10, beide Betriebe)
+       und Unterlagen (Lauf 13, die Kommune liest im Zug). Demos hat auf dem
+       ersten Bildschirm einen eigenen Knopf, Kontakt steht in der Fußzeile. */
+    @media (max-width: 30rem) {
+      .topbar nav a[href^="https://chat.demo."], .topbar nav a[href="kontakt.html"] { display: none; }
+      /* Der Schriftzug weicht dem dritten Link — sichtbar; für Bildschirmleser
+         bleibt er der Name des Links, und das Zeichen bekommt seine 44 px. */
+      .topbar .marke span { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+      .topbar .marke { padding: 0.7rem; margin: -0.7rem; }
+    }
 
     /* ---------- Erster Bildschirm: ein Zeichen, ein Satz, ein Feld ----------
        Google-Logik: Was hier steht, ist das eine Ziel der Seite; alles
@@ -178,6 +185,7 @@
     .btn.ruhig { background: var(--surface); color: var(--ink); box-shadow: var(--card-shadow), var(--ring); }
     .btn.ruhig:hover { background: var(--surface-soft); }
     .einstieg-ohne { margin-top: 1.4rem; font-size: 0.9rem; color: var(--ink-soft); }
+    .einstieg-kommune { margin: 0.55rem auto 0; max-width: 34rem; }
     .einstieg-ohne a { color: var(--accent); }
 
     /* Der Hinweis am Fuß des ersten Bildschirms ist das Versprechen, dass
@@ -208,7 +216,8 @@
       .einstieg-kosten { margin-top: 0.9rem; }
       .einstieg-zweit { margin-top: 1.2rem; }
       .einstieg-ohne { margin-top: 1.1rem; }
-      .weiter { margin-top: 1.4rem; }
+      .einstieg-kommune { margin-top: 0.35rem; }
+      .weiter { margin-top: 1rem; }
     }
 
     /* Am Telefon ist der erste Bildschirm knapp: kleineres Zeichen, kleinere
@@ -223,6 +232,9 @@
       .einstieg-kosten { margin-top: 0.85rem; }
       .einstieg-zweit { margin-top: 1.2rem; }
       .einstieg-ohne { margin-top: 1.1rem; }
+      /* Die Kommune-Zeile schöbe den Hinweis nach unten bei 390×844 über die
+         Kante; am Telefon trägt „Unterlagen" in der Leiste den Weg. */
+      .einstieg-kommune { display: none; }
       .weiter { margin-top: 1.3rem; }
       .feld { flex-direction: column; align-items: stretch; border-radius: 22px; padding: 0.45rem 0.45rem 0.5rem; }
       .feld input { padding: 0.65rem 0.95rem; border-radius: 999px; box-shadow: var(--ring); }
@@ -719,6 +731,7 @@
       <a class="btn ruhig" href="https://chat.demo.chatbieger.com/">Erst eine Demo ansehen</a>
     </div>
     <p class="einstieg-ohne">Keine Website? <a href="https://chat.demo.chatbieger.com/admin/?signup=1">Dann mit dem Namen Ihrer Organisation anfangen.</a></p>
+    <p class="einstieg-ohne einstieg-kommune">Kommune oder Beh&ouml;rde? F&uuml;r dienstliche Daten kommt ein Vertrag dazu, der Einstieg ist ein Pilot: <a href="unterlagen.html">Unterlagen f&uuml;r Ihre Vorlage</a>.</p>
   </div>
 
   <a class="weiter" href="#weiter">Weiter unten: f&uuml;r wen, wie es funktioniert, Preis, wer dahintersteckt <span class="pfeil" aria-hidden="true">&darr;</span></a>
@@ -1019,7 +1032,7 @@
         <p class="note">Einrichtung ab 4.500&nbsp;€, gestaffelt nach Umfang. Für Kommunen und alles mit Nachweispflicht &ndash; hier verkaufen wir Zusagen, nicht Funktionen. Der Einstieg ist ein <strong>Pilot</strong>: befristet, ohne Rechnung, mit Enddatum und einer vorher erhobenen Zahl, an der sich hinterher messen lässt, ob es gewirkt hat. <a href="unterlagen.html">Unterlagen für Ihre Vorlage</a> &ndash; Preisblatt, AVV-Muster, Datenschutz, Barrierefreiheit.</p>
       </div>
     </div>
-    <p class="measure muted" style="margin-top: 1.5rem;">Barrierefreiheit ist keine Tarifstufe: Der Chat ist in allen Varianten nach WCAG&nbsp;2.1&nbsp;AA gebaut und vom Anbieter geprüft &ndash; Tastatur, Kontrast, Bildschirmleser; die externe Prüfung nach BITV wird im Pilot beauftragt. Die <a href="unterlagen.html#barrierefreiheit">Erklärung zur Barrierefreiheit</a> steht bei den Unterlagen.</p>
+    <p class="measure muted" style="margin-top: 1.5rem;">Barrierefreiheit ist keine Tarifstufe: Der Chat ist in allen Varianten nach WCAG&nbsp;2.1&nbsp;AA gebaut und vom Anbieter selbst geprüft &ndash; Tastatur, Kontrast, Bildschirmleser; Stand 31.08.2026, ein externes Prüfsiegel gibt es noch nicht. Im Enterprise-Pilot beauftragen und bezahlen wir die externe Prüfung nach BITV; den Prüfbericht bekommen Sie für Ihre eigene Erklärung. Die <a href="unterlagen.html#barrierefreiheit">Erklärung zur Barrierefreiheit</a> steht bei den Unterlagen.</p>
     <p class="measure muted" style="margin-top: 0.75rem;">Zur Einordnung: Ein Anruf oder eine E-Mail kostet 5 bis 10 Minuten Personalzeit, bei 35 bis 50&nbsp;€ Vollkosten je Stunde also 3&ndash;8&nbsp;€. Professional trägt sich ab etwa 40 ersparten Anrufen im Monat, Enterprise für eine Stadt mit rund 30 Leistungen ab etwa 200 &ndash; das sind zehn am Arbeitstag, weniger als ein Bürgerbüro vor dem Mittag hat. Wie viele Gespräche der Assistent übernimmt, sehen Sie jederzeit selbst im Cockpit. Es entfällt dabei keine Stelle: Er nimmt die Anrufe ab, die heute in der Warteschleife oder abends um zehn unbeantwortet bleiben.</p>
     <p class="measure muted" style="margin-top: 0.75rem;">Was verarbeitet wird, steht bei uns nicht im Kleingedruckten: Gesprächsinhalte werden nicht gespeichert, IP-Adressen nicht protokolliert, und die Konfiguration Ihrer Organisation ist eine Handvoll lesbarer Textdateien, die Sie jederzeit mitnehmen können. Der Zugang selbst spricht einen offenen Standard (MCP, die Schnittstelle, über die KI-Programme Werkzeuge benutzen) &ndash; Ihr Assistent funktioniert damit auch in Claude, ChatGPT und anderen KI-Programmen, nicht nur in unserem Chat. Es gibt keinen Einschluss: Wer geht, nimmt alles mit.</p>
   </div>

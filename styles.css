@@ -56,7 +56,13 @@ body {
   color: #fff;
 }
 .topbar .topbar-demo:hover { background: var(--accent-hover); color: #fff; }
-@media (max-width: 30rem) { .topbar nav a:not(.topbar-demo):not(:first-child) { display: none; } }
+/* Dieselbe Telefon-Leiste wie auf index.html: Preis und Unterlagen bleiben,
+   Demos und Kontakt weichen, der Schriftzug bleibt nur für Bildschirmleser. */
+@media (max-width: 30rem) {
+  .topbar nav a[href^="https://chat.demo."], .topbar nav a[href="kontakt.html"] { display: none; }
+  .topbar .marke span { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .topbar .marke { padding: 0.7rem; margin: -0.7rem; }
+}
 
 main { padding: 2rem 0 4rem; }
 
