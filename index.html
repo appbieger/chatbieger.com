@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ChatBieger – Stellen Sie Ihren KI-Mitarbeiter ein</title>
-  <meta name="description" content="Ein KI-Mitarbeiter, der rund um die Uhr erreichbar ist: im Chat auf Ihrer Website, für andere KIs, für Ihre eigenen Leute. Er sagt nur, was bei Ihnen steht – und dazu, woher er es hat. Selbst hostbar, quelloffen, ohne Gesprächsspeicher.">
+  <title>ChatBieger – Ihr Unternehmen in der KI-Welt</title>
+  <meta name="description" content="Ihre Website macht Sie auffindbar. Mit ChatBieger werden Ihre Leistungen ansprechbar – für Menschen und für KI: im Chat auf Ihrer Website, für andere KIs, für Ihre eigenen Leute. Er sagt nur, was bei Ihnen steht, und dazu, woher er es hat.">
   <link rel="icon" type="image/png" href="favicon.png">
-  <meta property="og:title" content="ChatBieger – Stellen Sie Ihren KI-Mitarbeiter ein">
-  <meta property="og:description" content="Einen, der nur sagt, was bei Ihnen steht – und dazu, woher er es hat. Kein Umstieg, kein Stichtag, monatlich kündbar.">
+  <meta property="og:title" content="ChatBieger – Ihr Unternehmen in der KI-Welt">
+  <meta property="og:description" content="Ihre Website macht Sie auffindbar. Mit ChatBieger werden Ihre Leistungen ansprechbar – für Menschen und für KI. Kein Umstieg, kein Stichtag, monatlich kündbar.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://chatbieger.com/">
   <style>
@@ -134,6 +134,12 @@
     }
     .einstieg-mitte { margin: auto 0; width: 100%; display: flex; flex-direction: column; align-items: center; }
     .einstieg-zeichen { width: 56px; height: 56px; display: block; margin-bottom: 1.4rem; }
+    /* Der Name klein als Dachzeile, das Versprechen groß — die Größe gehört
+       dem Nutzen, nicht der Marke. */
+    .einstieg-dach {
+      margin: 0 0 0.6rem; font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+    }
     .einstieg h1 { max-width: 22ch; }
     .einstieg h1 .zusammen { white-space: nowrap; }
     .einstieg .lede { margin-top: 0.9rem; max-width: 42ch; font-size: 1.2rem; line-height: 1.5; color: var(--ink-soft); }
@@ -181,6 +187,33 @@
       font-size: 0.9rem; line-height: 1.5; color: var(--ink-soft);
     }
     .einstieg-vertrag a { color: var(--accent); }
+    /* So geht es los: drei Schritte als erstes Band unter dem Falz — dorthin
+       zeigt der Pfeil, und der erste Bildschirm bleibt, wie er gebaut ist
+       (Feld, Kosten, Vertrag, Zweitweg, Hinweis nach unten). Dieselbe
+       Kartenformel wie überall auf der Seite. */
+    .los { padding: 2.5rem 0 0.5rem; }
+    .los-titel { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); text-align: center; margin: 0 0 1.1rem; }
+    .einstieg-schritte {
+      margin: 0 auto; padding: 0; list-style: none; width: min(60rem, 100%);
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+      counter-reset: los; text-align: left;
+    }
+    .einstieg-schritte li {
+      counter-increment: los;
+      padding: 1.25rem 1.3rem 1.35rem; border-radius: 18px;
+      background: var(--surface); box-shadow: var(--card-shadow), var(--ring);
+      font-size: 0.95rem; line-height: 1.55; color: var(--ink-soft);
+    }
+    .einstieg-schritte li::before {
+      content: counter(los); display: block; margin-bottom: 0.4rem;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; color: var(--accent);
+    }
+    .einstieg-schritte b { display: block; font-weight: 600; color: var(--ink); margin-bottom: 0.25rem; }
+    @media (max-width: 46rem) {
+      .los { padding-top: 1.75rem; }
+      .einstieg-schritte { grid-template-columns: 1fr; gap: 0.8rem; }
+      .einstieg-schritte li { padding: 1rem 1.05rem 1.1rem; }
+    }
     .einstieg-zweit { margin-top: 1.6rem; display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
     .btn.ruhig { background: var(--surface); color: var(--ink); box-shadow: var(--card-shadow), var(--ring); }
     .btn.ruhig:hover { background: var(--surface-soft); }
@@ -221,7 +254,7 @@
     }
 
     /* Am Telefon ist der erste Bildschirm knapp: kleineres Zeichen, kleinere
-       Schrift — und das Feld wird zum Block, weil „Mitarbeiter einstellen"
+       Schrift — und das Feld wird zum Block, weil der Knopf
        neben dem Eingabefeld sonst keine 12 Zeichen übrig lässt. */
     @media (max-width: 28rem) {
       .einstieg { padding-top: 1.25rem; }
@@ -730,17 +763,18 @@
 <header class="einstieg" id="einstieg">
   <div class="einstieg-mitte">
     <img class="einstieg-zeichen" src="chatbieger-logo.png" alt="" width="56" height="56">
-    <h1>Stellen Sie Ihren <span class="zusammen">KI-Mitarbeiter</span> ein.</h1>
-    <p class="lede">Einen, der nur sagt, was bei Ihnen steht &ndash; und dazu, woher er es hat.</p>
+    <p class="einstieg-dach">ChatBieger</p>
+    <h1>Ihr Unternehmen in der <span class="zusammen">KI-Welt</span>.</h1>
+    <p class="lede">Ihre Website macht Sie auffindbar. Mit ChatBieger werden Ihre Leistungen ansprechbar &ndash; f&uuml;r Menschen und f&uuml;r KI.</p>
 
     <form class="einstieg-form" action="https://chat.demo.chatbieger.com/admin/" method="get">
       <div class="feld">
         <label class="sr-only" for="start-url">Adresse Ihrer Website</label>
         <input id="start-url" name="start" type="text" inputmode="url" autocomplete="url" autocapitalize="off" spellcheck="false" placeholder="www.ihre-website.de" required
                data-fehler="Tragen Sie die Adresse Ihrer Website ein &ndash; zum Beispiel www.ihre-website.de.">
-        <button type="submit">Mitarbeiter einstellen</button>
+        <button type="submit">KI-Mitarbeiter erstellen</button>
       </div>
-      <p class="einstieg-kosten">Wir lesen Ihre Startseite und schlagen vor, was er k&ouml;nnen soll &ndash; Sie entscheiden.<br>Ausprobieren kostet nichts &middot; kein Konto vorab, kein Passwort</p>
+      <p class="einstieg-kosten">Wir lesen Ihre Startseite und schlagen vor, was Ihr KI-Mitarbeiter k&ouml;nnen soll &ndash; Sie entscheiden.<br>Ausprobieren kostet nichts &middot; kein Konto vorab, kein Passwort</p>
       <p class="einstieg-vertrag">Es entsteht dabei kein Vertrag &ndash; zugestimmt wird erst, wenn Sie ihn behalten. Wer vorher lesen will: <a href="unterlagen.html#avv">Nutzungsbedingungen und Auftragsverarbeitungsvertrag</a>.</p>
     </form>
 
@@ -753,6 +787,17 @@
 
   <a class="weiter" href="#weiter">Weiter unten: f&uuml;r wen, wie es funktioniert, Preis, wer dahintersteckt <span class="pfeil" aria-hidden="true">&darr;</span></a>
 </header>
+
+<section class="los" aria-labelledby="los-titel">
+  <div class="wrap">
+    <h2 id="los-titel" class="los-titel">So geht es los</h2>
+    <ol class="einstieg-schritte">
+      <li><b>Ihr KI-Mitarbeiter entsteht aus Ihrer Website.</b> Adresse eintippen. Er liest die wichtigsten Seiten und legt Ihnen vor, was er beantworten k&ouml;nnte.</li>
+      <li><b>Sie sagen ihm, was er beantworten soll.</b> Welche Leistungen, welche Ausk&uuml;nfte. In Ihren Worten, ohne Formular. Einmal, danach nur, wenn sich bei Ihnen etwas &auml;ndert.</li>
+      <li><b>Mehr nur, wenn Sie wollen.</b> Auskunft reicht f&uuml;r den Anfang. Sp&auml;ter nimmt er Anliegen als E-Mail auf, und wer m&ouml;chte, l&auml;sst ihn in den eigenen Systemen arbeiten. Sie entscheiden, wie weit.</li>
+    </ol>
+  </div>
+</section>
 
 <section id="weiter">
   <div class="wrap hero-grid">
