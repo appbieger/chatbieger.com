@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ChatBieger – Ihr Unternehmen in der KI-Welt</title>
-  <meta name="description" content="Ihre Website macht Sie auffindbar. Mit ChatBieger werden Ihre Leistungen ansprechbar – für Menschen und für KI: im Chat auf Ihrer Website, für andere KIs, für Ihre eigenen Leute. Er sagt nur, was bei Ihnen steht, und dazu, woher er es hat.">
+  <title>ChatBieger – Dein Unternehmen ansprechbar mit KI</title>
+  <meta name="description" content="Deine Website macht dich auffindbar. Mit ChatBieger werden deine Leistungen ansprechbar – für Menschen und für KI: im Chat auf deiner Website, für andere KIs, für deine eigenen Leute. Er sagt nur, was bei dir steht, und dazu, woher er es hat.">
   <link rel="icon" type="image/png" href="favicon.png">
-  <meta property="og:title" content="ChatBieger – Ihr Unternehmen in der KI-Welt">
-  <meta property="og:description" content="Ihre Website macht Sie auffindbar. Mit ChatBieger werden Ihre Leistungen ansprechbar – für Menschen und für KI. Kein Umstieg, kein Stichtag, monatlich kündbar.">
+  <meta property="og:title" content="ChatBieger – Dein Unternehmen ansprechbar mit KI">
+  <meta property="og:description" content="Deine Website macht dich auffindbar. Mit ChatBieger werden deine Leistungen ansprechbar – für Menschen und für KI. Kein Umstieg, kein Stichtag, monatlich kündbar.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://chatbieger.com/">
   <style>
@@ -31,6 +31,8 @@
       --ring: inset 0 0 0 1px rgba(0, 0, 0, 0.09);
       --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
       --float-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 28px 60px -34px rgba(0, 0, 0, 0.3);
+      /* Eine Kurve für alles, was sich bewegt: zügig los, weich ankommen. */
+      --bogen: cubic-bezier(0.3, 0.7, 0.3, 1);
     }
 
     /* Derselbe dunkle Modus wie in Chat, Übersicht und Einrichtung — die
@@ -56,7 +58,7 @@
         --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
         --float-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 28px 60px -34px rgba(0, 0, 0, 0.9);
       }
-      .topbar img, .einstieg-zeichen { filter: invert(1); }
+      .topbar img { filter: invert(1); }
     }
 
     * { box-sizing: border-box; }
@@ -133,21 +135,20 @@
       text-align: center;
     }
     .einstieg-mitte { margin: auto 0; width: 100%; display: flex; flex-direction: column; align-items: center; }
-    .einstieg-zeichen { width: 56px; height: 56px; display: block; margin-bottom: 1.4rem; }
-    /* Der Name klein als Dachzeile, das Versprechen groß — die Größe gehört
-       dem Nutzen, nicht der Marke. */
-    .einstieg-dach {
-      margin: 0 0 0.6rem; font-size: 0.82rem; font-weight: 600;
-      letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+    /* Die Überschrift tritt zurück, damit das Feld der Held bleibt: kleiner
+       als die übrigen h1, halb im Grau — betont ist nur, worum es geht.
+       Marke und Zeichen stehen einmal in der Leiste und nicht noch einmal
+       hier; „KI“ steht auf dem ganzen Bildschirm genau ein Mal. */
+    .einstieg h1 {
+      max-width: 20ch; font-size: clamp(1.9rem, 3.6vw, 2.5rem);
+      font-weight: 600; letter-spacing: -0.022em; color: var(--ink-soft);
     }
-    .einstieg h1 { max-width: 22ch; }
-    .einstieg h1 .zusammen { white-space: nowrap; }
-    .einstieg .lede { margin-top: 0.9rem; max-width: 42ch; font-size: 1.2rem; line-height: 1.5; color: var(--ink-soft); }
+    .einstieg h1 .betont { color: var(--ink); }
 
     /* Das Feld ist eine Zeile mit Knopf. Der Fokusring liegt auf der ganzen
        Pille statt nur auf dem Eingabefeld — wer mit der Tastatur kommt, soll
        das Ziel als Ganzes sehen. */
-    .einstieg-form { margin-top: 2.1rem; width: min(38rem, 100%); }
+    .einstieg-form { margin-top: 2.4rem; width: min(36rem, 100%); }
     .feld {
       display: flex;
       align-items: center;
@@ -155,7 +156,7 @@
       text-align: left;
       background: var(--surface);
       border-radius: 999px;
-      padding: 0.4rem 0.4rem 0.4rem 1.35rem;
+      padding: 0.55rem 0.55rem 0.55rem 1.9rem;
       box-shadow: var(--float-shadow), var(--ring);
     }
     /* `:focus` statt `:focus-visible`: „Zum Feld ganz oben" setzt den Fokus
@@ -167,26 +168,22 @@
     }
     .feld input {
       flex: 1; min-width: 0; border: 0; background: none; outline: none;
-      font: inherit; color: var(--ink); padding: 0.65rem 0;
+      font: inherit; font-size: 1.375rem; color: var(--ink); padding: 0.875rem 0;
     }
     .feld input::placeholder { color: var(--ink-soft); }
     .feld button {
       flex: none; border: 0; border-radius: 999px; cursor: pointer;
       font: inherit; font-weight: 500; white-space: nowrap;
-      background: var(--accent-solid); color: #fff; padding: 0.65rem 1.4rem;
+      background: var(--accent-solid); color: #fff; font-size: 1.125rem; padding: 0.875rem 2.4rem;
     }
     .feld button:hover { background: var(--accent-hover); }
     .feld button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-    /* Der Haken steht bei „Behalten?", nicht hier (0031, Nachtrag): Am
-       Einstieg steht nur, was Ausprobieren ist — und was es nicht ist. Was
-       das Drücken kostet, direkt darunter (Council, Lauf 7). */
-    .einstieg-kosten { margin-top: 1.05rem; font-size: 0.9rem; color: var(--ink-soft); }
-    .einstieg-vertrag {
-      margin: 0.55rem auto 0; max-width: 34rem;
-      font-size: 0.9rem; line-height: 1.5; color: var(--ink-soft);
-    }
-    .einstieg-vertrag a { color: var(--accent); }
+    /* Was das Drücken kostet, in einer Zeile (Council, Lauf 7). Alles
+       Weitere — der Vertragssatz (0031), der Weg ohne Website, der Weg für
+       Kommunen — steht eine Etage tiefer bei „So geht es los“: auf dem
+       ersten Bildschirm stehen vier Dinge, nicht zwölf. */
+    .einstieg-kosten { margin-top: 1.1rem; font-size: 0.9rem; color: var(--ink-faint); }
     /* So geht es los: drei Schritte als erstes Band unter dem Falz — dorthin
        zeigt der Pfeil, und der erste Bildschirm bleibt, wie er gebaut ist
        (Feld, Kosten, Vertrag, Zweitweg, Hinweis nach unten). Dieselbe
@@ -214,21 +211,24 @@
       .einstieg-schritte { grid-template-columns: 1fr; gap: 0.8rem; }
       .einstieg-schritte li { padding: 1rem 1.05rem 1.1rem; }
     }
-    .einstieg-zweit { margin-top: 1.6rem; display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
-    .btn.ruhig { background: var(--surface); color: var(--ink); box-shadow: var(--card-shadow), var(--ring); }
-    .btn.ruhig:hover { background: var(--surface-soft); }
-    .einstieg-ohne { margin-top: 1.4rem; font-size: 0.9rem; color: var(--ink-soft); }
-    .einstieg-kommune { margin: 0.55rem auto 0; max-width: 34rem; }
-    .einstieg-ohne a { color: var(--accent); }
+    /* Der zweite Weg ist ein Link, kein Knopf: zwei Flächen stritten sich
+       sonst um denselben Blick. */
+    .einstieg-zweit { margin-top: 1.9rem; font-size: 0.9375rem; }
+    .einstieg-zweit a { color: var(--accent); }
+    /* Die Fußzeilen von „So geht es los“ — vom ersten Bildschirm hierher
+       gezogen. */
+    .los-fuss { margin: 0.55rem auto 0; max-width: 44rem; text-align: center; font-size: 0.9rem; line-height: 1.5; color: var(--ink-soft); }
+    .los-fuss.erste { margin-top: 1.5rem; }
+    .los-fuss a { color: var(--accent); }
 
     /* Der Hinweis am Fuß des ersten Bildschirms ist das Versprechen, dass
        unter dem Falz noch etwas kommt. */
     .weiter {
-      margin: 2rem 0 0; max-width: 30rem; text-align: center;
-      font-size: 0.85rem; color: var(--ink-soft); text-decoration: none;
+      margin: 2rem 0 0; padding: 0.6rem 1rem; text-align: center;
+      font-size: 1.25rem; line-height: 1; color: var(--ink-faint); text-decoration: none;
     }
     .weiter:hover { color: var(--ink); }
-    .weiter .pfeil { display: inline-block; margin-left: 0.4rem; }
+    .weiter .pfeil { display: inline-block; }
     @media (prefers-reduced-motion: no-preference) {
       .weiter .pfeil { animation: weiter-wink 2.6s ease-in-out infinite; }
     }
@@ -242,14 +242,9 @@
        Erste sein, der über die Kante fällt. */
     @media (min-width: 28.01rem) and (max-height: 780px) {
       .einstieg { padding-top: 1.75rem; }
-      .einstieg-zeichen { width: 46px; height: 46px; margin-bottom: 1rem; }
-      .einstieg h1 { font-size: clamp(1.9rem, 3.4vw, 2.5rem); }
-      .einstieg .lede { margin-top: 0.7rem; font-size: 1.1rem; }
-      .einstieg-form { margin-top: 1.6rem; }
+      .einstieg-form { margin-top: 1.9rem; }
       .einstieg-kosten { margin-top: 0.9rem; }
-      .einstieg-zweit { margin-top: 1.2rem; }
-      .einstieg-ohne { margin-top: 1.1rem; }
-      .einstieg-kommune { margin-top: 0.35rem; }
+      .einstieg-zweit { margin-top: 1.4rem; }
       .weiter { margin-top: 1rem; }
     }
 
@@ -258,22 +253,16 @@
        neben dem Eingabefeld sonst keine 12 Zeichen übrig lässt. */
     @media (max-width: 28rem) {
       .einstieg { padding-top: 1.25rem; }
-      .einstieg-zeichen { width: 40px; height: 40px; margin-bottom: 0.85rem; }
-      .einstieg h1 { font-size: 1.8rem; }
-      .einstieg .lede { margin-top: 0.7rem; font-size: 1.02rem; }
-      .einstieg-form { margin-top: 1.3rem; }
-      .einstieg-kosten { margin-top: 0.85rem; }
-      .einstieg-zweit { margin-top: 1.2rem; }
-      .einstieg-ohne { margin-top: 1.1rem; }
-      /* Die Kommune-Zeile schöbe den Hinweis nach unten bei 390×844 über die
-         Kante; am Telefon trägt „Unterlagen" in der Leiste den Weg. */
-      .einstieg-kommune { display: none; }
+      .einstieg h1 { font-size: 1.75rem; }
+      .einstieg-form { margin-top: 1.7rem; }
+      .einstieg-kosten { margin-top: 0.9rem; }
+      .einstieg-zweit { margin-top: 1.5rem; }
       .weiter { margin-top: 1.3rem; }
-      .feld { flex-direction: column; align-items: stretch; border-radius: 22px; padding: 0.45rem 0.45rem 0.5rem; }
-      .feld input { padding: 0.65rem 0.95rem; border-radius: 999px; box-shadow: var(--ring); }
-      .feld:has(input:focus) { box-shadow: var(--float-shadow), var(--ring); }
-      .feld input:focus { box-shadow: inset 0 0 0 2px var(--accent); }
-      .feld button { width: 100%; padding: 0.7rem 1rem; }
+      /* „Start“ ist kurz genug, dass die Pille auch am Telefon eine Zeile
+         bleibt — der Knopf nimmt nur, was er braucht, das Feld den Rest. */
+      .feld { padding: 0.45rem 0.45rem 0.45rem 1.15rem; }
+      .feld input { font-size: 1.0625rem; padding: 0.7rem 0; min-width: 0; }
+      .feld button { font-size: 1rem; padding: 0.7rem 1.5rem; }
     }
 
     /* ---------- Vorschau: derselbe Chat, nur eine Etage tiefer ---------- */
@@ -519,10 +508,9 @@
     /* ---------- Für wen ---------- */
     .audiences {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(min(22rem, 100%), 1fr));
       gap: 1.25rem;
     }
-    @media (max-width: 46rem) { .audiences { grid-template-columns: 1fr; } }
     .audience {
       padding: 1.7rem;
       display: flex;
@@ -548,6 +536,11 @@
       color: var(--ink-faint);
     }
     .audience p { font-size: 0.96rem; color: var(--ink-soft); }
+    /* Zusage aus den Unterlagen, Abschnitt 12: Wer als Beispiel gezeigt wird,
+       wird vorher unterrichtet — und auf der Kachel steht, woher die Angaben
+       kommen und dass die Organisation die Vorführung nicht betreibt. Das
+       stand bisher nur bei einer der drei echten Organisationen. */
+    .audience .hinweis { font-size: 0.86rem; color: var(--ink-faint); }
     .audience .demo-link {
       margin-top: auto;
       padding-top: 0.4rem;
@@ -744,6 +737,74 @@
       content: ""; flex: none; width: 6px; height: 6px; border-radius: 2px; background: var(--accent);
     }
     .native-note { font-size: 0.82rem; color: var(--ink-soft); }
+
+    /* ---------- &Uuml;bergang in den Chat ----------
+       Wer die Adresse abschickt, verl&auml;sst die Seite nicht: &Uuml;berschrift,
+       Kostenzeile, Zweitweg und das Band darunter weichen, und um die Pille
+       herum w&auml;chst das Chatfenster. Erst wenn es steht, &uuml;bernimmt der
+       Server — der Wechsel liegt in der Ruhe davor und ist nicht zu sehen.
+       Ohne JavaScript bleibt das Formular ein gew&ouml;hnliches GET. */
+    .weicht {
+      display: grid; grid-template-rows: 1fr;
+      transition: grid-template-rows 0.6s var(--bogen), opacity 0.35s ease, margin 0.6s var(--bogen);
+    }
+    .weicht > * { overflow: hidden; min-height: 0; }
+    [data-modus="chat"] .weicht { grid-template-rows: 0fr; opacity: 0; margin: 0 !important; pointer-events: none; }
+
+    .einstieg-form {
+      transition: height 0.75s var(--bogen), transform 0.75s var(--bogen),
+                  width 0.75s var(--bogen), margin 0.6s var(--bogen),
+                  background 0.5s var(--bogen), box-shadow 0.5s var(--bogen),
+                  border-radius 0.5s var(--bogen);
+    }
+    [data-modus="chat"] .einstieg-form {
+      margin-top: 0; width: min(42rem, 100%);
+      display: flex; flex-direction: column; overflow: hidden;
+      background: var(--surface); border-radius: 22px;
+      box-shadow: var(--float-shadow), var(--ring);
+    }
+
+    /* Kopf und Verlauf sind vorhanden, solange sie keine H&ouml;he haben, kostet
+       das nichts — und der Wechsel ist eine Bewegung statt eines Aufbaus. */
+    .chatkopf { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.5s var(--bogen) 0.15s; }
+    .chatkopf > div { overflow: hidden; min-height: 0; }
+    [data-modus="chat"] .chatkopf { grid-template-rows: 1fr; }
+    .chatkopf-innen {
+      display: flex; align-items: center; gap: 0.5rem; text-align: left;
+      padding: 0.65rem 1rem; border-bottom: 1px solid var(--line);
+    }
+    .chatkopf-innen b { font-weight: 600; font-size: 0.875rem; }
+
+    .chatlauf { height: 0; overflow: hidden; }
+    [data-modus="chat"] .chatlauf {
+      flex: 1; height: auto; min-height: 0; overflow-y: auto;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      gap: 0.5rem; padding: 1rem; text-align: left; font-size: 0.9375rem; line-height: 1.55;
+    }
+    .chatzeile { display: flex; gap: 0.5rem; align-items: flex-end; animation: msg-in 0.45s cubic-bezier(0.3, 0.7, 0.3, 1) both; }
+    .chatgesicht { width: 22px; height: 22px; flex: none; align-self: flex-start; }
+    .chatpunkte { display: flex; gap: 0.25rem; align-items: center; padding: 0.7rem 0.85rem; border-radius: 16px; background: var(--bubble); }
+    .chatpunkte i { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-faint); animation: chatpunkt 1.1s infinite; }
+    .chatpunkte i:nth-child(2) { animation-delay: 0.18s; }
+    .chatpunkte i:nth-child(3) { animation-delay: 0.36s; }
+    @keyframes chatpunkt { 0%, 60%, 100% { opacity: 0.25; } 30% { opacity: 0.9; } }
+
+    /* Die Pille bleibt dieselbe — sie wird nur die Eingabeleiste des Chats. */
+    .feld { transition: padding 0.6s var(--bogen), box-shadow 0.5s var(--bogen), margin 0.6s var(--bogen), background 0.5s var(--bogen); }
+    [data-modus="chat"] .feld {
+      padding: 0.5rem 0.5rem 0.5rem 1.1rem; margin: 0 0.6rem 0.6rem;
+      background: var(--surface-soft); box-shadow: var(--ring);
+    }
+    .feld input, .feld button { transition: font-size 0.6s var(--bogen), padding 0.6s var(--bogen); }
+    [data-modus="chat"] .feld input { font-size: 0.9375rem; padding: 0.45rem 0; }
+    [data-modus="chat"] .feld button { font-size: 0.875rem; padding: 0.5rem 1.1rem; }
+    /* Bis der Server &uuml;bernimmt, ist die Leiste Kulisse: sie sieht aus wie
+       immer, nimmt aber noch nichts an. */
+    [data-modus="chat"] .feld button { pointer-events: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .weicht, .einstieg-form, .chatkopf, .feld, .feld input, .feld button { transition: none; }
+    }
   </style>
 </head>
 <body>
@@ -762,40 +823,42 @@
 
 <header class="einstieg" id="einstieg">
   <div class="einstieg-mitte">
-    <img class="einstieg-zeichen" src="chatbieger-logo.png" alt="" width="56" height="56">
-    <p class="einstieg-dach">ChatBieger</p>
-    <h1>Ihr Unternehmen in der <span class="zusammen">KI-Welt</span>.</h1>
-    <p class="lede">Ihre Website macht Sie auffindbar. Mit ChatBieger werden Ihre Leistungen ansprechbar &ndash; f&uuml;r Menschen und f&uuml;r KI.</p>
+    <div class="weicht"><div><h1>Dein Unternehmen <span class="betont">ansprechbar mit KI</span></h1></div></div>
 
-    <form class="einstieg-form" action="https://chat.demo.chatbieger.com/admin/" method="get">
+    <!-- Dasselbe Formular wird zum Chatfenster: Kopf und Verlauf sind hier
+         schon da und haben nur keine H&ouml;he, bis die Adresse abgeschickt ist. -->
+    <form class="einstieg-form" id="einstieg-form" action="https://chat.demo.chatbieger.com/admin/" method="get">
+      <div class="chatkopf" aria-hidden="true"><div><div class="chatkopf-innen">
+        <img src="chatbieger-logo.png" alt="" width="20" height="20"><b>ChatBieger</b>
+      </div></div></div>
+      <div class="chatlauf" id="chatlauf" aria-hidden="true"></div>
+      <p class="sr-only" id="chatstand" role="status"></p>
       <div class="feld">
-        <label class="sr-only" for="start-url">Adresse Ihrer Website</label>
-        <input id="start-url" name="start" type="text" inputmode="url" autocomplete="url" autocapitalize="off" spellcheck="false" placeholder="www.ihre-website.de" required
-               data-fehler="Tragen Sie die Adresse Ihrer Website ein &ndash; zum Beispiel www.ihre-website.de.">
-        <button type="submit">KI-Mitarbeiter erstellen</button>
+        <label class="sr-only" for="start-url">Adresse deiner Website</label>
+        <input id="start-url" name="start" type="text" inputmode="url" autocomplete="url" autocapitalize="off" spellcheck="false" placeholder="www.deine-website.de" required
+               data-fehler="Trag die Adresse deiner Website ein &ndash; zum Beispiel www.deine-website.de.">
+        <button type="submit">Start</button>
       </div>
-      <p class="einstieg-kosten">Wir lesen Ihre Startseite und schlagen vor, was Ihr KI-Mitarbeiter k&ouml;nnen soll &ndash; Sie entscheiden.<br>Ausprobieren kostet nichts &middot; kein Konto vorab, kein Passwort</p>
-      <p class="einstieg-vertrag">Es entsteht dabei kein Vertrag &ndash; zugestimmt wird erst, wenn Sie ihn behalten. Wer vorher lesen will: <a href="unterlagen.html#avv">Nutzungsbedingungen und Auftragsverarbeitungsvertrag</a>.</p>
+      <div class="weicht"><div><p class="einstieg-kosten">Ausprobieren kostenlos &middot; kein Konto, kein Vertrag</p></div></div>
     </form>
 
-    <div class="einstieg-zweit">
-      <a class="btn ruhig" href="https://chat.demo.chatbieger.com/">Erst eine Demo ansehen</a>
-    </div>
-    <p class="einstieg-ohne">Keine Website? <a href="https://chat.demo.chatbieger.com/admin/?signup=1">Dann mit dem Namen Ihrer Organisation anfangen.</a></p>
-    <p class="einstieg-ohne einstieg-kommune">Kommune oder Beh&ouml;rde? F&uuml;r dienstliche Daten kommt ein Vertrag dazu, der Einstieg ist ein Pilot: <a href="unterlagen.html">Unterlagen f&uuml;r Ihre Vorlage</a>.</p>
+    <div class="weicht"><div><p class="einstieg-zweit"><a href="https://chat.demo.chatbieger.com/">Erst eine Demo ansehen</a></p></div></div>
   </div>
 
-  <a class="weiter" href="#weiter">Weiter unten: f&uuml;r wen, wie es funktioniert, Preis, wer dahintersteckt <span class="pfeil" aria-hidden="true">&darr;</span></a>
+  <div class="weicht"><div><a class="weiter" href="#weiter" aria-label="Weiter unten: f&uuml;r wen, wie es funktioniert, Preis, wer dahintersteckt"><span class="pfeil" aria-hidden="true">&darr;</span></a></div></div>
 </header>
 
-<section class="los" aria-labelledby="los-titel">
+<section class="los weicht" aria-labelledby="los-titel">
   <div class="wrap">
     <h2 id="los-titel" class="los-titel">So geht es los</h2>
     <ol class="einstieg-schritte">
-      <li><b>Ihr KI-Mitarbeiter entsteht aus Ihrer Website.</b> Adresse eintippen. Er liest die wichtigsten Seiten und legt Ihnen vor, was er beantworten k&ouml;nnte.</li>
-      <li><b>Sie sagen ihm, was er beantworten soll.</b> Welche Leistungen, welche Ausk&uuml;nfte. In Ihren Worten, ohne Formular. Einmal, danach nur, wenn sich bei Ihnen etwas &auml;ndert.</li>
-      <li><b>Mehr nur, wenn Sie wollen.</b> Auskunft reicht f&uuml;r den Anfang. Sp&auml;ter nimmt er Anliegen als E-Mail auf, und wer m&ouml;chte, l&auml;sst ihn in den eigenen Systemen arbeiten. Sie entscheiden, wie weit.</li>
+      <li><b>Dein KI-Mitarbeiter entsteht aus deiner Website.</b> Adresse eintippen. Er liest die wichtigsten Seiten und legt dir vor, was er beantworten k&ouml;nnte.</li>
+      <li><b>Du sagst ihm, was er beantworten soll.</b> Welche Leistungen, welche Ausk&uuml;nfte. In deinen Worten, ohne Formular. Einmal, danach nur, wenn sich bei dir etwas &auml;ndert.</li>
+      <li><b>Mehr nur, wenn du willst.</b> Auskunft reicht f&uuml;r den Anfang. Sp&auml;ter nimmt er Anliegen als E-Mail auf, und wer m&ouml;chte, l&auml;sst ihn in den eigenen Systemen arbeiten. Du entscheidest, wie weit.</li>
     </ol>
+    <p class="los-fuss erste">Es entsteht dabei kein Vertrag &ndash; zugestimmt wird erst, wenn du ihn beh&auml;ltst. Wer vorher lesen will: <a href="unterlagen.html#avv">Nutzungsbedingungen und Auftragsverarbeitungsvertrag</a>.</p>
+    <p class="los-fuss">Keine Website? <a href="https://chat.demo.chatbieger.com/admin/?signup=1">Dann mit dem Namen deiner Organisation anfangen.</a></p>
+    <p class="los-fuss">Kommune oder Beh&ouml;rde? F&uuml;r dienstliche Daten kommt ein Vertrag dazu, der Einstieg ist ein Pilot: <a href="unterlagen.html">Unterlagen f&uuml;r deine Vorlage</a>.</p>
   </div>
 </section>
 
@@ -803,9 +866,9 @@
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <span class="eyebrow">Auffindbar &rarr; ansprechbar</span>
-      <h2>So sieht das bei Ihren Leuten aus.</h2>
+      <h2>So sieht das bei deinen Leuten aus.</h2>
       <p class="lede measure">B&uuml;rgerinnen, Eltern und Kundschaft fragen ihn im Chat, statt sich durch eine Website zu klicken oder in der Warteschleife zu h&auml;ngen.</p>
-      <p class="measure muted">Er ist rund um die Uhr erreichbar: im Chat auf Ihrer Website, f&uuml;r andere KIs, f&uuml;r Ihre eigenen Leute. Nichts wird abgeschaltet, niemand muss umlernen, es gibt keinen Stichtag.</p>
+      <p class="measure muted">Er ist rund um die Uhr erreichbar: im Chat auf deiner Website, f&uuml;r andere KIs, f&uuml;r deine eigenen Leute. Nichts wird abgeschaltet, niemand muss umlernen, es gibt keinen Stichtag.</p>
       <div class="cta-row">
         <a class="btn" href="https://chat.demo.chatbieger.com/">Demo ausprobieren</a>
         <span class="cta-note">Ohne Anmeldung &middot; echte Organisationen, echte Inhalte</span>
@@ -861,13 +924,13 @@
     <div class="section-head">
       <span class="eyebrow">Warum jetzt</span>
       <h2>Auffindbar war der letzte Schritt. Ansprechbar ist der nächste.</h2>
-      <p class="measure muted">Wie Menschen an Dienstleistungen kommen, verschiebt sich zum dritten Mal. Ihre Organisation muss dafür nichts umbauen &ndash; nur ansprechbar werden.</p>
+      <p class="measure muted">Wie Menschen an Dienstleistungen kommen, verschiebt sich zum dritten Mal. Deine Organisation muss dafür nichts umbauen &ndash; nur ansprechbar werden.</p>
     </div>
     <div class="stages">
       <div class="stage card">
         <span class="stage-tag">Blättern</span>
         <h3>Man klickt sich durch</h3>
-        <p>Telefonbuch, dann Website: Wer etwas von Ihnen wollte, musste Ihre Struktur lernen &ndash; Menüs, Unterseiten, PDFs. Dieser Weg bleibt. Er ist nur der langsamste.</p>
+        <p>Telefonbuch, dann Website: Wer etwas von dir wollte, musste deine Struktur lernen &ndash; Menüs, Unterseiten, PDFs. Dieser Weg bleibt. Er ist nur der langsamste.</p>
       </div>
       <div class="stage card">
         <span class="stage-tag">Suchen</span>
@@ -877,10 +940,10 @@
       <div class="stage card">
         <span class="stage-tag">Sagen</span>
         <h3>Man sagt, was man will</h3>
-        <p>Die Leute reden mit Assistenten &ndash; heute im Chat auf Ihrer Seite, morgen mit dem eigenen, den sie mitbringen. ChatBieger macht Ihre Services für beides ansprechbar &ndash; über MCP, den offenen Standard, mit dem KI-Programme Werkzeuge benutzen. Kein Fachbegriff, den Sie brauchen: Es heißt nur, dass Ihr Assistent nicht an unseren Chat gebunden ist.</p>
+        <p>Die Leute reden mit Assistenten &ndash; heute im Chat auf deiner Seite, morgen mit dem eigenen, den sie mitbringen. ChatBieger macht deine Services für beides ansprechbar &ndash; über MCP, den offenen Standard, mit dem KI-Programme Werkzeuge benutzen. Kein Fachbegriff, den du brauchst: Es heißt nur, dass dein Assistent nicht an unseren Chat gebunden ist.</p>
       </div>
     </div>
-    <p class="measure muted" style="margin-top: 1.5rem;">&bdquo;Chatbots&ldquo; gab es auch früher &ndash; genau deshalb ist das Wort zu klein. Was so hieß, war meist eine Suche mit Sprechblase: vorgefertigte Antworten, bei allem anderen ein Achselzucken. Hinter ChatBieger arbeitet ein Sprachmodell mit Werkzeugen. Es versteht, fragt nach, erfasst und erledigt &ndash; damit ist nicht mehr nur Ihre Website auffindbar, sondern jeder einzelne Service ansprechbar.</p>
+    <p class="measure muted" style="margin-top: 1.5rem;">&bdquo;Chatbots&ldquo; gab es auch früher &ndash; genau deshalb ist das Wort zu klein. Was so hieß, war meist eine Suche mit Sprechblase: vorgefertigte Antworten, bei allem anderen ein Achselzucken. Hinter ChatBieger arbeitet ein Sprachmodell mit Werkzeugen. Es versteht, fragt nach, erfasst und erledigt &ndash; damit ist nicht mehr nur deine Website auffindbar, sondern jeder einzelne Service ansprechbar.</p>
   </div>
 </section>
 
@@ -894,12 +957,12 @@
     <div class="proofs">
       <div class="proof card">
         <h3>Jede Antwort nennt ihre Quelle</h3>
-        <p>Unter der Antwort steht, welcher Ihrer hinterlegten Prozesse sie getragen hat &ndash; und die verlinkten Dokumente stehen darunter, Zeile für Zeile, mit erkennbarer Art.</p>
+        <p>Unter der Antwort steht, welcher deiner hinterlegten Prozesse sie getragen hat &ndash; und die verlinkten Dokumente stehen darunter, Zeile für Zeile, mit erkennbarer Art.</p>
         <div class="sample">Quelle: KiTa-Anmeldung<br>🗎 Anmeldevordruck zum Ausfüllen &nbsp;<b>PDF</b></div>
       </div>
       <div class="proof card">
         <h3>Ungedecktes wird gekennzeichnet</h3>
-        <p>Alles, was nicht aus Ihren Angaben stammt, wird sichtbar abgesetzt &ndash; auch die Auskunft, dass Sie für etwas nicht zuständig sind. Der Hinweis steht als Text da, nicht als Farbe: Er wird auch vorgelesen.</p>
+        <p>Alles, was nicht aus deinen Angaben stammt, wird sichtbar abgesetzt &ndash; auch die Auskunft, dass du für etwas nicht zuständig bist. Der Hinweis steht als Text da, nicht als Farbe: Er wird auch vorgelesen.</p>
         <div class="sample"><b>Ohne Gewähr</b> &ndash; nicht aus den Angaben dieser Organisation.</div>
       </div>
       <div class="proof card">
@@ -920,26 +983,26 @@
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Drei Stufen, eine nach der anderen</span>
-      <h2>Sie fangen klein an &ndash; mit einem Prozess.</h2>
-      <p class="measure muted">Jeder Ihrer Services steht für sich auf einer dieser Stufen. Sie können auf Stufe 1 bleiben, solange Sie wollen.</p>
+      <h2>Du fängst klein an &ndash; mit einem Prozess.</h2>
+      <p class="measure muted">Jeder deiner Services steht für sich auf einer dieser Stufen. Du kannst auf Stufe 1 bleiben, solange du willst.</p>
     </div>
     <div class="stages">
       <div class="stage card">
         <span class="stage-tag">Stufe 1</span>
         <h3>Auskunft geben</h3>
-        <p>Der Assistent beantwortet Fragen zu Ihren Leistungen aus dem, was Sie beschrieben haben, verlinkt Formulare und nennt den zuständigen Menschen. Mehr als das braucht die Mehrzahl aller Anliegen nicht.</p>
+        <p>Der Assistent beantwortet Fragen zu deinen Leistungen aus dem, was du beschrieben hast, verlinkt Formulare und nennt den zuständigen Menschen. Mehr als das braucht die Mehrzahl aller Anliegen nicht.</p>
       </div>
       <div class="stage card">
         <span class="stage-tag">Stufe 2</span>
         <h3>Angaben aufnehmen</h3>
-        <p>Der Assistent fragt im Gespräch nach, was Sie zur Bearbeitung brauchen &ndash; ohne dass jemand Formularfelder pflegt. Am Ende steht ein fertiger E-Mail-Entwurf, den die Person aus ihrem eigenen Programm abschickt.</p>
-        <p class="stage-fallback">Kein Antragsportal, kein zweites Postfach: Die Mail landet dort, wo Ihre Anliegen heute schon ankommen.</p>
+        <p>Der Assistent fragt im Gespräch nach, was du zur Bearbeitung brauchst &ndash; ohne dass jemand Formularfelder pflegt. Am Ende steht ein fertiger E-Mail-Entwurf, den die Person aus ihrem eigenen Programm abschickt.</p>
+        <p class="stage-fallback">Kein Antragsportal, kein zweites Postfach: Die Mail landet dort, wo deine Anliegen heute schon ankommen.</p>
       </div>
       <div class="stage card">
         <span class="stage-tag">Stufe 3</span>
         <h3>Systeme verbinden</h3>
-        <p>Der Assistent legt Vorgänge direkt in Ihren Fachsystemen an &ndash; ausschließlich über deren eigene MCP-Schnittstellen. Jeder Service gibt dabei genau die Werkzeuge frei, die er braucht.</p>
-        <p class="stage-fallback">Ein angebundenes Ticketsystem bietet oft dutzende Funktionen an. Sichtbar wird nur, was Sie freigeben &ndash; niemand kann sich über den Chat Ihre offenen Vorgänge auflisten lassen.</p>
+        <p>Der Assistent legt Vorgänge direkt in deinen Fachsystemen an &ndash; ausschließlich über deren eigene MCP-Schnittstellen. Jeder Service gibt dabei genau die Werkzeuge frei, die er braucht.</p>
+        <p class="stage-fallback">Ein angebundenes Ticketsystem bietet oft dutzende Funktionen an. Sichtbar wird nur, was du freigibst &ndash; niemand kann sich über den Chat deine offenen Vorgänge auflisten lassen.</p>
       </div>
     </div>
   </div>
@@ -953,18 +1016,11 @@
     </div>
     <div class="audiences">
       <div class="audience card">
-        <span class="glyph" aria-hidden="true">🏛️</span>
-        <span class="who">Kommune</span>
-        <h3>Stadt Achim</h3>
-        <p>Personalausweis, Wohnsitz, Gebühren: Auskünfte, die im Bürgerbüro jeden Tag am Telefon gegeben werden &ndash; und die online zwar stehen, aber nicht gefunden werden.</p>
-        <p>Vorführung aus den öffentlichen Angaben von achim.de &ndash; nicht von der Stadt betrieben, für Suchmaschinen gesperrt, und auf Zuruf der Stadt am selben Tag entfernt. Das steht auch im Chat selbst.</p>
-        <a class="demo-link" href="https://chat.demo.chatbieger.com/stadt-achim">Demo ansehen &rarr;</a>
-      </div>
-      <div class="audience card">
         <span class="glyph" aria-hidden="true">🧸</span>
         <span class="who">Kita</span>
         <h3>KiTa &bdquo;Rasselbande&ldquo; Rhade</h3>
         <p>Anmeldung, Ferienregelung, Beiträge. Eltern fragen abends um zehn &ndash; und die Leitung beantwortet dieselbe Frage zum vierzigsten Mal.</p>
+        <p class="hinweis">Vorführung aus den von der Einrichtung selbst veröffentlichten Angaben &ndash; nicht von ihr betrieben, für Suchmaschinen gesperrt, und auf Zuruf am selben Tag entfernt. Das steht auch im Chat selbst.</p>
         <a class="demo-link" href="https://chat.demo.chatbieger.com/kita-rhade">Demo ansehen &rarr;</a>
       </div>
       <div class="audience card">
@@ -972,6 +1028,7 @@
         <span class="who">Handwerk</span>
         <h3>Joms Energie GmbH</h3>
         <p>Angebotsanfragen für Photovoltaik: Der Assistent sammelt Dachausrichtung, Fläche und Verbrauch im Gespräch, damit der Betrieb rechnen kann statt nachzufragen.</p>
+        <p class="hinweis">Vorführung aus den öffentlichen Angaben des Betriebs &ndash; nicht von ihm betrieben, für Suchmaschinen gesperrt, und auf Zuruf am selben Tag entfernt. Das steht auch im Chat selbst.</p>
         <a class="demo-link" href="https://chat.demo.chatbieger.com/joms-energie">Demo ansehen &rarr;</a>
         <a class="demo-link" href="handwerk.html">Mehr für Handwerksbetriebe &rarr;</a>
       </div>
@@ -992,24 +1049,24 @@
     <div class="section-head">
       <span class="eyebrow">Wie eingerichtet wird</span>
       <h2>Beschreiben statt konfigurieren.</h2>
-      <p class="measure muted">Sie sagen in normalen Worten, wie der Assistent mit einem Anliegen umgehen soll. Daneben sehen Sie jederzeit die Datei, die daraus entsteht &ndash; lesbar, mitnehmbar, Ihre.</p>
+      <p class="measure muted">Du sagst in normalen Worten, wie der Assistent mit einem Anliegen umgehen soll. Daneben siehst du jederzeit die Datei, die daraus entsteht &ndash; lesbar, mitnehmbar, deine.</p>
     </div>
     <div class="proofs">
       <div class="proof card">
-        <h3>Aus Ihrer Website übernehmen</h3>
-        <p>Eine Adresse genügt: Die Seite wird gelesen und zu einem Service verdichtet &ndash; nicht abgeschrieben. Die Quelle bleibt verlinkt. Genauso geht ein Text, den Sie einfügen.</p>
+        <h3>Aus deiner Website übernehmen</h3>
+        <p>Eine Adresse genügt: Die Seite wird gelesen und zu einem Service verdichtet &ndash; nicht abgeschrieben. Die Quelle bleibt verlinkt. Genauso geht ein Text, den du einfügst.</p>
       </div>
       <div class="proof card">
-        <h3>Ändert sich die Quelle, sagt es Ihnen der Assistent</h3>
+        <h3>Ändert sich die Quelle, sagt es dir der Assistent</h3>
         <p>Auf Knopfdruck werden alle hinterlegten Quellen geprüft. Was sich geändert hat, wird als Vorschlag mit Unterschieden gezeigt &ndash; nie stillschweigend überschrieben.</p>
       </div>
       <div class="proof card">
         <h3>Was gefehlt hat, landet auf einer Liste</h3>
-        <p>Fragt jemand nach etwas, das es nicht gibt, notiert der Assistent den Wunsch. Sie sehen ihn im Cockpit &ndash; mit einem Knopf, der daraus einen Service macht.</p>
+        <p>Fragt jemand nach etwas, das es nicht gibt, notiert der Assistent den Wunsch. Du siehst ihn im Cockpit &ndash; mit einem Knopf, der daraus einen Service macht.</p>
       </div>
       <div class="proof card">
-        <h3>Falsches korrigieren Sie im Gespräch</h3>
-        <p>Angemeldet steht unter jeder Antwort „Das stimmt nicht&ldquo;. Sie sagen, was falsch war, bekommen eine neue Fassung &ndash; und sehen, wie die Antwort damit aussähe, bevor Sie speichern.</p>
+        <h3>Falsches korrigierst du im Gespräch</h3>
+        <p>Angemeldet steht unter jeder Antwort „Das stimmt nicht&ldquo;. Du sagst, was falsch war, bekommst eine neue Fassung &ndash; und siehst, wie die Antwort damit aussähe, bevor du speicherst.</p>
       </div>
     </div>
   </div>
@@ -1018,22 +1075,22 @@
 <section id="assistenten">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Wenn Ihre Leute den eigenen Assistenten mitbringen</span>
-      <h2>Ihre Services laufen auch in ChatGPT und Claude.</h2>
-      <p class="measure muted">Ihre Website macht Sie lesbar. Über den offenen Standard MCP werden Ihre Services <em>aufrufbar</em> &ndash; nicht als Seite, die ein Assistent überfliegt, sondern als Werkzeug, das er benutzt.</p>
+      <span class="eyebrow">Wenn deine Leute den eigenen Assistenten mitbringen</span>
+      <h2>Deine Services laufen auch in ChatGPT und Claude.</h2>
+      <p class="measure muted">Deine Website macht dich lesbar. Über den offenen Standard MCP werden deine Services <em>aufrufbar</em> &ndash; nicht als Seite, die ein Assistent überfliegt, sondern als Werkzeug, das er benutzt.</p>
     </div>
     <figure class="ebenen">
       <p class="ebenen-wisch">Rechts geht das Bild weiter: seitlich wischen.</p>
       <div class="ebenen-bild" tabindex="0" role="group" aria-label="Erklärbild, seitlich verschiebbar">
-        <img src="ebenen.svg" alt="Oben, wo gefragt wird: der Chat auf Ihrer Website, Claude und ChatGPT – alle drei führen zu einem Zugang. In der Mitte ChatBieger: ein Dienst, in dem Ihre Services als Werkzeuge stehen, mit Ihren Regeln, über MCP, den offenen Standard. Unten je Service eine der drei Stufen: Auskunft mit Kontaktweg, Erfassen mit einer E-Mail ans Büro, Verbinden direkt ins Fachsystem über dessen MCP-Server." width="960" height="540" loading="lazy">
+        <img src="ebenen.svg" alt="Oben, wo gefragt wird: der Chat auf deiner Website, Claude und ChatGPT – alle drei führen zu einem Zugang. In der Mitte ChatBieger: ein Dienst, in dem deine Services als Werkzeuge stehen, mit deinen Regeln, über MCP, den offenen Standard. Unten je Service eine der drei Stufen: Auskunft mit Kontaktweg, Erfassen mit einer E-Mail ans Büro, Verbinden direkt ins Fachsystem über dessen MCP-Server." width="960" height="540" loading="lazy">
       </div>
       <figcaption>Ein Zugang, jeder Assistent &ndash; und jeder Service auf seiner eigenen Ausbaustufe.</figcaption>
     </figure>
     <div class="native">
       <div class="native-copy">
-        <p><b>Ohne zusätzliche Arbeit.</b> Es ist derselbe Zugang, der den Chat auf Ihrer Seite bedient: dieselben Services, dieselben Regeln, dieselben Freigaben. Was Sie einmal beschreiben, gilt in beiden Welten &ndash; nichts doppelt pflegen, nichts zusätzlich bestellen.</p>
-        <p><b>Der Chat auf Ihrer Seite bleibt der Alltag.</b> Dort kommen Ihre Leute heute an, und dabei bleibt es auf absehbare Zeit. Einen mitgebrachten Assistenten einzuhängen ist bislang ein Handgriff für die technisch Versierten &ndash; Sie sind darauf vorbereitet, ohne dafür etwas zu tun.</p>
-        <p class="native-kicker">Der Chat auf Ihrer Seite spart Anrufe. Das hier entscheidet, ob Sie dort vorkommen, wo Ihre Leute demnächst fragen.</p>
+        <p><b>Ohne zusätzliche Arbeit.</b> Es ist derselbe Zugang, der den Chat auf deiner Seite bedient: dieselben Services, dieselben Regeln, dieselben Freigaben. Was du einmal beschreibst, gilt in beiden Welten &ndash; nichts doppelt pflegen, nichts zusätzlich bestellen.</p>
+        <p><b>Der Chat auf deiner Seite bleibt der Alltag.</b> Dort kommen deine Leute heute an, und dabei bleibt es auf absehbare Zeit. Einen mitgebrachten Assistenten einzuhängen ist bislang ein Handgriff für die technisch Versierten &ndash; Du bist darauf vorbereitet, ohne dafür etwas zu tun.</p>
+        <p class="native-kicker">Der Chat auf deiner Seite spart Anrufe. Das hier entscheidet, ob du dort vorkommst, wo deine Leute demnächst fragen.</p>
       </div>
       <figure class="native-panel card">
         <figcaption class="sr-only">Beispiel: So erscheint eine Organisation in einem KI-Assistenten &ndash; als Verbindung mit den Werkzeugen, die sie freigegeben hat.</figcaption>
@@ -1051,7 +1108,7 @@
           <li>Termin vorschlagen</li>
           <li>Förderung prüfen</li>
         </ul>
-        <p class="native-note">Sichtbar wird nur, was Sie freigeben &ndash; wie auf Stufe 3.</p>
+        <p class="native-note">Sichtbar wird nur, was du freigibst &ndash; wie auf Stufe 3.</p>
       </figure>
     </div>
   </div>
@@ -1061,8 +1118,8 @@
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Preise &amp; Souveränität</span>
-      <h2>Sie behalten Ihre Inhalte &ndash; und die Wahl.</h2>
-      <p class="measure muted">Drei Varianten. Der Unterschied ist nicht der Funktionsumfang, sondern wie viel Sie selbst bestimmen.</p>
+      <h2>Du behältst deine Inhalte &ndash; und die Wahl.</h2>
+      <p class="measure muted">Drei Varianten. Der Unterschied ist nicht der Funktionsumfang, sondern wie viel du selbst bestimmst.</p>
     </div>
     <div class="plans">
       <div class="plan card">
@@ -1070,12 +1127,12 @@
         <h3>Selbst betreiben</h3>
         <ul>
           <li>AGPL-lizenziert, Quelltext derzeit auf Anfrage</li>
-          <li>Auf Ihrem Server, Ihrer Cloud</li>
-          <li>Sie wählen das Sprachmodell</li>
+          <li>Auf deinem Server, deiner Cloud</li>
+          <li>Du wählst das Sprachmodell</li>
           <li>Kein Vertrag, kein Support</li>
         </ul>
         <p class="price">0&nbsp;€</p>
-        <p class="note">Ihre Infrastruktur, Ihre Regeln.</p>
+        <p class="note">Deine Infrastruktur, deine Regeln.</p>
       </div>
       <div class="plan card highlight">
         <span class="who">Professional</span>
@@ -1083,28 +1140,28 @@
         <ul>
           <li>Einrichtung, Betrieb und Updates</li>
           <li>Modellkosten enthalten &ndash; bei fairer Nutzung</li>
-          <li>Ihr Logo, Ihre Farbe, Ihr Ton</li>
+          <li>Dein Logo, deine Farbe, dein Ton</li>
           <li>Das Sprachmodell w&auml;hlen wir nach Qualit&auml;t und Preis &ndash; Verarbeitung kann Anbieter au&szlig;erhalb der EU einschlie&szlig;en, Auftragsverarbeitungsvertrag inklusive</li>
         </ul>
         <p class="price">249&nbsp;€ <span>im Monat zzgl. USt.</span></p>
-        <p class="note"><strong>Monatlich kündbar, keine Mindestlaufzeit.</strong> Die Einrichtung machen Sie im Gespräch mit dem Assistenten selbst &ndash; oder wir für einmalig 1.500&nbsp;€. Für Betriebe, Praxen und Vereine.</p>
+        <p class="note"><strong>Monatlich kündbar, keine Mindestlaufzeit.</strong> Die Einrichtung machst du im Gespräch mit dem Assistenten selbst &ndash; oder wir für einmalig 1.500&nbsp;€. Für Betriebe, Praxen und Vereine.</p>
       </div>
       <div class="plan card">
         <span class="who">Enterprise</span>
         <h3>Mit Zusagen</h3>
         <ul>
-          <li>Verarbeitung in der EU &ndash; oder Ihr eigener Modellschlüssel</li>
-          <li>Betrieb auf Ihrer Infrastruktur möglich</li>
+          <li>Verarbeitung in der EU &ndash; oder dein eigener Modellschlüssel</li>
+          <li>Betrieb auf deiner Infrastruktur möglich</li>
           <li>Auftragsverarbeitung, Löschkonzept, Verfügbarkeitszusage</li>
-          <li>Anbindung Ihrer Fachsysteme (Stufe 3)</li>
+          <li>Anbindung deiner Fachsysteme (Stufe 3)</li>
         </ul>
         <p class="price">ab 890&nbsp;€ <span>im Monat zzgl. USt.</span></p>
-        <p class="note">Einrichtung ab 4.500&nbsp;€, gestaffelt nach Umfang. Für Kommunen und alles mit Nachweispflicht &ndash; hier verkaufen wir Zusagen, nicht Funktionen. Der Einstieg ist ein <strong>Pilot</strong>: befristet, ohne Rechnung, mit Enddatum und einer vorher erhobenen Zahl, an der sich hinterher messen lässt, ob es gewirkt hat. <a href="unterlagen.html">Unterlagen für Ihre Vorlage</a> &ndash; Preisblatt, AVV-Muster, Datenschutz, Barrierefreiheit.</p>
+        <p class="note">Einrichtung ab 4.500&nbsp;€, gestaffelt nach Umfang. Für Kommunen und alles mit Nachweispflicht &ndash; hier verkaufen wir Zusagen, nicht Funktionen. Der Einstieg ist ein <strong>Pilot</strong>: befristet, ohne Rechnung, mit Enddatum und einer vorher erhobenen Zahl, an der sich hinterher messen lässt, ob es gewirkt hat. <a href="unterlagen.html">Unterlagen für deine Vorlage</a> &ndash; Preisblatt, AVV-Muster, Datenschutz, Barrierefreiheit.</p>
       </div>
     </div>
-    <p class="measure muted" style="margin-top: 1.5rem;">Barrierefreiheit ist keine Tarifstufe: Der Chat ist in allen Varianten nach WCAG&nbsp;2.1&nbsp;AA gebaut und vom Anbieter selbst geprüft &ndash; Tastatur, Kontrast, Bildschirmleser; Stand 31.08.2026, ein externes Prüfsiegel gibt es noch nicht. Im Enterprise-Pilot beauftragen und bezahlen wir die externe Prüfung nach BITV; den Prüfbericht bekommen Sie für Ihre eigene Erklärung. Die <a href="unterlagen.html#barrierefreiheit">Erklärung zur Barrierefreiheit</a> steht bei den Unterlagen.</p>
-    <p class="measure muted" style="margin-top: 0.75rem;">Zur Einordnung: Ein Anruf oder eine E-Mail kostet 5 bis 10 Minuten Personalzeit, bei 35 bis 50&nbsp;€ Vollkosten je Stunde also 3&ndash;8&nbsp;€. Professional trägt sich ab etwa 40 ersparten Anrufen im Monat, Enterprise für eine Stadt mit rund 30 Leistungen ab etwa 200 &ndash; das sind zehn am Arbeitstag, weniger als ein Bürgerbüro vor dem Mittag hat. Wie viele Gespräche der Assistent übernimmt, sehen Sie jederzeit selbst im Cockpit. Es entfällt dabei keine Stelle: Er nimmt die Anrufe ab, die heute in der Warteschleife oder abends um zehn unbeantwortet bleiben.</p>
-    <p class="measure muted" style="margin-top: 0.75rem;">Was verarbeitet wird, steht bei uns nicht im Kleingedruckten: Gesprächsinhalte werden nicht gespeichert, IP-Adressen nicht protokolliert, und die Konfiguration Ihrer Organisation ist eine Handvoll lesbarer Textdateien, die Sie jederzeit mitnehmen können. Der Zugang selbst spricht einen offenen Standard (MCP, die Schnittstelle, über die KI-Programme Werkzeuge benutzen) &ndash; Ihr Assistent funktioniert damit auch in Claude, ChatGPT und anderen KI-Programmen, nicht nur in unserem Chat. Es gibt keinen Einschluss: Wer geht, nimmt alles mit.</p>
+    <p class="measure muted" style="margin-top: 1.5rem;">Barrierefreiheit ist keine Tarifstufe: Der Chat ist in allen Varianten nach WCAG&nbsp;2.1&nbsp;AA gebaut und vom Anbieter selbst geprüft &ndash; Tastatur, Kontrast, Bildschirmleser; Stand 31.08.2026, ein externes Prüfsiegel gibt es noch nicht. Im Enterprise-Pilot beauftragen und bezahlen wir die externe Prüfung nach BITV; den Prüfbericht bekommst du für deine eigene Erklärung. Die <a href="unterlagen.html#barrierefreiheit">Erklärung zur Barrierefreiheit</a> steht bei den Unterlagen.</p>
+    <p class="measure muted" style="margin-top: 0.75rem;">Zur Einordnung: Ein Anruf oder eine E-Mail kostet 5 bis 10 Minuten Personalzeit, bei 35 bis 50&nbsp;€ Vollkosten je Stunde also 3&ndash;8&nbsp;€. Professional trägt sich ab etwa 40 ersparten Anrufen im Monat, Enterprise für eine Stadt mit rund 30 Leistungen ab etwa 200 &ndash; das sind zehn am Arbeitstag, weniger als ein Bürgerbüro vor dem Mittag hat. Wie viele Gespräche der Assistent übernimmt, siehst du jederzeit selbst im Cockpit. Es entfällt dabei keine Stelle: Er nimmt die Anrufe ab, die heute in der Warteschleife oder abends um zehn unbeantwortet bleiben.</p>
+    <p class="measure muted" style="margin-top: 0.75rem;">Was verarbeitet wird, steht bei uns nicht im Kleingedruckten: Gesprächsinhalte werden nicht gespeichert, IP-Adressen nicht protokolliert, und die Konfiguration deiner Organisation ist eine Handvoll lesbarer Textdateien, die du jederzeit mitnehmen kannst. Der Zugang selbst spricht einen offenen Standard (MCP, die Schnittstelle, über die KI-Programme Werkzeuge benutzen) &ndash; dein Assistent funktioniert damit auch in Claude, ChatGPT und anderen KI-Programmen, nicht nur in unserem Chat. Es gibt keinen Einschluss: Wer geht, nimmt alles mit.</p>
   </div>
 </section>
 
@@ -1118,7 +1175,7 @@
       <img class="founder-photo" src="stephan.jpg" alt="Stephan Tomforde" width="76" height="76" loading="lazy">
       <div class="founder-body">
         <p>Hinter ChatBieger stecke ich &ndash; Stephan. Ich habe zu oft erlebt, wie Digitalisierung an ihrer eigenen Größe scheitert: Das perfekte System ist geplant, geschult und migriert &ndash; und bis dahin läuft alles weiter per Zuruf und Zettel. ChatBieger ist mein Versuch, es andersherum zu machen: klein anfangen, mit einem einzigen Prozess, beschrieben in normalen Worten.</p>
-        <p>Was Sie in den Demos sehen, ist mit echten, öffentlich zugänglichen Informationen aufgebaut &ndash; keine erfundenen Beispielfirmen. Wenn Sie einen Prozess im Kopf haben, bei dem Sie sich fragen, ob das geht: <a href="kontakt.html">Schreiben Sie mir</a>. Ich antworte persönlich.</p>
+        <p>Was du in den Demos siehst, ist mit echten, öffentlich zugänglichen Informationen aufgebaut &ndash; keine erfundenen Beispielfirmen. Wenn du einen Prozess im Kopf hast, bei dem du dich fragst, ob das geht: <a href="kontakt.html">Schreib mir</a>. Ich antworte persönlich.</p>
         <p>Und weil das die erste Frage ist, die eine Kommune stellt: <a href="unterlagen.html#betrieb">Was passiert, wenn ich ausfalle</a> &ndash; steht bei den Unterlagen, nicht im Kleingedruckten.</p>
         <p class="signature">Stephan Tomforde</p>
       </div>
@@ -1129,14 +1186,14 @@
 <footer>
   <div class="wrap">
     <div class="footer-card">
-      <h2>Fangen Sie mit Ihrer Website an.</h2>
-      <p>Sie stellen einen Mitarbeiter ein, der rund um die Uhr erreichbar ist. ChatBieger ist der Vorarbeiter: Er liest Ihre Website, schlägt vor, was der Neue können soll, und bringt es ihm bei &ndash; entschieden wird von Ihnen.</p>
-      <p>Eine Adresse genügt: Name, Logo und Hausfarbe holen wir von Ihrer Startseite, Sie bestätigen &ndash; und beschreiben dann im Gespräch, was Sie ohnehin jeden Tag erklären. Kein Konto vorab, kein Passwort.</p>
+      <h2>Fang mit deiner Website an.</h2>
+      <p>Du stellst einen Mitarbeiter ein, der rund um die Uhr erreichbar ist. ChatBieger ist der Vorarbeiter: Er liest deine Website, schlägt vor, was der Neue können soll, und bringt es ihm bei &ndash; entschieden wird von dir.</p>
+      <p>Eine Adresse genügt: Name, Logo und Hausfarbe holen wir von deiner Startseite, du bestätigst &ndash; und beschreibst dann im Gespräch, was du ohnehin jeden Tag erklärst. Kein Konto vorab, kein Passwort.</p>
       <div class="cta-row">
         <a class="btn inverted" href="#einstieg">Adresse eintragen</a>
         <a class="btn ghost" href="https://chat.demo.chatbieger.com/">Oder erst die Demo ansehen</a>
       </div>
-      <p class="cta-note">Ihre Organisation taucht nirgends öffentlich auf &middot; Für dienstliche Daten einer Behörde braucht es einen Vertrag</p>
+      <p class="cta-note">Deine Organisation taucht nirgends öffentlich auf &middot; Für dienstliche Daten einer Behörde braucht es einen Vertrag</p>
     </div>
     <p class="fineprint">ChatBieger ist seit August 2026 in Betrieb und wird laufend weiterentwickelt. Die Demos zeigen den tatsächlichen Stand mit echten, öffentlich zugänglichen Informationen &ndash; Antworten können trotzdem falsch sein.</p>
     <nav class="legal-nav">
@@ -1177,6 +1234,93 @@
   } else if (chat) {
     chat.classList.add('laeuft');
   }
+
+  // ---------- Der Weg in den Chat ----------
+  // Abgeschickt wird nicht sofort: Erst weicht die Seite, das Fenster wächst
+  // um die Pille, und ChatBieger fängt an zu tippen. In dieser Ruhe wechselt
+  // der Server — deshalb ist der Wechsel nicht zu sehen. Wer Bewegung
+  // abbestellt hat, geht den geraden Weg.
+  (function () {
+    var form = document.getElementById('einstieg-form');
+    var feld = document.getElementById('start-url');
+    var lauf = document.getElementById('chatlauf');
+    var stand = document.getElementById('chatstand');
+    if (!form || !feld || !lauf) return;
+    var knopf = form.querySelector('button[type="submit"]');
+    var pille = form.querySelector('.feld');
+    var laeuft = false;
+
+    function morph() {
+      var oben = function () { return pille.getBoundingClientRect().top; };
+      var vorher = oben();
+      var pilleHoch = pille.getBoundingClientRect().height;
+      var startHoehe = form.getBoundingClientRect().height;
+      var leiste = document.querySelector('.topbar').getBoundingClientRect().bottom;
+      // Die Pille darf ein Stück nachgeben, damit der Chat Luft bekommt —
+      // springen darf sie nicht.
+      var gibtNach = 200;
+      var passt = vorher + pilleHoch + 12 - (leiste + 20);
+      var deckel = Math.min(760, Math.round(window.innerHeight - leiste - 48));
+      var hoehe = Math.max(420, Math.min(deckel, passt + gibtNach));
+
+      form.style.transition = 'none';
+      document.documentElement.dataset.modus = 'chat';
+      form.style.marginBottom = '0px';
+      form.style.height = hoehe + 'px';
+      void form.offsetHeight;
+      // Der Einstieg ist mittig: ein Rand unten schiebt das Fenster um die
+      // Hälfte nach oben, dorthin, wo die Überschrift stand.
+      var rand = Math.max(0, 2 * (oben() - vorher - gibtNach));
+      form.style.marginBottom = rand + 'px';
+      void form.offsetHeight;
+      var zuHoch = (leiste + 16) - form.getBoundingClientRect().top;
+      if (zuHoch > 0) {
+        rand = Math.max(0, rand - 2 * zuHoch);
+        form.style.marginBottom = rand + 'px';
+        void form.offsetHeight;
+      }
+      form.style.height = startHoehe + 'px';
+      void form.offsetHeight;
+      form.style.transform = 'translateY(' + (vorher - oben()) + 'px)';
+      void form.offsetHeight;
+      form.style.transition = '';
+      form.style.height = hoehe + 'px';
+      form.style.transform = '';
+
+      // Die Leiste bleibt stehen und sieht aus wie immer — sie nimmt nur
+      // nichts mehr an, bis der Server übernommen hat.
+      feld.value = '';
+      feld.readOnly = true;
+      feld.placeholder = 'Antworten \u2026';
+      feld.setAttribute('aria-label', 'Nachricht an ChatBieger');
+      knopf.textContent = 'Senden';
+      knopf.setAttribute('aria-disabled', 'true');
+      if (stand) stand.textContent = 'Einen Moment \u2013 ChatBieger \u00fcbernimmt.';
+      window.setTimeout(function () {
+        lauf.innerHTML = '<div class="chatzeile">' +
+          '<img class="chatgesicht" src="chatbieger-logo.png" alt="" width="22" height="22">' +
+          '<span class="chatpunkte"><i></i><i></i><i></i></span></div>';
+      }, 700);
+    }
+
+    form.addEventListener('submit', function (ereignis) {
+      if (laeuft) { ereignis.preventDefault(); return; }
+      if (!form.checkValidity()) return;              // der Browser meldet es selbst
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      ereignis.preventDefault();
+      laeuft = true;
+      var ziel = form.action + '?start=' + encodeURIComponent(feld.value.trim());
+      // Das Dokument liegt im Cache, bevor wir hingehen — die Sekunde der
+      // Bewegung ist die Ladezeit.
+      var vor = document.createElement('link');
+      vor.rel = 'prefetch';
+      vor.as = 'document';
+      vor.href = ziel;
+      document.head.appendChild(vor);
+      morph();
+      window.setTimeout(function () { window.location.assign(ziel); }, 2000);
+    });
+  })();
 
   document.querySelectorAll('a[href="#einstieg"]').forEach(function (link) {
     link.addEventListener('click', function () {
