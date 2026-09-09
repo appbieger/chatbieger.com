@@ -18,6 +18,32 @@
     var knopf = form.querySelector('button[type="submit"]');
     if (!feld || !knopf) return;
     var laeuft = false;
+    // Wie die Leiste aussah, bevor sie zur Antwortzeile wurde — der Rückweg
+    // braucht sie wieder so.
+    var vorherPlatzhalter = feld.getAttribute("placeholder");
+    var uhr = null;
+    var punkte = null;
+
+    // Wer zurückkommt, kommt aus dem Cache des Browsers zurück — in genau den
+    // Zustand, in dem er gegangen ist: drei Punkte, die nie zu Ende tippen,
+    // und eine Zeile, die nichts mehr annimmt. Also steht die Seite beim
+    // Zurückkommen wieder da, wie sie beim ersten Mal stand.
+    function zurueck() {
+      if (uhr) { window.clearTimeout(uhr); uhr = null; }
+      if (punkte) { window.clearTimeout(punkte); punkte = null; }
+      laeuft = false;
+      var lauf = form.parentNode.querySelector(".uebergabe-lauf");
+      if (lauf) lauf.remove();
+      var stand = form.querySelector(".uebergabe-stand");
+      if (stand) stand.textContent = "";
+      feld.readOnly = false;
+      feld.value = "";
+      if (vorherPlatzhalter !== null) feld.setAttribute("placeholder", vorherPlatzhalter);
+      knopf.removeAttribute("aria-disabled");
+    }
+    window.addEventListener("pageshow", function (ereignis) {
+      if (ereignis.persisted || laeuft) zurueck();
+    });
 
     form.addEventListener("submit", function (ereignis) {
       if (laeuft) { ereignis.preventDefault(); return; }
@@ -60,7 +86,7 @@
       feld.placeholder = "Antworten …";
       knopf.setAttribute("aria-disabled", "true");
 
-      window.setTimeout(function () {
+      punkte = window.setTimeout(function () {
         var seins = document.createElement("div");
         seins.className = "uebergabe-zeile seins";
         seins.innerHTML =
@@ -69,7 +95,7 @@
         lauf.appendChild(seins);
       }, 500);
 
-      window.setTimeout(function () { window.location.assign(ziel); }, 1900);
+      uhr = window.setTimeout(function () { window.location.assign(ziel); }, 1900);
     });
   });
 })();

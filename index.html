@@ -1262,6 +1262,11 @@
     var knopf = form.querySelector('button[type="submit"]');
     var pille = form.querySelector('.feld');
     var laeuft = false;
+    // Wie die Leiste aussah, bevor sie zur Antwortzeile wurde — der Rückweg
+    // braucht sie wieder so.
+    var vorherPlatzhalter = feld.getAttribute('placeholder');
+    var vorherKnopf = knopf ? knopf.textContent : '';
+    var uhr = null;
 
     function morph() {
       var oben = function () { return pille.getBoundingClientRect().top; };
@@ -1316,6 +1321,32 @@
       }, 700);
     }
 
+    // Wer zurückkommt, kommt aus dem Cache des Browsers zurück — in genau den
+    // Zustand, in dem er gegangen ist: drei Punkte, die nie zu Ende tippen,
+    // und eine Zeile, die nichts mehr annimmt. Also steht die Seite beim
+    // Zurückkommen wieder da, wie sie beim ersten Mal stand.
+    function zurueck() {
+      if (uhr) { window.clearTimeout(uhr); uhr = null; }
+      laeuft = false;
+      delete document.documentElement.dataset.modus;
+      form.style.transition = 'none';
+      form.style.height = '';
+      form.style.transform = '';
+      form.style.marginBottom = '';
+      void form.offsetHeight;
+      form.style.transition = '';
+      lauf.innerHTML = '';
+      if (stand) stand.textContent = '';
+      feld.readOnly = false;
+      feld.value = '';
+      feld.setAttribute('placeholder', vorherPlatzhalter);
+      feld.removeAttribute('aria-label');
+      if (knopf) { knopf.textContent = vorherKnopf; knopf.removeAttribute('aria-disabled'); }
+    }
+    window.addEventListener('pageshow', function (ereignis) {
+      if (ereignis.persisted || laeuft) zurueck();
+    });
+
     form.addEventListener('submit', function (ereignis) {
       if (laeuft) { ereignis.preventDefault(); return; }
       if (!form.checkValidity()) return;              // der Browser meldet es selbst
@@ -1331,7 +1362,7 @@
       vor.href = ziel;
       document.head.appendChild(vor);
       morph();
-      window.setTimeout(function () { window.location.assign(ziel); }, 2000);
+      uhr = window.setTimeout(function () { window.location.assign(ziel); }, 2000);
     });
   })();
 
