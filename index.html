@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Vor dem Stylesheet: sonst malt der Browser die Leinwand weiß, und der
+       Sprung in die App blitzt einmal hell auf. -->
+  <meta name="color-scheme" content="light dark">
   <title>ChatBieger – Dein Unternehmen ansprechbar mit KI</title>
   <meta name="description" content="Deine Website macht dich auffindbar. Mit ChatBieger werden deine Leistungen ansprechbar – für Menschen und für KI: im Chat auf deiner Website, für andere KIs, für deine eigenen Leute. Er sagt nur, was bei dir steht, und dazu, woher er es hat.">
   <link rel="icon" type="image/png" href="favicon.png">
@@ -12,6 +15,9 @@
   <meta property="og:url" content="https://chatbieger.com/">
   <style>
     :root {
+
+      /* Der Browser darf dunkel malen, bevor er diese Regeln kennt. */
+      color-scheme: light dark;
       --ground: #f5f5f7;
       --surface: #ffffff;
       --surface-soft: #fbfbfd;

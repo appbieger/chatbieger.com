@@ -2,6 +2,10 @@
    Tokens identisch mit index.html — bei Änderungen beide Stellen pflegen. */
 
 :root {
+  /* Der Browser darf dunkel malen, bevor er diese Regeln kennt — sonst ist
+     die Leinwand weiß und der Wechsel blitzt. */
+  color-scheme: light dark;
+
   --ground: #f5f5f7;
   --surface: #ffffff;
   --surface-soft: #fbfbfd;
