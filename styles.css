@@ -18,7 +18,7 @@
      wären 2,7:1. */
   --accent-solid: #0066cc;
   --accent-hover: #0055aa;
-  --line: rgba(0, 0, 0, 0.07);
+  --line: rgba(0, 0, 0, 0.12);
   --bubble: #f2f2f7;
   --ring: inset 0 0 0 1px rgba(0, 0, 0, 0.09);
   --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
@@ -38,7 +38,7 @@
     --accent: #4d9fff;
     --accent-solid: #0a63c9;
     --accent-hover: #0d6fd9;
-    --line: rgba(255, 255, 255, 0.14);
+    --line: rgba(255, 255, 255, 0.16);
     --bubble: #2c2c2e;
     --ring: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
     --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
@@ -60,30 +60,48 @@ body {
 
 .wrap { max-width: 46rem; margin: 0 auto; padding: 0 1.5rem; }
 
-/* Die Produktleiste: dieselbe erste Zeile wie auf index.html, den Demo-Seiten
-   und in der Einrichtung — bei Änderungen alle Stellen pflegen. */
-.topbar { padding: 0.9rem 0; border-bottom: 1px solid var(--line); }
-.topbar .wrap { display: flex; align-items: center; gap: 1.3rem; }
+/* Die Produktleiste: dieselbe erste Zeile wie auf index.html, in der
+   Demo-Übersicht, im Schnellstart und im Cockpit — damit ein Besucher über
+   jeden Wechsel hinweg sieht, dass er im selben Produkt ist.
+   **Die Maße stehen im Produkt, in `web/base.css` (--bar-*), und hier als
+   Kopie**; die Landing liegt in einem eigenen Repo und kann sie nicht laden.
+   Wer sie ändert, ändert beide Stellen. Gemessen am 09.09.2026 waren es vier
+   verschiedene Leisten: 40, 50, 66 und 69 px hoch. */
+.topbar { border-bottom: 1px solid var(--line); }
+.topbar .wrap {
+  box-sizing: border-box; min-height: 3.5rem;
+  /* Randlos wie im Produkt: Die Wortmarke soll beim Wechsel nicht wandern.
+     Der Inhalt unter der Leiste bleibt Lesespalte. */
+  max-width: none; padding: 0 1.25rem;
+  display: flex; align-items: center; gap: 1.1rem;
+}
 .topbar .marke {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.5rem;
   color: var(--ink);
   text-decoration: none;
   font-weight: 600;
-  font-size: 1.05rem;
-  letter-spacing: -0.01em;
+  font-size: 0.9375rem;
 }
-.topbar img { width: 26px; height: 26px; display: block; }
-.topbar nav { margin-left: auto; display: flex; align-items: center; gap: 1.3rem; }
-.topbar nav a { color: var(--ink-soft); text-decoration: none; font-size: 0.95rem; }
+.topbar img { width: 22px; height: 22px; border-radius: 6px; display: block; }
+.topbar nav { margin-left: auto; display: flex; align-items: center; gap: 1.1rem; }
+.topbar nav a { color: var(--ink-soft); text-decoration: none; font-size: 0.9375rem; white-space: nowrap; }
+/* 44 px Klickfläche, ohne dass die Leiste wächst — das Polster liegt in ihren
+   56 px. Dieselbe Regel steht im Produkt in `web/base.css`. */
+.topbar nav a, .topbar .marke, .topbar .topbar-demo { padding-block: 0.6rem; }
+
+/* Der Fokusring gehört zu dem, was das Fundament für alle Oberflächen
+   festlegt (`web/base.css`) — die Kopie hatte ihn ausgelassen, und ein
+   Tastaturnutzer sah beim Wechsel einen anderen Ring. */
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
 .topbar nav a:hover { color: var(--ink); }
 .topbar nav a[aria-current="page"] { color: var(--ink); font-weight: 600; }
 .topbar .topbar-demo {
   display: inline-flex;
   align-items: center;
   border-radius: 999px;
-  padding: 0.45rem 1.15rem;
+  padding: 0.6rem 1.15rem;
   background: var(--accent-solid);
   color: #fff;
 }

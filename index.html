@@ -32,7 +32,7 @@
       --accent-tint: rgba(0, 102, 204, 0.07);
       --warn: #c9251c;
       --warn-tint: #fff5f5;
-      --line: rgba(0, 0, 0, 0.07);
+      --line: rgba(0, 0, 0, 0.12);
       --bubble: #f2f2f7;
       --ring: inset 0 0 0 1px rgba(0, 0, 0, 0.09);
       --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
@@ -58,7 +58,7 @@
         --accent-tint: rgba(77, 159, 255, 0.12);
         --warn: #ff6b6b;
         --warn-tint: #3a1416;
-        --line: rgba(255, 255, 255, 0.14);
+        --line: rgba(255, 255, 255, 0.16);
         --bubble: #2c2c2e;
         --ring: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
         --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
@@ -104,17 +104,28 @@
     .muted { color: var(--ink-soft); }
 
     /* ---------- Top bar ----------
-       Die Produktleiste: dieselbe erste Zeile wie auf den Demo-Seiten und in
-       der Einrichtung — Landing und Produkt sollen sich wie eins anfühlen. */
-    .topbar { padding: 0.8rem 0; border-bottom: 1px solid var(--line); }
-    .topbar .wrap { display: flex; align-items: center; gap: 1.3rem; }
+       Die Produktleiste: dieselbe erste Zeile wie auf den Demo-Seiten, im
+       Schnellstart und im Cockpit — Landing und Produkt sollen sich wie eins
+       anfühlen. **Die Maße stehen im Produkt, in `web/base.css` (--bar-*), und
+       hier als Kopie**; wer sie ändert, ändert beide Stellen. */
+    .topbar { border-bottom: 1px solid var(--line); }
+    .topbar .wrap {
+      box-sizing: border-box; min-height: 3.5rem;
+      /* Randlos wie im Produkt: Die Wortmarke soll beim Wechsel nicht wandern.
+         Der Inhalt unter der Leiste bleibt Lesespalte. */
+      max-width: none; padding: 0 1.25rem;
+      display: flex; align-items: center; gap: 1.1rem;
+    }
     .topbar .marke { display: flex; align-items: center; gap: 0.5rem; color: var(--ink); text-decoration: none; }
     .topbar img { width: 22px; height: 22px; border-radius: 6px; display: block; }
     .topbar .marke span { font-weight: 600; font-size: 0.9375rem; }
     .topbar nav { margin-left: auto; display: flex; align-items: center; gap: 1.1rem; }
-    .topbar nav a { color: var(--ink-soft); text-decoration: none; font-size: 0.9375rem; }
+    .topbar nav a { color: var(--ink-soft); text-decoration: none; font-size: 0.9375rem; white-space: nowrap; }
     .topbar nav a:hover { color: var(--ink); }
-    .topbar .topbar-demo { padding: 0.45rem 1.15rem; color: #fff; }
+    /* 44 px Klickfläche, ohne dass die Leiste wächst — das Polster liegt in
+       ihren 56 px. Dieselbe Regel steht im Produkt in `web/base.css`. */
+    .topbar nav a, .topbar .marke { padding-block: 0.6rem; }
+    .topbar .topbar-demo { padding: 0.6rem 1.15rem; color: #fff; }
     .topbar .topbar-demo:hover { color: #fff; }
     /* Am Telefon bleiben drei Wege stehen: Preis (Lauf 10, beide Betriebe),
        Unterlagen (Lauf 13, die Kommune liest im Zug) und „Für wen" — ein Wort
@@ -127,6 +138,14 @@
          bleibt er der Name des Links, und das Zeichen bekommt seine 44 px. */
       .topbar .marke span { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
       .topbar .marke { padding: 0.7rem; margin: -0.7rem; }
+      /* Enger als 25rem passt der dritte Link nicht mehr, ohne dass die Leiste
+         überläuft (gemessen: 64 px bei 320 px Fenster). Dann geht „Für wen" —
+         der einzige der drei, der auf eine Stelle DIESER Seite zeigt und
+         deshalb auch durch Blättern erreichbar bleibt. Wachsen darf die
+         Leiste nicht: Ihre Höhe ist das, woran man das Produkt wiedererkennt. */
+      @media (max-width: 25rem) {
+        .topbar nav a[href="#wen"] { display: none; }
+      }
     }
 
     /* ---------- Erster Bildschirm: ein Zeichen, ein Satz, ein Feld ----------
@@ -849,6 +868,11 @@
     @media (prefers-reduced-motion: reduce) {
       .weicht, .einstieg-form, .chatkopf, .feld, .feld input, .feld button { transition: none; }
     }
+
+    /* Der Fokusring gehört zu dem, was das Fundament für alle Oberflächen
+       festlegt (`web/base.css`) — die Kopie hatte ihn ausgelassen, und ein
+       Tastaturnutzer sah beim Wechsel einen anderen Ring. */
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
   </style>
 </head>
 <body>
