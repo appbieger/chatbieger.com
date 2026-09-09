@@ -7,6 +7,7 @@
   <meta name="description" content="Ein Assistent auf deiner Website, der Mängelmeldungen mit Adresse und Rückrufnummer aufnimmt, Bescheinigungen anfragt und Fragen zur Abrechnung ans Büro gibt – aus deinen eigenen Texten, ohne Zusagen, die du nicht halten kannst.">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="uebergabe.css">
   <style>
     .lead { font-size: 1.15rem; color: var(--ink-soft); margin-bottom: 2rem; max-width: 40rem; }
     .cases { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 0 0 1.5rem; }
@@ -131,7 +132,7 @@ Aufgenommen über den Assistenten am 03.09.2026, 21:14 Uhr.</pre>
     <h2>Was mit den Angaben der Mieter passiert</h2>
     <p>Ein Gespräch wird nicht gespeichert. Was der Assistent aufnimmt, verlässt ihn als E-Mail an dein Büro &ndash; und erst, wenn die Person auf „Absenden“ geklickt hat. Bei dir liegen danach dieselben Daten wie heute nach einem Anruf, nur vollständig. Das Sprachmodell wählen wir nach Qualität und Preis; die Verarbeitung kann Anbieter außerhalb der EU einschließen, der Auftragsverarbeitungsvertrag ist Teil der Bedingungen, denen du zustimmst, wenn du den Assistenten behältst. <a href="unterlagen.html#datenschutzerklaerung">Alle Einzelheiten stehen bei den Unterlagen.</a></p>
 
-    <form class="start" action="https://chat.demo.chatbieger.com/admin/" method="get">
+    <form class="start" data-uebergabe action="https://chat.demo.chatbieger.com/admin/" method="get">
       <p class="start-cost">Ausprobieren kostet nichts. Die Einrichtung machst du im Gespräch selbst &ndash; wer sie lieber abgibt, bekommt sie von uns.</p>
       <div class="start-row">
         <label class="sr-only" for="start-url">Adresse deiner Website</label>
@@ -157,5 +158,6 @@ Aufgenommen über den Assistenten am 03.09.2026, 21:14 Uhr.</pre>
   </div>
 </footer>
 
+<script src="uebergabe.js" defer></script>
 </body>
 </html>
