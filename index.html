@@ -779,6 +779,32 @@
     }
     .chatkopf-innen b { font-weight: 600; font-size: 0.875rem; }
 
+    /* Die Leiste geht mit. Drüben trägt die Bühne dieselbe Marke, nur schmaler,
+       am linken Rand und ohne Wege — bleibt sie hier stehen, wie sie ist,
+       verrät sie den Wechsel deutlicher als alles andere (0045). Gemessen an
+       der Bühne: 47 px hoch statt 66, Zeichen 24 px statt 22 und bei x=20
+       statt x=109. Das Wandern nach links macht das Skript, weil der Weg von
+       der Fensterbreite abhängt. */
+    .topbar { transition: padding 0.6s var(--bogen); }
+    .topbar .marke { transition: transform 0.6s var(--bogen); }
+    .topbar img { transition: width 0.5s var(--bogen), height 0.5s var(--bogen); }
+    .topbar nav { transition: opacity 0.3s ease; }
+    [data-modus="chat"] .topbar { padding: 0.7rem 0; }
+    [data-modus="chat"] .topbar .wrap { max-width: none; padding: 0 1.25rem; position: relative; }
+    [data-modus="chat"] .topbar img { width: 24px; height: 24px; }
+    /* Aus dem Fluss, nicht nur durchsichtig: Der Knopf „Anmelden" ist 40 px
+       hoch und hielte die Leiste sonst auf 63 px statt der 47, die drüben
+       stehen. Die Höhe selbst führt das Skript, wie beim Fenster. */
+    [data-modus="chat"] .topbar nav {
+      position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%);
+      opacity: 0; pointer-events: none;
+    }
+    /* Am Telefon steht die Bühne enger: 43 px hoch, das Zeichen bei x=14. */
+    @media (max-width: 30rem) {
+      [data-modus="chat"] .topbar { padding: 0.6rem 0; }
+      [data-modus="chat"] .topbar .wrap { padding: 0 0.875rem; }
+    }
+
     .chatlauf { height: 0; overflow: hidden; }
     [data-modus="chat"] .chatlauf {
       flex: 1; height: auto; min-height: 0; overflow-y: auto;
@@ -1276,7 +1302,40 @@
       var oben = function () { return pille.getBoundingClientRect().top; };
       var vorher = oben();
       var startHoehe = form.getBoundingClientRect().height;
-      var leiste = document.querySelector('.topbar').getBoundingClientRect().bottom;
+      var balken = document.querySelector('.topbar');
+      var marke = balken.querySelector('.marke');
+      var markeVor = marke ? marke.getBoundingClientRect() : null;
+      var balkenVor = balken.getBoundingClientRect().height;
+
+      // Beide Zustände ohne Übergang einnehmen, damit das Ziel gemessen wird
+      // und nicht ein Zwischenstand: Ohne das läge die Leiste 4 px zu hoch,
+      // weil der Innenabstand noch unterwegs wäre.
+      form.style.transition = 'none';
+      balken.style.transition = 'none';
+      if (marke) marke.style.transition = 'none';
+      document.documentElement.dataset.modus = 'chat';
+
+      // Erst jetzt messen: Die Leiste ist im Chat-Zustand niedriger, und die
+      // Mitte darunter ist es, an der sich alles Weitere ausrichtet.
+      var balkenNach = balken.getBoundingClientRect().height;
+      var leiste = balken.getBoundingClientRect().bottom;
+      // Leiste und Marke stehen im Ziel schon dort, wo sie hingehören — also
+      // zurückstellen, wo sie waren, und von dort aus laufen lassen. Dasselbe
+      // Verfahren wie beim Fenster darunter.
+      balken.style.height = balkenVor + 'px';
+      if (marke) {
+        var jetzt = marke.getBoundingClientRect();
+        marke.style.transform = 'translate(' + (markeVor.left - jetzt.left) + 'px, ' +
+          (markeVor.top - jetzt.top) + 'px)';
+      }
+      void balken.offsetHeight;
+      balken.style.transition = 'height 0.6s var(--bogen), padding 0.6s var(--bogen)';
+      balken.style.height = balkenNach + 'px';
+      if (marke) {
+        marke.style.transition = '';
+        marke.style.transform = '';
+      }
+
       // Das Fenster geht auf das Untermaß der Ankunft auf (14rem): Kopf, eine
       // Zeile, Antwortleiste. Drüben wächst es sofort weiter, sobald die
       // Begrüßung steht — hier bleibt es dabei, weil hier nur getippt wird.
@@ -1285,8 +1344,6 @@
       var deckel = Math.min(760, Math.round(window.innerHeight - leiste - 48));
       var hoehe = Math.min(deckel, 14 * 16);
 
-      form.style.transition = 'none';
-      document.documentElement.dataset.modus = 'chat';
       form.style.marginBottom = '0px';
       form.style.height = hoehe + 'px';
       void form.offsetHeight;
@@ -1338,6 +1395,11 @@
       if (punkte) { window.clearTimeout(punkte); punkte = null; }
       laeuft = false;
       delete document.documentElement.dataset.modus;
+      var balken = document.querySelector('.topbar');
+      var marke = balken.querySelector('.marke');
+      balken.style.transition = '';
+      balken.style.height = '';
+      if (marke) { marke.style.transition = ''; marke.style.transform = ''; }
       form.style.transition = 'none';
       form.style.height = '';
       form.style.transform = '';
