@@ -135,7 +135,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 2.5rem 1.25rem 1.5rem;
+      /* Seitlich 1.5rem wie die Startansicht drüben — mit 1.25rem lägen die
+         Kanten des Fensters am Telefon 4 px neben denen der Ankunft. */
+      padding: 2.5rem 1.5rem 1.5rem;
       text-align: center;
     }
     .einstieg-mitte { margin: auto 0; width: 100%; display: flex; flex-direction: column; align-items: center; }
@@ -782,7 +784,7 @@
     .chatlauf { height: 0; overflow: hidden; }
     [data-modus="chat"] .chatlauf {
       flex: 1; height: auto; min-height: 0; overflow-y: auto;
-      display: flex; flex-direction: column; justify-content: flex-end;
+      display: flex; flex-direction: column;
       gap: 0.5rem; padding: 1rem; text-align: left; font-size: 0.9375rem; line-height: 1.55;
     }
     .chatzeile { display: flex; gap: 0.5rem; align-items: flex-end; animation: msg-in 0.45s cubic-bezier(0.3, 0.7, 0.3, 1) both; }
@@ -1267,28 +1269,36 @@
     var vorherPlatzhalter = feld.getAttribute('placeholder');
     var vorherKnopf = knopf ? knopf.textContent : '';
     var uhr = null;
+    // Auch die Tippanzeige braucht einen Griff: Wer zurückkommt, bevor sie
+    // erscheint, bekäme sie sonst 400 ms später in ein Formular geschrieben,
+    // das längst wieder Startformular ist.
+    var punkte = null;
 
     function morph() {
       var oben = function () { return pille.getBoundingClientRect().top; };
       var vorher = oben();
-      var pilleHoch = pille.getBoundingClientRect().height;
       var startHoehe = form.getBoundingClientRect().height;
       var leiste = document.querySelector('.topbar').getBoundingClientRect().bottom;
-      // Die Pille darf ein Stück nachgeben, damit der Chat Luft bekommt —
-      // springen darf sie nicht.
-      var gibtNach = 200;
-      var passt = vorher + pilleHoch + 12 - (leiste + 20);
+      // Das Fenster geht auf das Untermaß der Ankunft auf (14rem): Kopf, eine
+      // Zeile, Antwortleiste. Drüben wächst es sofort weiter, sobald die
+      // Begrüßung steht — hier bleibt es dabei, weil hier nur getippt wird.
+      // Die Pille gibt dabei ein Stück nach, etwa halb so weit, wie die
+      // Überschrift über ihr zusammenfällt.
       var deckel = Math.min(760, Math.round(window.innerHeight - leiste - 48));
-      var hoehe = Math.max(420, Math.min(deckel, passt + gibtNach));
+      var hoehe = Math.min(deckel, 14 * 16);
 
       form.style.transition = 'none';
       document.documentElement.dataset.modus = 'chat';
       form.style.marginBottom = '0px';
       form.style.height = hoehe + 'px';
       void form.offsetHeight;
-      // Der Einstieg ist mittig: ein Rand unten schiebt das Fenster um die
-      // Hälfte nach oben, dorthin, wo die Überschrift stand.
-      var rand = Math.max(0, 2 * (oben() - vorher - gibtNach));
+      // Drüben steht die Ankunft mittig unter der Markenleiste, mit der Zeile
+      // für Behörden darunter — also wird hier dieselbe Mitte angesteuert und
+      // nicht die Pille verankert. Ein Rand unten schiebt das Fenster um die
+      // Hälfte des Randes nach oben, deshalb der Faktor zwei.
+      var mitteZiel = leiste + (window.innerHeight - leiste) / 2 - 27;
+      var mitteIst = form.getBoundingClientRect().top + hoehe / 2;
+      var rand = Math.max(0, Math.round(2 * (mitteIst - mitteZiel)));
       form.style.marginBottom = rand + 'px';
       void form.offsetHeight;
       var zuHoch = (leiste + 16) - form.getBoundingClientRect().top;
@@ -1314,7 +1324,7 @@
       knopf.textContent = 'Senden';
       knopf.setAttribute('aria-disabled', 'true');
       if (stand) stand.textContent = 'Einen Moment \u2013 ChatBieger \u00fcbernimmt.';
-      window.setTimeout(function () {
+      punkte = window.setTimeout(function () {
         lauf.innerHTML = '<div class="chatzeile">' +
           '<img class="chatgesicht" src="chatbieger-logo.png" alt="" width="22" height="22">' +
           '<span class="chatpunkte"><i></i><i></i><i></i></span></div>';
@@ -1327,6 +1337,7 @@
     // Zurückkommen wieder da, wie sie beim ersten Mal stand.
     function zurueck() {
       if (uhr) { window.clearTimeout(uhr); uhr = null; }
+      if (punkte) { window.clearTimeout(punkte); punkte = null; }
       laeuft = false;
       delete document.documentElement.dataset.modus;
       form.style.transition = 'none';
