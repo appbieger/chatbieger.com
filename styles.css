@@ -9,9 +9,37 @@
   --ink-soft: #6e6e73;
   --ink-faint: #86868b;
   --accent: #0066cc;
+  /* Fläche unter weißer Schrift — im Dunkeln dunkler als der Textakzent,
+     dieselbe Lektion wie im Widget und auf index.html: Weiß auf #4d9fff
+     wären 2,7:1. */
+  --accent-solid: #0066cc;
   --accent-hover: #0055aa;
+  --line: rgba(0, 0, 0, 0.07);
+  --bubble: #f2f2f7;
   --ring: inset 0 0 0 1px rgba(0, 0, 0, 0.09);
   --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+/* Der dunkle Modus fehlte auf allen Seiten außer index.html — wer abends von
+   der Startseite auf „Mehr für Handwerksbetriebe" klickte, bekam eine weiße
+   Wand. Dieselben Werte wie dort; bei Änderungen beide Stellen pflegen. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground: #000;
+    --surface: #1c1c1e;
+    --surface-soft: #232326;
+    --ink: #f5f5f7;
+    --ink-soft: #a1a1a6;
+    --ink-faint: #8e8e93;
+    --accent: #4d9fff;
+    --accent-solid: #0a63c9;
+    --accent-hover: #0d6fd9;
+    --line: rgba(255, 255, 255, 0.14);
+    --bubble: #2c2c2e;
+    --ring: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+    --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  .topbar img { filter: invert(1); }
 }
 
 * { box-sizing: border-box; }
@@ -30,7 +58,7 @@ body {
 
 /* Die Produktleiste: dieselbe erste Zeile wie auf index.html, den Demo-Seiten
    und in der Einrichtung — bei Änderungen alle Stellen pflegen. */
-.topbar { padding: 0.9rem 0; border-bottom: 1px solid rgba(0, 0, 0, 0.07); }
+.topbar { padding: 0.9rem 0; border-bottom: 1px solid var(--line); }
 .topbar .wrap { display: flex; align-items: center; gap: 1.3rem; }
 .topbar .marke {
   display: flex;
@@ -52,7 +80,7 @@ body {
   align-items: center;
   border-radius: 999px;
   padding: 0.45rem 1.15rem;
-  background: var(--accent);
+  background: var(--accent-solid);
   color: #fff;
 }
 .topbar .topbar-demo:hover { background: var(--accent-hover); color: #fff; }
