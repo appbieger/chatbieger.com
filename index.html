@@ -812,7 +812,15 @@
       gap: 0.5rem; padding: 1rem; text-align: left; font-size: 0.9375rem; line-height: 1.55;
     }
     .chatzeile { display: flex; gap: 0.5rem; align-items: flex-end; animation: msg-in 0.45s cubic-bezier(0.3, 0.7, 0.3, 1) both; }
+    .chatzeile.ich { justify-content: flex-end; }
     .chatgesicht { width: 22px; height: 22px; flex: none; align-self: flex-start; }
+    /* Dieselben zwei Blasen wie drüben (.arrival-row .bubble): 30rem breit,
+       16 px Radius, seine still, meine in der Hausfarbe. */
+    .chatblase {
+      max-width: 30rem; padding: 0.5rem 0.8rem; border-radius: 16px;
+      background: var(--bubble); white-space: pre-wrap; overflow-wrap: anywhere;
+    }
+    .chatzeile.ich .chatblase { background: var(--accent-solid); color: #fff; }
     .chatpunkte { display: flex; gap: 0.25rem; align-items: center; padding: 0.7rem 0.85rem; border-radius: 16px; background: var(--bubble); }
     .chatpunkte i { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-faint); animation: chatpunkt 1.1s infinite; }
     .chatpunkte i:nth-child(2) { animation-delay: 0.18s; }
@@ -1336,22 +1344,23 @@
         marke.style.transform = '';
       }
 
-      // Das Fenster geht auf das Untermaß der Ankunft auf (14rem): Kopf, eine
-      // Zeile, Antwortleiste. Drüben wächst es sofort weiter, sobald die
-      // Begrüßung steht — hier bleibt es dabei, weil hier nur getippt wird.
-      // Die Pille gibt dabei ein Stück nach, etwa halb so weit, wie die
-      // Überschrift über ihr zusammenfällt.
+      // Dasselbe Maß, auf dem die Ankunft drüben steht (40rem): Sie geht dort
+      // sofort auf ihre volle Höhe, nicht erst mit dem Gespräch — sonst
+      // spränge die Höhe im Moment des Wechsels. Die Pille gibt dabei ein
+      // Stück nach, etwa halb so weit, wie die Überschrift über ihr
+      // zusammenfällt.
       var deckel = Math.min(760, Math.round(window.innerHeight - leiste - 48));
-      var hoehe = Math.min(deckel, 14 * 16);
+      var hoehe = Math.min(deckel, 40 * 16);
 
       form.style.marginBottom = '0px';
       form.style.height = hoehe + 'px';
       void form.offsetHeight;
-      // Drüben steht die Ankunft mittig unter der Markenleiste, mit der Zeile
-      // für Behörden darunter — also wird hier dieselbe Mitte angesteuert und
-      // nicht die Pille verankert. Ein Rand unten schiebt das Fenster um die
-      // Hälfte des Randes nach oben, deshalb der Faktor zwei.
-      var mitteZiel = leiste + (window.innerHeight - leiste) / 2 - 27;
+      // Drüben steht die Ankunft mittig — aber mit einer Markenleiste über sich
+      // und der Zeile für Behörden unter sich, und sitzt dadurch ein Stück
+      // unter der reinen Mitte. Gemessen: 11 px, bei 1280x900 wie bei 390x844
+      // auf 2 px genau. Ein Rand unten schiebt das Fenster um die Hälfte des
+      // Randes nach oben, deshalb der Faktor zwei.
+      var mitteZiel = leiste + (window.innerHeight - leiste) / 2 + 11;
       var mitteIst = form.getBoundingClientRect().top + hoehe / 2;
       var rand = Math.max(0, Math.round(2 * (mitteIst - mitteZiel)));
       form.style.marginBottom = rand + 'px';
@@ -1370,6 +1379,20 @@
       form.style.height = hoehe + 'px';
       form.style.transform = '';
 
+      // Wie drüben steht nur der Host da, nicht Schema und Pfad — und er geht
+      // als Text hinein, nicht als Markup: Getipptes bleibt Getipptes.
+      var adresse = feld.value.trim().replace(/^https?:\/\//i, '').replace(/[\/?#].*$/, '');
+      var alsText = function (text) {
+        var kasten = document.createElement('div');
+        kasten.textContent = text;
+        return kasten.innerHTML;
+      };
+      var seins = function (text) {
+        return '<div class="chatzeile">' +
+          '<img class="chatgesicht" src="chatbieger-logo.png" alt="" width="22" height="22">' +
+          '<span class="chatblase">' + alsText(text) + '</span></div>';
+      };
+
       // Die Leiste bleibt stehen und sieht aus wie immer — sie nimmt nur
       // nichts mehr an, bis der Server übernommen hat.
       feld.value = '';
@@ -1379,10 +1402,22 @@
       knopf.textContent = 'Senden';
       knopf.setAttribute('aria-disabled', 'true');
       if (stand) stand.textContent = 'Einen Moment \u2013 ChatBieger \u00fcbernimmt.';
+      // Dieselben zwei Sätze, mit denen die Ankunft drüben anfängt, dann die
+      // getippte Adresse als eigene Zeile — wer hinübergeht, findet den
+      // Verlauf vor, den er hier stehen sah (0045). Wortgleich zu
+      // arrivalHello und arrivalWhy in web/admin/text.js des Produkts:
+      // ändert sich der Text dort, gehört er auch hier geändert.
+      lauf.innerHTML =
+        seins('Hallo, ich bin ChatBieger.') +
+        seins('Wir stellen jetzt zusammen deinen KI-Mitarbeiter ein: einen, der eure ' +
+          'Leistungen nach außen ansprechbar macht und alles, was hereinkommt, nach ' +
+          'innen an die richtige Stelle bringt.') +
+        '<div class="chatzeile ich"><span class="chatblase">' + alsText(adresse) + '</span></div>';
       punkte = window.setTimeout(function () {
-        lauf.innerHTML = '<div class="chatzeile">' +
+        lauf.insertAdjacentHTML('beforeend', '<div class="chatzeile">' +
           '<img class="chatgesicht" src="chatbieger-logo.png" alt="" width="22" height="22">' +
-          '<span class="chatpunkte"><i></i><i></i><i></i></span></div>';
+          '<span class="chatpunkte"><i></i><i></i><i></i></span></div>');
+        lauf.scrollTop = lauf.scrollHeight;
       }, 700);
     }
 
