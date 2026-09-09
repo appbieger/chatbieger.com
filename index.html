@@ -110,16 +110,14 @@
     .topbar nav a:hover { color: var(--ink); }
     .topbar .topbar-demo { padding: 0.45rem 1.15rem; color: #fff; }
     .topbar .topbar-demo:hover { color: #fff; }
-    /* Am Telefon bleiben zwei Wege stehen: Preis (Lauf 10, beide Betriebe)
-       und Unterlagen (Lauf 13, die Kommune liest im Zug). Demos hat auf dem
+    /* Am Telefon bleiben drei Wege stehen: Preis (Lauf 10, beide Betriebe),
+       Unterlagen (Lauf 13, die Kommune liest im Zug) und „Für wen" — ein Wort
+       kürzer als „Für Kommunen" und der Weg zu allen drei Segment-Seiten, die
+       vom ersten Bildschirm aus sonst unerreichbar sind. Demos hat auf dem
        ersten Bildschirm einen eigenen Knopf, Kontakt steht in der Fußzeile. */
     @media (max-width: 30rem) {
-      .topbar nav a[href^="https://chat.demo."], .topbar nav a[href="kontakt.html"],
-      .topbar nav a[href="kommunen.html"] { display: none; }
-      /* „Für Kommunen" weicht am Telefon mit: vier Links plus Anmelden
-         schoben den Knopf über die Kante. Der Weg bleibt über „Unterlagen",
-         über die Zeile bei „So geht es los" und über die Fußzeile.
-         Der Schriftzug weicht dem dritten Link — sichtbar; für Bildschirmleser
+      .topbar nav a[href^="https://chat.demo."], .topbar nav a[href="kontakt.html"] { display: none; }
+      /* Der Schriftzug weicht dem dritten Link — sichtbar; für Bildschirmleser
          bleibt er der Name des Links, und das Zeichen bekommt seine 44 px. */
       .topbar .marke span { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
       .topbar .marke { padding: 0.7rem; margin: -0.7rem; }
@@ -820,7 +818,7 @@
     <nav aria-label="ChatBieger">
       <a href="https://chat.demo.chatbieger.com/">Demos</a>
       <a href="#preise">Preis</a>
-      <a href="kommunen.html">Für Kommunen</a>
+      <a href="#wen">Für wen</a>
       <a href="unterlagen.html">Unterlagen</a>
       <a href="kontakt.html">Kontakt</a>
       <a class="btn topbar-demo" href="https://admin.demo.chatbieger.com/">Anmelden</a>
@@ -1015,7 +1013,7 @@
   </div>
 </section>
 
-<section>
+<section id="wen">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Für wen</span>
