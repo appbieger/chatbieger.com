@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChatBieger für Kommunen – die Auskunft des Bürgerbüros, rund um die Uhr</title>
+  <meta name="description" content="Ein Assistent auf der Website Ihrer Stadt, der Fragen zu den Leistungen des Bürgerbüros aus Ihren eigenen Angaben beantwortet, jede Antwort mit Quelle belegt und Anliegen als E-Mail übergibt. Mit Preisblatt, AVV-Muster und Erklärung zur Barrierefreiheit – vor dem ersten Gespräch lesbar.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .lead { font-size: 1.15rem; color: var(--ink-soft); margin-bottom: 2rem; max-width: 40rem; }
+    .cases { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 0 0 1.5rem; }
+    @media (max-width: 40rem) { .cases { grid-template-columns: 1fr; } }
+    .cases .card { margin: 0; padding: 1.3rem 1.4rem; }
+    .cases h3 { margin: 0 0 0.4rem; font-size: 1.02rem; font-weight: 600; }
+    .cases p { font-size: 0.95rem; color: var(--ink-soft); margin: 0; }
+    .dialog { display: flex; flex-direction: column; gap: 0.6rem; }
+    .dialog p { max-width: 34rem; padding: 0.65rem 0.95rem; border-radius: 14px; margin: 0; font-size: 0.97rem; }
+    .dialog .you { align-self: flex-end; background: var(--accent-solid); color: #fff; border-bottom-right-radius: 4px; }
+    .dialog .bot { align-self: flex-start; background: var(--bubble); box-shadow: var(--ring); border-bottom-left-radius: 4px; }
+    .dialog .source { align-self: flex-start; font-size: 0.8rem; color: var(--ink-faint); padding: 0 0.4rem; }
+    .steps { list-style: none; padding: 0; margin: 0; counter-reset: s; display: grid; gap: 0.9rem; }
+    .steps li { counter-increment: s; padding-left: 2.4rem; position: relative; }
+    .steps li::before { content: counter(s); position: absolute; left: 0; top: 0.1rem; width: 1.7rem; height: 1.7rem; border-radius: 50%; background: var(--accent-solid); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 600; }
+    .steps b { display: block; }
+    /* Die Staffel ist der Grund, warum jemand diese Seite ausdruckt — sie
+       gehört als Tabelle hierher, nicht als Fließtext. */
+    .staffel { width: 100%; border-collapse: collapse; font-size: 0.95rem; margin: 0.4rem 0 0.9rem; }
+    .staffel th, .staffel td { text-align: left; padding: 0.55rem 0.7rem 0.55rem 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+    .staffel th { font-weight: 600; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+    .staffel td:first-child { font-weight: 600; white-space: nowrap; }
+    .staffel tr:last-child td { border-bottom: 0; }
+    .cta { display: inline-flex; align-items: center; border-radius: 999px; padding: 0.7rem 1.4rem; background: var(--accent-solid); color: #fff; font-weight: 600; text-decoration: none; }
+    .cta:hover { background: var(--accent-hover); color: #fff; text-decoration: none; }
+    .cta.ghost { background: transparent; color: var(--accent); box-shadow: var(--ring); }
+    .cta.ghost:hover { background: var(--ground); }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-top: 1.2rem; }
+    .fine { font-size: 0.88rem; color: var(--ink-faint); margin-top: 0.75rem; }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="marke" href="./"><img src="chatbieger-logo.png" alt="" width="26" height="26"><span>ChatBieger</span></a>
+    <nav aria-label="ChatBieger">
+      <a href="https://chat.demo.chatbieger.com/">Demos</a>
+      <a href="unterlagen.html">Unterlagen</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a class="topbar-demo" href="https://admin.demo.chatbieger.com/">Anmelden</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <p class="muted" style="margin-bottom: 0.5rem; font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;">Für Kommunen und Behörden</p>
+    <h1>Die Auskunft, die am Tresen dreißigmal am Tag gegeben wird.</h1>
+    <p class="lead">Welche Unterlagen brauche ich für den Personalausweis? Was kostet die Ummeldung? Bin ich hier überhaupt richtig? Diese Fragen stehen auf Ihrer Website – und werden trotzdem am Telefon gestellt. Der Assistent beantwortet sie aus Ihren eigenen Angaben, nennt zu jeder Antwort die Quelle und verweist dorthin, wo Sie nicht zuständig sind.</p>
+
+    <p><strong>Diese Seite siezt, und das bleibt so.</strong> Sie ist zum Ausdrucken, Weiterreichen und Zitieren gemacht – für die Amtsleitung, den Fachausschuss und die Vergabestelle. Der Rest dieser Website duzt; wo es um Ihre Vorlage geht, ist das fehl am Platz.</p>
+
+    <h2>Drei Dinge, die den Tresen entlasten</h2>
+    <div class="cases">
+      <div class="card">
+        <h3>Auskunft mit Quelle</h3>
+        <p>Unterlagen, Gebühren, Öffnungszeiten – aus den Leistungsbeschreibungen, die Ihr Fachbereich abgenommen hat. Unter jeder Antwort steht, worauf sie sich stützt und wann sie zuletzt geprüft wurde.</p>
+      </div>
+      <div class="card">
+        <h3>Anliegen als fertiger Vorgang</h3>
+        <p>Er fragt im Gespräch nach, was zur Bearbeitung fehlt, und übergibt das Ergebnis als E-Mail – abgeschickt aus dem Programm der Person, nach einem Klick. Kein Antragsportal, kein zweites Postfach.</p>
+      </div>
+      <div class="card">
+        <h3>Zuständigkeit statt Raten</h3>
+        <p>Kfz-Zulassung, Führerschein, Wohngeld: Was beim Landkreis liegt, sagt er als Erstes. Wo er unsicher ist, verweist er auf das Bürgerbüro, statt eine Stelle zu erfinden.</p>
+      </div>
+    </div>
+
+    <h2>So klingt das</h2>
+    <div class="card dialog">
+      <p class="you">Ich ziehe innerhalb der Stadt um. Was muss ich mitbringen?</p>
+      <p class="bot">Zur Ummeldung brauchen Sie Ihren Personalausweis oder Reisepass und die Wohnungsgeberbestätigung Ihrer Vermieterin oder Ihres Vermieters. Anmelden müssen Sie sich innerhalb von zwei Wochen nach dem Einzug. Ein Termin ist nötig – ich kann Ihnen die Terminvergabe verlinken.</p>
+      <p class="source">Quelle: Wohnsitz ummelden · zuletzt geprüft am 02.09.2026</p>
+      <p class="you">Und mein Auto? Muss ich das auch ummelden?</p>
+      <p class="bot">Dafür ist nicht die Stadt zuständig, sondern die Zulassungsstelle des Landkreises. Ich habe dazu keine Angaben hinterlegt und möchte nichts raten – die Nummer des Bürgerbüros steht unten, dort weiß man, wohin es geht.</p>
+      <p class="source">Ohne hinterlegte Quelle – als solche gekennzeichnet</p>
+    </div>
+    <p class="muted">Ein Beispiel, keine Aufzeichnung: Die Formulierungen zeigen, wie der Assistent antwortet, nicht die Angaben einer bestimmten Stadt. Der zweite Fall ist der wichtigere – dass er die Grenze seiner Zuständigkeit ausspricht, statt sie zu überspielen.</p>
+
+    <h2>Was der Rat wissen will</h2>
+    <p>Der Preis hängt an einer einzigen Zahl: wie viele Leistungen hinterlegt sind. Standorte, Zahl der Nutzenden und Gesprächsmenge spielen keine Rolle. Alle Angaben netto.</p>
+    <table class="staffel">
+      <thead>
+        <tr><th>Leistungen</th><th>Monatlich</th><th>Einrichtung</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>bis 15</td><td>890 €</td><td>4.500 €</td></tr>
+        <tr><td>bis 40</td><td>1.290 €</td><td>6.500 €</td></tr>
+        <tr><td>darüber</td><td>1.690 €</td><td>8.500 €</td></tr>
+      </tbody>
+    </table>
+    <p>Enthalten ist in jeder Stufe dasselbe: Import aus Ihrer Website, Abnahme jeder Leistung mit Ihrem Fachbereich, Einbindung und die Datenschutz-Unterlagen ausgefüllt auf Ihre Organisation. Weitere Leistungen entstehen ohne Aufpreis, bis die nächste Stufe erreicht ist; die Stufe wechselt zum Monatsersten, nie rückwirkend.</p>
+    <p><strong>Vergabe.</strong> In Niedersachsen ist ein Direktauftrag bis 100.000 € netto möglich (Stand 2026; Ihre Vergabestelle prüft den aktuellen Wert). Ein Bürgerbüro mit rund 30 Leistungen liegt über vier Jahre bei 68.420 € netto. Eine Leistungsbeschreibung, die Sie unverändert an drei Anbieter schicken können, steht im <a href="unterlagen.html#preise">Preisblatt</a>; auf Wunsch liefern wir zwei Vergleichsangebote benannter Anbieter mit deren Leistungsumfang.</p>
+    <p><strong>Kauft der Landkreis später für alle ein</strong>, gehen Ihre Leistungsbeschreibungen als Textdateien mit – auch in ein anderes System. Bei gemeinsamem Einkauf mehrerer kreisangehöriger Kommunen gilt die Staffel je Kommune mit 20 % Nachlass ab der dritten, und ein späterer Beitritt senkt den Preis für alle rückwirkend zum Beitrittsmonat.</p>
+
+    <h2>Der Einstieg ist ein Pilot, keine Rechnung</h2>
+    <ol class="steps">
+      <li><b>Ausgangszahl erheben.</b> Anrufe und Anfragen je Woche im betroffenen Bereich. Wo die Telefonanlage zählt, lesen wir die Auswertung einer Woche und Ihr Tresen tut nichts; wo nicht, ist es eine Woche Strichliste. Das Blatt liefern wir, auswerten tun wir.</li>
+      <li><b>Leistungen beschreiben und abnehmen.</b> Der Assistent liest Ihre Website und legt vor, was er beantworten könnte. Jede Beschreibung nimmt Ihr Fachbereich ab, bevor sie gilt.</li>
+      <li><b>Befristet laufen lassen.</b> Gemeinsam festgelegtes Enddatum, vorher vereinbartes Kriterium. Am Enddatum endet der Pilot ohne Kündigung – es gibt nichts zu widerrufen.</li>
+      <li><b>Entscheiden.</b> Was im Pilot entstanden ist, gehört Ihrer Organisation und wird herausgegeben, auch wenn Sie sich dagegen entscheiden.</li>
+    </ol>
+    <p class="fine">Die externe Prüfung der Barrierefreiheit nach BITV wird während des Piloten beauftragt und vom Anbieter bezahlt.</p>
+
+    <h2>Was Sie mitgeben können, bevor wir miteinander gesprochen haben</h2>
+    <p>Die <a href="unterlagen.html">Unterlagen</a> stehen vollständig öffentlich – ohne Anfrage, ohne Formular. Abschnitt 0 ist eine Vorlage zum Übernehmen: Sachverhalt, Kosten, Nutzen, Risiko, Ausstieg und Beschlussvorschlag, mit Klammern zum Ersetzen. Dazu Preisblatt, AVV-Muster mit Anlagen, Löschkonzept, Verfügbarkeitszusage und die <a href="unterlagen.html#barrierefreiheit">Erklärung zur Barrierefreiheit</a>. Jeder Abschnitt lässt sich einzeln verlinken und ausdrucken.</p>
+
+    <h2>Zwei Dinge, die wir lieber selbst sagen</h2>
+    <p><strong>Es gibt noch keine zahlende Kommune.</strong> ChatBieger ist seit August 2026 öffentlich im Betrieb. Genau deshalb ist der Einstieg ein Pilot ohne Rechnung: Sie tragen kein Geldrisiko, wir bekommen die erste Referenz – und die Zahl, die beweist, ob es wirkt. Wer als Erste geht, steht in der Ratsvorlage nicht als Risiko, sondern als Vorreiterin mit Rückfahrkarte.</p>
+    <p><strong>Dahinter steht ein Mensch, nicht ein Haus.</strong> Die Frage, was bei Tod oder Insolvenz passiert, kommt in jedem Vergabegespräch – zu Recht. Die Antwort steht im Vertrag: Eine benannte Vertretung ist bevollmächtigt und hat den Zugang; sie betreibt innerhalb von fünf Arbeitstagen weiter oder schaltet auf Ihre Weisung ab, gibt alle Dateien heraus und bestätigt die Löschung (<a href="unterlagen.html#avv">AVV § 11</a>). Ihr IT-Dienstleister kann mit dem hinterlegten Quelltext und Ihren Dateien jederzeit selbst übernehmen.</p>
+
+    <h2>Wie es weitergeht</h2>
+    <p>Für dienstliche Daten einer Behörde ist der Probezugang auf der Startseite nicht gedacht – das braucht einen Vertrag. Der Weg ist deshalb ein anderer: erst lesen, dann reden.</p>
+    <div class="cta-row">
+      <a class="cta" href="unterlagen.html">Unterlagen öffnen</a>
+      <a class="cta ghost" href="kontakt.html">Gespräch vereinbaren</a>
+    </div>
+    <p class="fine">Ich antworte persönlich. Wenn Sie einen Vorgang im Kopf haben, bei dem Sie sich fragen, ob das geht: fragen Sie danach – die ehrliche Antwort ist manchmal nein.</p>
+  </div>
+</main>
+
+<footer class="legal-footer">
+  <div class="wrap">
+    <a href="./">Startseite</a>
+    <a href="handwerk.html">Für Handwerksbetriebe</a>
+    <a href="hausverwaltung.html">Für Hausverwaltungen</a>
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="unterlagen.html">Unterlagen</a>
+    <a href="kontakt.html">Kontakt</a>
+  </div>
+</footer>
+
+</body>
+</html>

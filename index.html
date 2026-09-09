@@ -114,8 +114,12 @@
        und Unterlagen (Lauf 13, die Kommune liest im Zug). Demos hat auf dem
        ersten Bildschirm einen eigenen Knopf, Kontakt steht in der Fußzeile. */
     @media (max-width: 30rem) {
-      .topbar nav a[href^="https://chat.demo."], .topbar nav a[href="kontakt.html"] { display: none; }
-      /* Der Schriftzug weicht dem dritten Link — sichtbar; für Bildschirmleser
+      .topbar nav a[href^="https://chat.demo."], .topbar nav a[href="kontakt.html"],
+      .topbar nav a[href="kommunen.html"] { display: none; }
+      /* „Für Kommunen" weicht am Telefon mit: vier Links plus Anmelden
+         schoben den Knopf über die Kante. Der Weg bleibt über „Unterlagen",
+         über die Zeile bei „So geht es los" und über die Fußzeile.
+         Der Schriftzug weicht dem dritten Link — sichtbar; für Bildschirmleser
          bleibt er der Name des Links, und das Zeichen bekommt seine 44 px. */
       .topbar .marke span { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
       .topbar .marke { padding: 0.7rem; margin: -0.7rem; }
@@ -814,6 +818,7 @@
     <nav aria-label="ChatBieger">
       <a href="https://chat.demo.chatbieger.com/">Demos</a>
       <a href="#preise">Preis</a>
+      <a href="kommunen.html">Für Kommunen</a>
       <a href="unterlagen.html">Unterlagen</a>
       <a href="kontakt.html">Kontakt</a>
       <a class="btn topbar-demo" href="https://admin.demo.chatbieger.com/">Anmelden</a>
@@ -858,7 +863,7 @@
     </ol>
     <p class="los-fuss erste">Es entsteht dabei kein Vertrag &ndash; zugestimmt wird erst, wenn du ihn beh&auml;ltst. Wer vorher lesen will: <a href="unterlagen.html#avv">Nutzungsbedingungen und Auftragsverarbeitungsvertrag</a>.</p>
     <p class="los-fuss">Keine Website? <a href="https://chat.demo.chatbieger.com/admin/?signup=1">Dann mit dem Namen deiner Organisation anfangen.</a></p>
-    <p class="los-fuss">Kommune oder Beh&ouml;rde? F&uuml;r dienstliche Daten kommt ein Vertrag dazu, der Einstieg ist ein Pilot: <a href="unterlagen.html">Unterlagen f&uuml;r deine Vorlage</a>.</p>
+    <p class="los-fuss">Kommune oder Beh&ouml;rde? F&uuml;r dienstliche Daten kommt ein Vertrag dazu, der Einstieg ist ein Pilot: <a href="kommunen.html">Was f&uuml;r Verwaltungen gilt</a>.</p>
   </div>
 </section>
 
@@ -1015,6 +1020,14 @@
       <h2>Überall dort, wo dieselben Fragen jeden Tag kommen.</h2>
     </div>
     <div class="audiences">
+      <div class="audience card">
+        <span class="glyph" aria-hidden="true">🏛️</span>
+        <span class="who">Kommune</span>
+        <h3>Bürgerbüro</h3>
+        <p>Personalausweis, Wohnsitz, Gebühren: Auskünfte, die jeden Tag am Telefon gegeben werden &ndash; und die online zwar stehen, aber nicht gefunden werden. Dazu die Frage, die am meisten Zeit kostet: Bin ich hier überhaupt richtig?</p>
+        <p class="hinweis">Für dienstliche Daten kommt ein Vertrag dazu, der Einstieg ist ein Pilot. Preisblatt, AVV-Muster und Erklärung zur Barrierefreiheit stehen offen.</p>
+        <a class="demo-link" href="kommunen.html">Mehr für Kommunen &rarr;</a>
+      </div>
       <div class="audience card">
         <span class="glyph" aria-hidden="true">🧸</span>
         <span class="who">Kita</span>
