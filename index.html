@@ -898,7 +898,7 @@
          schon da und haben nur keine H&ouml;he, bis die Adresse abgeschickt ist. -->
     <form class="einstieg-form" id="einstieg-form" action="https://chat.demo.chatbieger.com/admin/" method="get">
       <div class="chatkopf" aria-hidden="true"><div><div class="chatkopf-innen">
-        <img src="chatbieger-logo.png" alt="" width="20" height="20"><b>ChatBieger</b>
+        <img src="chatbieger-logo.png" alt="" width="20" height="20"><b>Dein neuer Mitarbeiter</b>
       </div></div></div>
       <div class="chatlauf" id="chatlauf" aria-hidden="true"></div>
       <p class="sr-only" id="chatstand" role="status"></p>
@@ -908,7 +908,7 @@
                data-fehler="Trag die Adresse deiner Website ein &ndash; zum Beispiel www.deine-website.de.">
         <button type="submit">Start</button>
       </div>
-      <div class="weicht"><div><p class="einstieg-kosten">Ausprobieren kostenlos &middot; kein Konto, kein Vertrag &middot; behalten 249&nbsp;€ im Monat</p></div></div>
+      <div class="weicht"><div><p class="einstieg-kosten">Ausprobieren kostenlos, kein Konto &middot; behalten 249&nbsp;&euro; im Monat, monatlich k&uuml;ndbar</p></div></div>
     </form>
 
     <div class="weicht"><div><p class="einstieg-zweit"><a href="https://chat.demo.chatbieger.com/">Erst eine Demo ansehen</a></p></div></div>
@@ -924,6 +924,7 @@
       <li><b>Dein KI-Mitarbeiter entsteht aus deiner Website.</b> Adresse eintippen. Er liest die wichtigsten Seiten und legt dir vor, was er beantworten k&ouml;nnte.</li>
       <li><b>Du sagst ihm, was er beantworten soll.</b> Welche Leistungen, welche Ausk&uuml;nfte. In deinen Worten, ohne Formular. Einmal, danach nur, wenn sich bei dir etwas &auml;ndert.</li>
       <li><b>Mehr nur, wenn du willst.</b> Auskunft reicht f&uuml;r den Anfang. Sp&auml;ter nimmt er Anliegen als E-Mail auf, und wer m&ouml;chte, l&auml;sst ihn in den eigenen Systemen arbeiten. Du entscheidest, wie weit.</li>
+      <li><b>Auf deine Website kommt er mit einer Zeile.</b> Zum Kopieren &ndash; bei WordPress als fertiges Plugin, bei Jimdo, Wix und IONOS ins Feld &bdquo;Eigener Code&ldquo;. Wer die Seite nicht selbst pflegt, schickt die Zeile weiter.</li>
     </ol>
     <p class="los-fuss erste">Es entsteht dabei kein Vertrag &ndash; zugestimmt wird erst, wenn du ihn beh&auml;ltst. Wer vorher lesen will: <a href="unterlagen.html#avv">Nutzungsbedingungen und Auftragsverarbeitungsvertrag</a>.</p>
     <p class="los-fuss">Keine Website? <a href="https://chat.demo.chatbieger.com/admin/?signup=1">Dann mit dem Namen deiner Organisation anfangen.</a></p>
@@ -1264,7 +1265,7 @@
   <div class="wrap">
     <div class="footer-card">
       <h2>Fang mit deiner Website an.</h2>
-      <p>Du stellst einen Mitarbeiter ein, der rund um die Uhr erreichbar ist. ChatBieger ist der Vorarbeiter: Er liest deine Website, schlägt vor, was der Neue können soll, und bringt es ihm bei &ndash; entschieden wird von dir.</p>
+      <p>Du stellst einen Mitarbeiter ein, der rund um die Uhr erreichbar ist &ndash; und du stellst ihn ein, indem du mit ihm redest: Er liest deine Website, schlägt vor, was er übernehmen kann, und lernt, was du ihm sagst. Entschieden wird von dir.</p>
       <p>Eine Adresse genügt: Name, Logo und Hausfarbe holen wir von deiner Startseite, du bestätigst &ndash; und beschreibst dann im Gespräch, was du ohnehin jeden Tag erklärst. Kein Konto vorab, kein Passwort.</p>
       <div class="cta-row">
         <a class="btn inverted" href="#einstieg">Adresse eintragen</a>
@@ -1428,20 +1429,21 @@
       feld.value = '';
       feld.readOnly = true;
       feld.placeholder = 'Antworten \u2026';
-      feld.setAttribute('aria-label', 'Nachricht an ChatBieger');
+      feld.setAttribute('aria-label', 'Nachricht an deinen Mitarbeiter');
       knopf.textContent = 'Senden';
       knopf.setAttribute('aria-disabled', 'true');
-      if (stand) stand.textContent = 'Einen Moment \u2013 ChatBieger \u00fcbernimmt.';
+      if (stand) stand.textContent = 'Einen Moment \u2013 dein Mitarbeiter \u00fcbernimmt.';
       // Dieselben zwei Sätze, mit denen die Ankunft drüben anfängt, dann die
       // getippte Adresse als eigene Zeile — wer hinübergeht, findet den
-      // Verlauf vor, den er hier stehen sah (0045). Wortgleich zu
-      // arrivalHello und arrivalWhy in web/admin/text.js des Produkts:
-      // ändert sich der Text dort, gehört er auch hier geändert.
+      // Verlauf vor, den er hier stehen sah (0045). Seit 0055 spricht der
+      // Mitarbeiter selbst. Wortgleich zu arrivalHello und arrivalWhy in
+      // web/admin/text.js des Produkts: ändert sich der Text dort, gehört er
+      // auch hier geändert.
       lauf.innerHTML =
-        seins('Hallo, ich bin ChatBieger.') +
-        seins('Wir stellen jetzt zusammen deinen KI-Mitarbeiter ein: einen, der eure ' +
-          'Leistungen nach außen ansprechbar macht und alles, was hereinkommt, nach ' +
-          'innen an die richtige Stelle bringt.') +
+        seins('Hallo, ich bin dein neuer Mitarbeiter.') +
+        seins('Einen Namen habe ich noch nicht \u2014 den gibst du mir gleich. Du stellst mich ein, ' +
+          'damit ich eure Leistungen nach außen ansprechbar mache und alles, was hereinkommt, ' +
+          'nach innen an die richtige Stelle bringe.') +
         '<div class="chatzeile ich"><span class="chatblase">' + alsText(adresse) + '</span></div>';
       punkte = window.setTimeout(function () {
         lauf.insertAdjacentHTML('beforeend', '<div class="chatzeile">' +
