@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Handgepflegt: die Seite hat keinen Build-Schritt. Wer eine neue .html-Datei
+  anlegt, traegt sie hier nach.
+
+  Kein <lastmod>: ohne Build wuerde das Datum von Hand gepflegt und damit
+  falsch, und ein falsches lastmod ignorieren Suchmaschinen ohnehin. Lieber
+  keine Angabe als eine, der niemand trauen kann.
+
+  impressum.html und datenschutz.html fehlen mit Absicht — beide tragen
+  <meta name="robots" content="noindex">. Eine Seite in die Sitemap zu
+  schreiben und sie zugleich aus dem Index zu halten, sind zwei
+  widersprechende Signale; die Search Console meldet das als Fehler.
+  Verlinkt sind sie im Fuss jeder Seite, gefunden werden sie also trotzdem.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://chatbieger.com/</loc></url>
+  <url><loc>https://chatbieger.com/kommunen.html</loc></url>
+  <url><loc>https://chatbieger.com/handwerk.html</loc></url>
+  <url><loc>https://chatbieger.com/hausverwaltung.html</loc></url>
+  <url><loc>https://chatbieger.com/unterlagen.html</loc></url>
+  <url><loc>https://chatbieger.com/kontakt.html</loc></url>
+</urlset>

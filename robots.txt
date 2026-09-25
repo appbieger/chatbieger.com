@@ -1,0 +1,8 @@
+# chatbieger.com — alles darf gelesen werden. Impressum und Datenschutz tragen
+# ihr eigenes noindex im <head>; das gehoert dorthin und nicht hierher, denn was
+# robots.txt sperrt, kann eine Suchmaschine nicht lesen und deshalb auch das
+# noindex nicht sehen.
+User-agent: *
+Allow: /
+
+Sitemap: https://chatbieger.com/sitemap.xml
