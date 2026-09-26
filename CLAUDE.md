@@ -61,3 +61,12 @@ dem v1-Stand fortgeschrieben.
 - **Produktname:** ChatBieger. Die Domain ist chatbieger.com.
   Das Beispiel-Unternehmen "MBB" aus dem Produkt-Repo ist ein Demo-Tenant,
   nicht der Produktname.
+
+## Git-Ablauf
+
+- **Keine Pull Requests.** Fertige Änderungen werden direkt auf `main`
+  gepusht; GitHub Pages veröffentlicht von dort.
+- Es gibt keinen `dev`-Branch. Ein Arbeitsbranch der Sitzung darf mitlaufen,
+  maßgeblich ist `main`.
+- Vor dem Push prüfen, dass die Seite unverändert bzw. wie beabsichtigt
+  aussieht — `main` ist sofort live.
