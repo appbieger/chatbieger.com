@@ -26,57 +26,10 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="ChatBieger – Dein Unternehmen ansprechbar mit KI">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="tokens.css">
   <style>
-    :root {
-
-      /* Der Browser darf dunkel malen, bevor er diese Regeln kennt. */
-      color-scheme: light dark;
-      --ground: #f5f5f7;
-      --surface: #ffffff;
-      --surface-soft: #fbfbfd;
-      --ink: #1d1d1f;
-      --ink-soft: #6e6e73;
-      --ink-faint: #86868b;
-      --accent: #0066cc;
-      /* Fläche unter weißer Schrift — im Dunkeln dunkler als der Textakzent,
-         dieselbe Lektion wie im Widget (WCAG: Weiß auf #4d9fff wären 2,7:1). */
-      --accent-solid: #0066cc;
-      --accent-hover: #0055aa;
-      --accent-tint: rgba(0, 102, 204, 0.07);
-      --warn: #c9251c;
-      --warn-tint: #fff5f5;
-      --line: rgba(0, 0, 0, 0.12);
-      --bubble: #f2f2f7;
-      --ring: inset 0 0 0 1px rgba(0, 0, 0, 0.09);
-      --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-      --float-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 28px 60px -34px rgba(0, 0, 0, 0.3);
-      /* Eine Kurve für alles, was sich bewegt: zügig los, weich ankommen. */
-      --bogen: cubic-bezier(0.3, 0.7, 0.3, 1);
-    }
-
-    /* Derselbe dunkle Modus wie in Chat, Übersicht und Einrichtung — die
-       Landing war die einzige Fläche ohne ihn, und genau dort fiel der
-       Bruch zuerst auf. */
+    /* Farben, Schatten und die Bewegungskurve stehen in tokens.css. */
     @media (prefers-color-scheme: dark) {
-      :root {
-        --ground: #000;
-        --surface: #1c1c1e;
-        --surface-soft: #232326;
-        --ink: #f5f5f7;
-        --ink-soft: #a1a1a6;
-        --ink-faint: #8e8e93;
-        --accent: #4d9fff;
-        --accent-solid: #0a63c9;
-        --accent-hover: #0d6fd9;
-        --accent-tint: rgba(77, 159, 255, 0.12);
-        --warn: #ff6b6b;
-        --warn-tint: #3a1416;
-        --line: rgba(255, 255, 255, 0.16);
-        --bubble: #2c2c2e;
-        --ring: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
-        --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-        --float-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 28px 60px -34px rgba(0, 0, 0, 0.9);
-      }
       .topbar img { filter: invert(1); }
     }
 
