@@ -173,6 +173,14 @@
     }
     .feld button:hover { background: var(--accent-hover); }
     .feld button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    /* Der Knopf sagt, was danach kommt: Man lernt seinen Mitarbeiter kennen.
+       Wo der Platz nicht reicht, bleibt es beim kurzen „Start“ — sonst
+       bliebe vom Feld keine lesbare Adresse übrig. */
+    .knopf-kurz { display: none; }
+    @media (max-width: 40rem) {
+      .knopf-lang { display: none; }
+      .knopf-kurz { display: inline; }
+    }
 
     /* Was das Drücken kostet, in einer Zeile (Council, Lauf 7). Alles
        Weitere — der Vertragssatz (0031), der Weg ohne Website, der Weg für
@@ -187,8 +195,26 @@
     .los-titel { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); text-align: center; margin: 0 0 1.1rem; }
     .einstieg-schritte {
       margin: 0 auto; padding: 0; list-style: none; width: min(60rem, 100%);
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
       counter-reset: los; text-align: left;
+    }
+    /* Der Stand: vier Stücke über den vier Schritten. Das erste füllt sich,
+       sobald oben eine Adresse steht — gezählt wird nur, was wirklich getan
+       ist, aber das wird gezählt: Niemand soll bei null anfangen, der schon
+       angefangen hat. */
+    .los-stand {
+      width: min(60rem, 100%); margin: 0 auto 0.7rem;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
+    }
+    .los-stand span { height: 4px; border-radius: 2px; background: var(--line); transition: background 0.4s var(--bogen); }
+    .los-stand span.voll { background: var(--accent); }
+    .los-stand-text { margin: 0 auto 1.1rem; text-align: center; font-size: 0.9rem; color: var(--ink-soft); }
+    .los-stand-text a { color: var(--accent); }
+    .einstieg-schritte li.erledigt { box-shadow: var(--card-shadow), inset 0 0 0 2px var(--accent); }
+    .einstieg-schritte li.erledigt::before { content: counter(los) " \00B7  erledigt \2713"; }
+    @media (max-width: 60rem) and (min-width: 46.01rem) {
+      .einstieg-schritte { grid-template-columns: repeat(2, 1fr); }
+      .los-stand { grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
     }
     .einstieg-schritte li {
       counter-increment: los;
@@ -204,6 +230,7 @@
     @media (max-width: 46rem) {
       .los { padding-top: 1.75rem; }
       .einstieg-schritte { grid-template-columns: 1fr; gap: 0.8rem; }
+      .los-stand { gap: 0.4rem; }
       .einstieg-schritte li { padding: 1rem 1.05rem 1.1rem; }
     }
     /* Der zweite Weg ist ein Link, kein Knopf: zwei Flächen stritten sich
@@ -661,6 +688,10 @@
     .plan .price { margin-top: auto; padding-top: 0.8rem; font-size: 1.45rem; font-weight: 650; letter-spacing: -0.01em; }
     .plan .price span { font-size: 0.85rem; font-weight: 400; color: var(--ink-soft); letter-spacing: 0; }
     .plan .note { padding-top: 0.15rem; font-size: 0.88rem; color: var(--ink-faint); }
+    /* Kein Preis steht allein: Erst kommt der Maßstab (was ein Anruf kostet),
+       unter jedem Preis die Rechnung dagegen. */
+    .section-head .anker { margin-top: 0.9rem; font-size: 1.05rem; color: var(--ink); }
+    .plan .rechnung { margin-top: -0.45rem; font-size: 0.88rem; font-weight: 500; color: var(--accent); }
 
     /* ---------- Ehrlichkeits-Belege ---------- */
     .proofs { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
@@ -878,12 +909,12 @@
         <label class="sr-only" for="start-url">Adresse deiner Website</label>
         <input id="start-url" name="start" type="text" inputmode="url" autocomplete="url" autocapitalize="off" spellcheck="false" placeholder="www.deine-website.de" required
                data-fehler="Trag die Adresse deiner Website ein &ndash; zum Beispiel www.deine-website.de.">
-        <button type="submit">Start</button>
+        <button type="submit"><span class="knopf-lang">Kennenlernen</span><span class="knopf-kurz">Start</span></button>
       </div>
-      <div class="weicht"><div><p class="einstieg-kosten">Ausprobieren kostenlos, kein Konto &middot; behalten 249&nbsp;&euro; im Monat, monatlich k&uuml;ndbar</p></div></div>
+      <div class="weicht"><div><p class="einstieg-kosten">Er zeigt dir zuerst, was er beantworten k&ouml;nnte &ndash; kostenlos, ohne Konto. Behalten: 249&nbsp;&euro; im Monat, monatlich k&uuml;ndbar.</p></div></div>
     </form>
 
-    <div class="weicht"><div><p class="einstieg-zweit"><a href="https://chat.demo.chatbieger.com/">Erst eine Demo ansehen</a></p></div></div>
+    <div class="weicht"><div><p class="einstieg-zweit">Erst eine Demo ansehen: <a href="https://chat.demo.chatbieger.com/malerbetrieb-ahrens">Handwerk</a> &middot; <a href="https://chat.demo.chatbieger.com/hausverwaltung-weserfurt">Hausverwaltung</a> &middot; <a href="https://chat.demo.chatbieger.com/kita-rhade">KiTa</a> &middot; <a href="https://chat.demo.chatbieger.com/">alle</a></p></div></div>
   </div>
 
   <div class="weicht"><div><a class="weiter" href="#weiter" aria-label="Weiter unten: f&uuml;r wen, wie es funktioniert, Preis, wer dahintersteckt"><span class="pfeil" aria-hidden="true">&darr;</span></a></div></div>
@@ -892,8 +923,10 @@
 <section class="los weicht" aria-labelledby="los-titel">
   <div class="wrap">
     <h2 id="los-titel" class="los-titel">So geht es los</h2>
+    <div class="los-stand" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    <p class="los-stand-text" id="los-stand-text" role="status">Vier Schritte. Der erste ist eine Zeile: <a href="#einstieg">oben die Adresse eintippen</a>.</p>
     <ol class="einstieg-schritte">
-      <li><b>Dein KI-Mitarbeiter entsteht aus deiner Website.</b> Adresse eintippen. Er liest die wichtigsten Seiten und legt dir vor, was er beantworten k&ouml;nnte.</li>
+      <li class="schritt-eins"><b>Dein KI-Mitarbeiter entsteht aus deiner Website.</b> Adresse eintippen. Er liest die wichtigsten Seiten und legt dir vor, was er beantworten k&ouml;nnte.</li>
       <li><b>Du sagst ihm, was er beantworten soll.</b> Welche Leistungen, welche Ausk&uuml;nfte. In deinen Worten, ohne Formular. Einmal, danach nur, wenn sich bei dir etwas &auml;ndert.</li>
       <li><b>Mehr nur, wenn du willst.</b> Auskunft reicht f&uuml;r den Anfang. Sp&auml;ter nimmt er Anliegen als E-Mail auf, und wer m&ouml;chte, l&auml;sst ihn in den eigenen Systemen arbeiten. Du entscheidest, wie weit.</li>
       <li><b>Auf deine Website kommt er mit einer Zeile.</b> Zum Kopieren &ndash; bei WordPress als fertiges Plugin, bei Jimdo, Wix und IONOS ins Feld &bdquo;Eigener Code&ldquo;. Wer die Seite nicht selbst pflegt, schickt die Zeile weiter.</li>
@@ -910,7 +943,7 @@
       <span class="eyebrow">Auffindbar &rarr; ansprechbar</span>
       <h2>So sieht das bei deinen Leuten aus.</h2>
       <p class="lede measure">B&uuml;rgerinnen, Eltern und Kundschaft fragen ihn im Chat, statt sich durch eine Website zu klicken oder in der Warteschleife zu h&auml;ngen.</p>
-      <p class="measure muted">Er ist rund um die Uhr erreichbar: im Chat auf deiner Website, f&uuml;r andere KIs, f&uuml;r deine eigenen Leute. Nichts wird abgeschaltet, niemand muss umlernen, es gibt keinen Stichtag.</p>
+      <p class="measure muted">Heute bleiben die Fragen liegen, die in der Warteschleife h&auml;ngen oder abends um zehn kommen. Er ist rund um die Uhr erreichbar: im Chat auf deiner Website, f&uuml;r andere KIs, f&uuml;r deine eigenen Leute. Nichts wird abgeschaltet, niemand muss umlernen, es gibt keinen Stichtag.</p>
       <div class="cta-row">
         <a class="btn" href="https://chat.demo.chatbieger.com/">Demo ausprobieren</a>
         <span class="cta-note">Ohne Anmeldung &middot; echte Organisationen, echte Inhalte</span>
@@ -1170,6 +1203,7 @@
       <span class="eyebrow">Preise &amp; Souveränität</span>
       <h2>Du behältst deine Inhalte &ndash; und die Wahl.</h2>
       <p class="measure muted">Drei Varianten. Der Unterschied ist nicht der Funktionsumfang, sondern wie viel du selbst bestimmst.</p>
+      <p class="measure anker">Vorweg der Ma&szlig;stab: Ein Anruf oder eine E-Mail kostet 5 bis 10 Minuten Personalzeit &ndash; bei 35 bis 50&nbsp;&euro; Vollkosten je Stunde also <strong>3&ndash;8&nbsp;&euro;</strong>.</p>
     </div>
     <div class="plans">
       <div class="plan card">
@@ -1194,6 +1228,7 @@
           <li>Das Sprachmodell w&auml;hlen wir nach Qualit&auml;t und Preis &ndash; Verarbeitung kann Anbieter au&szlig;erhalb der EU einschlie&szlig;en, Auftragsverarbeitungsvertrag inklusive</li>
         </ul>
         <p class="price">249&nbsp;€ <span>im Monat zzgl. USt.</span></p>
+        <p class="rechnung">Tr&auml;gt sich ab etwa 40 ersparten Anrufen im Monat.</p>
         <p class="note"><strong>Monatlich kündbar, keine Mindestlaufzeit.</strong> Die Einrichtung machst du im Gespräch mit dem Assistenten selbst &ndash; oder wir für einmalig 1.500&nbsp;€. Für Betriebe, Praxen und Vereine.</p>
       </div>
       <div class="plan card">
@@ -1206,11 +1241,12 @@
           <li>Anbindung deiner Fachsysteme (Stufe 3)</li>
         </ul>
         <p class="price">ab 890&nbsp;€ <span>im Monat zzgl. USt.</span></p>
+        <p class="rechnung">Tr&auml;gt sich f&uuml;r eine Stadt mit rund 30 Leistungen ab etwa 200 Anrufen im Monat &ndash; zehn am Arbeitstag.</p>
         <p class="note">Einrichtung ab 4.500&nbsp;€, gestaffelt nach Umfang. Für Kommunen und alles mit Nachweispflicht &ndash; hier verkaufen wir Zusagen, nicht Funktionen. Der Einstieg ist ein <strong>Pilot</strong>: befristet, ohne Rechnung, mit Enddatum und einer vorher erhobenen Zahl, an der sich hinterher messen lässt, ob es gewirkt hat. <a href="unterlagen.html">Unterlagen für deine Vorlage</a> &ndash; Preisblatt, AVV-Muster, Datenschutz, Barrierefreiheit.</p>
       </div>
     </div>
     <p class="measure muted" style="margin-top: 1.5rem;">Barrierefreiheit ist keine Tarifstufe: Der Chat ist in allen Varianten nach WCAG&nbsp;2.1&nbsp;AA gebaut und vom Anbieter selbst geprüft &ndash; Tastatur, Kontrast, Bildschirmleser; Stand 31.08.2026, ein externes Prüfsiegel gibt es noch nicht. Im Enterprise-Pilot beauftragen und bezahlen wir die externe Prüfung nach BITV; den Prüfbericht bekommst du für deine eigene Erklärung. Die <a href="unterlagen.html#barrierefreiheit">Erklärung zur Barrierefreiheit</a> steht bei den Unterlagen.</p>
-    <p class="measure muted" style="margin-top: 0.75rem;">Zur Einordnung: Ein Anruf oder eine E-Mail kostet 5 bis 10 Minuten Personalzeit, bei 35 bis 50&nbsp;€ Vollkosten je Stunde also 3&ndash;8&nbsp;€. Professional trägt sich ab etwa 40 ersparten Anrufen im Monat, Enterprise für eine Stadt mit rund 30 Leistungen ab etwa 200 &ndash; das sind zehn am Arbeitstag, weniger als ein Bürgerbüro vor dem Mittag hat. Wie viele Gespräche der Assistent übernimmt, siehst du jederzeit selbst im Cockpit. Es entfällt dabei keine Stelle: Er nimmt die Anrufe ab, die heute in der Warteschleife oder abends um zehn unbeantwortet bleiben.</p>
+    <p class="measure muted" style="margin-top: 0.75rem;">Zehn Anrufe am Arbeitstag sind weniger, als ein Bürgerbüro vor dem Mittag hat. Wie viele Gespräche der Assistent übernimmt, siehst du jederzeit selbst im Cockpit. Es entfällt dabei keine Stelle: Er nimmt die Anrufe ab, die heute in der Warteschleife oder abends um zehn unbeantwortet bleiben.</p>
     <p class="measure muted" style="margin-top: 0.75rem;">Was verarbeitet wird, steht bei uns nicht im Kleingedruckten: Gesprächsinhalte werden nicht gespeichert, IP-Adressen nicht protokolliert, und die Konfiguration deiner Organisation ist eine Handvoll lesbarer Textdateien, die du jederzeit mitnehmen kannst. Der Zugang selbst spricht einen offenen Standard (MCP, die Schnittstelle, über die KI-Programme Werkzeuge benutzen) &ndash; dein Assistent funktioniert damit auch in Claude, ChatGPT und anderen KI-Programmen, nicht nur in unserem Chat. Es gibt keinen Einschluss: Wer geht, nimmt alles mit.</p>
   </div>
 </section>
@@ -1285,6 +1321,32 @@
     chat.classList.add('laeuft');
   }
 
+  // ---------- Der Stand bei „So geht es los“ ----------
+  // Schritt 1 ist die Adresse. Steht oben eine, ist er erledigt — und das
+  // zeigt die Leiste unten, statt bei null zu stehen.
+  var zaehle = (function () {
+    var feld = document.getElementById('start-url');
+    var stuecke = document.querySelectorAll('.los-stand span');
+    var eins = document.querySelector('.schritt-eins');
+    var text = document.getElementById('los-stand-text');
+    if (!feld || !eins || !text) return function () {};
+    var vorher = text.innerHTML;
+    var war = false;
+    function zaehle() {
+      var ist = /\S+\.\S{2,}/.test(feld.value.trim());
+      if (ist === war) return;
+      war = ist;
+      eins.classList.toggle('erledigt', ist);
+      if (stuecke[0]) stuecke[0].classList.toggle('voll', ist);
+      text.innerHTML = ist
+        ? '1 von 4 erledigt. Weiter geht es <a href="#einstieg">oben am Feld</a> \u2013 den Rest besprichst du mit ihm.'
+        : vorher;
+    }
+    feld.addEventListener('input', zaehle);
+    zaehle();
+    return zaehle;
+  })();
+
   // ---------- Der Weg in den Chat ----------
   // Abgeschickt wird nicht sofort: Erst weicht die Seite, das Fenster wächst
   // um die Pille, und ChatBieger fängt an zu tippen. In dieser Ruhe wechselt
@@ -1301,7 +1363,7 @@
     // Wie die Leiste aussah, bevor sie zur Antwortzeile wurde — der Rückweg
     // braucht sie wieder so.
     var vorherPlatzhalter = feld.getAttribute('placeholder');
-    var vorherKnopf = knopf ? knopf.textContent : '';
+    var vorherKnopf = knopf ? knopf.innerHTML : '';
     var uhr = null;
     // Auch die Tippanzeige braucht einen Griff: Wer zurückkommt, bevor sie
     // erscheint, bekäme sie sonst 400 ms später in ein Formular geschrieben,
@@ -1417,7 +1479,8 @@
       feld.value = '';
       feld.setAttribute('placeholder', vorherPlatzhalter);
       feld.removeAttribute('aria-label');
-      if (knopf) { knopf.textContent = vorherKnopf; knopf.removeAttribute('aria-disabled'); }
+      if (knopf) { knopf.innerHTML = vorherKnopf; knopf.removeAttribute('aria-disabled'); }
+      zaehle();
     }
     window.addEventListener('pageshow', function (ereignis) {
       if (ereignis.persisted || laeuft) zurueck();
@@ -1442,11 +1505,13 @@
     });
   })();
 
-  document.querySelectorAll('a[href="#einstieg"]').forEach(function (link) {
-    link.addEventListener('click', function () {
-      var feld = document.getElementById('start-url');
-      if (feld) setTimeout(function () { feld.focus({ preventScroll: true }); }, 0);
-    });
+  // Über das Dokument statt über jeden Link: Der Hinweis bei „So geht es
+  // los" wird neu geschrieben, und sein Link soll trotzdem mitmachen.
+  document.addEventListener('click', function (ereignis) {
+    var link = ereignis.target.closest && ereignis.target.closest('a[href="#einstieg"]');
+    if (!link) return;
+    var feld = document.getElementById('start-url');
+    if (feld) setTimeout(function () { feld.focus({ preventScroll: true }); }, 0);
   });
 </script>
 </body>
